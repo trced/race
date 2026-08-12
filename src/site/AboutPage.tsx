@@ -40,7 +40,7 @@ export function AboutPage() {
 
   return (
     <>
-      <section className="site__lede">
+      <section className="site__lede site__lede--split">
         <h1 className="site__h1">{t('site.about.title')}</h1>
         <p className="site__text">{t('site.about.lede')}</p>
       </section>

@@ -15,7 +15,7 @@ export function ChangelogPage() {
 
   return (
     <>
-      <section className="site__lede">
+      <section className="site__lede site__lede--split">
         <h1 className="site__h1">{t('site.changelog.title')}</h1>
         <p className="site__text">{t('site.changelog.lede')}</p>
       </section>

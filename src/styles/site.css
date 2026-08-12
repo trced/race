@@ -10,18 +10,20 @@
 
 .site__inner {
   width: 100%;
-  max-width: 880px;
+  max-width: var(--container-max);
   margin: 0 auto;
   padding: var(--space-6) var(--screen-margin) var(--space-8);
-}
-
-.site__inner--wide {
-  max-width: var(--container-max);
 }
 
 @media (min-width: 640px) {
   .site__inner {
     padding: var(--space-12) var(--space-12) var(--space-10);
+  }
+}
+
+@media (min-width: 1280px) {
+  .site__inner {
+    padding: var(--space-16) var(--space-16) var(--space-12);
   }
 }
 
@@ -99,15 +101,38 @@
   }
 }
 
-.site__lede {
+.site__lede,
+.site__lede-text {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
 @media (min-width: 640px) {
-  .site__lede {
+  .site__lede,
+  .site__lede-text {
     gap: var(--space-6);
+  }
+}
+
+/* Au-delà de 1024 px un titre seul ne peut pas occuper une page de 1280 px :
+   son accompagnement — les faits, ou le chapô — passe en rail de droite. Le
+   haut de page tient alors toute la largeur sans qu'une seule ligne de texte
+   s'allonge. Explicite, car la règle suppose exactement deux enfants. */
+@media (min-width: 1024px) {
+  .site__lede--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+    column-gap: var(--space-16);
+    align-items: start;
+  }
+}
+
+/* Au-delà, un rail étroit laisserait un vide au milieu du haut de page :
+   les deux moitiés s'égalisent et le rail se met sur deux colonnes. */
+@media (min-width: 1440px) {
+  .site__lede--split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -189,8 +214,14 @@
     min-height: var(--touch-target);
     width: auto;
     border: 0;
-    border-radius: 0;
     border-bottom: var(--rule-width) solid var(--color-ink);
+  }
+}
+
+/* En pleine largeur, l'inversion au survol ne peut pas déborder du cadre. */
+@media (max-width: 639px) {
+  .site__actions .btn--text:hover {
+    box-shadow: none;
   }
 }
 
@@ -206,6 +237,22 @@
 @media (min-width: 640px) {
   .facts {
     grid-template-columns: repeat(3, 1fr);
+    gap: 0 var(--space-10);
+  }
+}
+
+/* En rail, les six faits se lisent de haut en bas — sur deux colonnes dès
+   que le rail en a la place. */
+@media (min-width: 1024px) {
+  .facts {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 var(--space-10);
   }
 }
@@ -251,6 +298,14 @@
   }
 }
 
+/* La colonne du nom cesse de grandir avec le cadre : sinon le titre et sa
+   description s'éloignent l'un de l'autre sans rien gagner. */
+@media (min-width: 1024px) {
+  .numbered__item {
+    grid-template-columns: 24px minmax(160px, 280px) minmax(0, 1fr);
+  }
+}
+
 .numbered__index {
   font-size: var(--text-meta);
   color: var(--color-muted);
@@ -261,10 +316,14 @@
   font-weight: var(--weight-medium);
 }
 
+/* Le cadre s'élargit, la ligne de texte non : le trait de la rangée va
+   jusqu'au bord, la phrase garde sa mesure. C'est le cadre qui occupe la
+   page, jamais une ligne de cent caractères. */
 .numbered__body {
   font-size: var(--text-data);
   line-height: var(--leading-data);
   color: var(--color-muted-strong);
+  max-width: var(--measure);
 }
 
 /* En mobile le titre et la description s'empilent dans la même colonne. */
@@ -354,6 +413,12 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .deflist__item {
+    grid-template-columns: minmax(220px, 380px) minmax(0, 1fr);
+  }
+}
+
 .deflist__term {
   font-size: var(--text-body);
 }
@@ -369,6 +434,7 @@
   font-size: var(--text-data);
   line-height: var(--leading-data);
   color: var(--color-muted-strong);
+  max-width: var(--measure);
 }
 
 @media (min-width: 640px) {
@@ -393,13 +459,19 @@
   }
 }
 
+/* L'en-tête suit ses rangées, sinon les deux colonnes se désalignent. */
+@media (min-width: 1024px) {
+  .deflist__head {
+    grid-template-columns: minmax(220px, 380px) minmax(0, 1fr);
+  }
+}
+
 /* — les trois vues, en aperçu — */
 
 .previews {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-8);
-  margin-top: var(--space-6);
 }
 
 @media (min-width: 640px) {
@@ -457,12 +529,10 @@
   grid-template-columns: auto 12px 1fr;
 }
 
-.site__subhead {
-  margin-top: var(--space-12);
-}
-
 /* — l'application incrustée — */
 
+/* Le cadre est haut de 844 px : ce qui l'accompagne remplit cette hauteur
+   plutôt que de la laisser en vide à sa droite. */
 .showcase {
   display: flex;
   flex-wrap: wrap;
@@ -481,10 +551,10 @@
 
 .showcase__aside {
   flex: 1;
-  min-width: 220px;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5);
 }
 
 .showcase__hints {
@@ -494,6 +564,10 @@
   font-size: var(--text-meta);
   color: var(--color-muted);
   max-width: 44ch;
+}
+
+.showcase__subhead {
+  margin-top: var(--space-3);
 }
 
 /* — bloc de conclusion — */
@@ -632,6 +706,10 @@
   font-size: var(--text-data);
   line-height: var(--leading-data);
   color: var(--color-muted-strong);
+}
+
+.release__item > :last-child {
+  max-width: var(--measure);
 }
 
 .release__marker {

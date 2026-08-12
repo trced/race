@@ -5,6 +5,7 @@
 import { Link } from 'react-router'
 import { RaceApp } from '../app/RaceApp.tsx'
 import { useFormat } from '../app/useFormat.ts'
+import { useMediaQuery } from '../app/useMediaQuery.ts'
 import { Marker } from '../components/ListRow.tsx'
 import { useI18n } from '../i18n/index.tsx'
 import type { MessageKey } from '../i18n/index.tsx'
@@ -43,22 +44,32 @@ const REFUSALS: MessageKey[] = [
   'site.home.notdo.notifications',
 ]
 
+/** L'encart mesure 390 × 844 : en dessous de cette largeur, c'est un
+ *  téléphone dans un téléphone. Il ne dit rien de plus que les trois aperçus
+ *  et il mange un écran entier — on ne le monte pas du tout. */
+const SHOW_APP = '(min-width: 900px)'
+
 export function HomePage() {
   useDocumentMeta('site.home.metaTitle', 'site.home.metaDescription')
   const { t } = useI18n()
+  const showApp = useMediaQuery(SHOW_APP)
 
   return (
     <>
-      <section className="site__lede">
-        <h1 className="site__h1">{t('site.home.title')}</h1>
-        <p className="site__text">{t('site.home.lede')}</p>
-        <div className="site__actions">
-          <Link className="btn btn--primary" to="/app">
-            {t('site.home.cta')}
-          </Link>
-          <Link className="btn btn--text" to="/app?demo=1">
-            {t('site.home.demo')}
-          </Link>
+      {/* Sur grand écran, les faits passent en rail à droite de la promesse :
+          la page occupe sa largeur sans jamais allonger une ligne de texte. */}
+      <section className="site__lede site__lede--split">
+        <div className="site__lede-text">
+          <h1 className="site__h1">{t('site.home.title')}</h1>
+          <p className="site__text">{t('site.home.lede')}</p>
+          <div className="site__actions">
+            <Link className="btn btn--primary" to="/app">
+              {t('site.home.cta')}
+            </Link>
+            <Link className="btn btn--text" to="/app?demo=1">
+              {t('site.home.demo')}
+            </Link>
+          </div>
         </div>
         <ul className="facts">
           {FACTS.map(([name, note]) => (
@@ -94,29 +105,41 @@ export function HomePage() {
           {t('site.home.app')}
         </h2>
         <div className="showcase">
-          <div className="showcase__frame">
-            <DemoStoreProvider>
-              <RaceApp embedded />
-            </DemoStoreProvider>
-            <span className="t-meta t-muted">{t('site.home.appCaption')}</span>
-          </div>
+          {showApp ? (
+            <div className="showcase__frame">
+              <DemoStoreProvider>
+                <RaceApp embedded />
+              </DemoStoreProvider>
+              <span className="t-meta t-muted">
+                {t('site.home.appCaption')}
+              </span>
+            </div>
+          ) : null}
           <div className="showcase__aside">
             <p className="site__text t-data">{t('site.home.appBody')}</p>
-            <ul className="showcase__hints">
-              {HINTS.map((hint) => (
-                <li key={hint}>{t(hint)}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+            {/* Les repères décrivent des gestes dans le cadre : sans cadre,
+                c'est le lien vers l'exemple qui les remplace. */}
+            {showApp ? (
+              <ul className="showcase__hints">
+                {HINTS.map((hint) => (
+                  <li key={hint}>{t(hint)}</li>
+                ))}
+              </ul>
+            ) : (
+              <Link className="btn btn--text" to="/app?demo=1">
+                {t('site.home.demo')}
+              </Link>
+            )}
 
-        <h3 className="section-label section-label--strong site__subhead">
-          {t('site.home.views')}
-        </h3>
-        <div className="previews">
-          <ListPreview />
-          <YearPreview />
-          <MonthPreview />
+            <h3 className="section-label section-label--strong showcase__subhead">
+              {t('site.home.views')}
+            </h3>
+            <div className="previews">
+              <ListPreview />
+              <YearPreview />
+              <MonthPreview />
+            </div>
+          </div>
         </div>
       </section>
 

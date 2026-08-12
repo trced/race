@@ -8,7 +8,7 @@ export function NotFoundPage() {
   useDocumentMeta('site.notfound.title')
   const { t } = useI18n()
   return (
-    <section className="site__lede">
+    <section className="site__lede site__lede--split">
       <h1 className="site__h1">{t('site.notfound.title')}</h1>
       <p className="site__text">{t('site.notfound.body')}</p>
       <div className="inline-links">
