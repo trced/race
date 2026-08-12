@@ -131,7 +131,7 @@ export const en: Record<MessageKey, string> = {
   'app.edit.date': 'Date',
   'app.edit.distance': 'Distance ({unit})',
   'app.edit.duration': 'Duration',
-  'app.edit.durationHint': 'h:mm:ss or mm:ss',
+  'app.edit.durationHint': 'digits are enough: 4500 gives 45:00',
   'app.edit.durationPlaceholder': '3:45:00',
   'app.edit.elevation': 'Climb ({unit})',
   'app.edit.location': 'Place',

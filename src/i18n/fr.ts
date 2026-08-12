@@ -134,7 +134,7 @@ export const fr = {
   'app.edit.date': 'Date',
   'app.edit.distance': 'Distance ({unit})',
   'app.edit.duration': 'Durée',
-  'app.edit.durationHint': 'h:mm:ss ou mm:ss',
+  'app.edit.durationHint': 'les chiffres suffisent : 4500 donne 45:00',
   'app.edit.durationPlaceholder': '3:45:00',
   'app.edit.elevation': 'D+ ({unit})',
   'app.edit.location': 'Lieu',
