@@ -28,7 +28,8 @@ export default defineConfig({
         start_url: '/app',
         scope: '/',
         display: 'standalone',
-        orientation: 'portrait',
+        // Pas de verrou d'orientation : la mise en page a trois paliers, et
+        // c'est en paysage qu'une tablette atteint celui à deux colonnes.
         background_color: '#f2f3f2',
         theme_color: '#f2f3f2',
         categories: ['health', 'fitness', 'lifestyle'],
