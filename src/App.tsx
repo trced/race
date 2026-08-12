@@ -2,6 +2,7 @@
 
 import { BrowserRouter, Route, Routes, useSearchParams } from 'react-router'
 import { RaceApp } from './app/RaceApp.tsx'
+import { UpdatePrompt } from './app/UpdatePrompt.tsx'
 import { I18nProvider } from './i18n/index.tsx'
 import { DemoStoreProvider, StoreProvider, useStore } from './state/store.tsx'
 import { AboutPage } from './site/AboutPage.tsx'
@@ -51,6 +52,9 @@ export function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        {/* Hors du routeur : la proposition survit aux navigations, et elle
+            vaut pour le site comme pour l'application. */}
+        <UpdatePrompt />
       </Localised>
     </StoreProvider>
   )

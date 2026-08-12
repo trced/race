@@ -15,7 +15,21 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      /*
+       * `prompt`, et non `autoUpdate`. Le journal vit dans le navigateur et
+       * nulle part ailleurs : un rechargement décidé par le service worker au
+       * milieu d'une saisie de course emporterait ce qui n'est pas encore
+       * écrit. Le nouveau worker s'installe, précache, puis attend ; c'est
+       * `UpdatePrompt` qui lui donne la main, quand quelqu'un le demande.
+       *
+       * Corollaire : aucun `skipWaiting` dans `workbox` ci-dessous. Il
+       * annulerait l'attente, et avec elle le choix.
+       */
+      registerType: 'prompt',
+      // L'enregistrement passe par `useRegisterSW`, dans le composant qui
+      // affiche le bandeau : le script que le plugin injecte d'office ferait
+      // le travail une seconde fois, sans rien à quoi s'accrocher.
+      injectRegister: null,
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
         id: '/app',
@@ -51,6 +65,19 @@ export default defineConfig({
         globIgnores: ['**/og.png'],
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
+        /*
+         * Sans cela, la toute première visite reste non contrôlée : le worker
+         * s'installe, précache, et n'attrape la page qu'au chargement suivant.
+         * Quelqu'un qui ouvre l'application puis descend dans le métro
+         * trouverait une page blanche.
+         *
+         * Ce n'est pas la porte dérobée que `skipWaiting` serait : la
+         * revendication n'a lieu qu'à l'activation, et une mise à jour
+         * n'active rien tant que le bandeau n'a pas eu sa réponse. Elle ne
+         * joue donc qu'à la première installation, quand il n'y a pas
+         * d'ancienne version à emporter.
+         */
+        clientsClaim: true,
         // Aucune requête réseau à l'usage : tout est précaché, rien n'est
         // récupéré à la volée. Pas de runtimeCaching par construction.
         runtimeCaching: [],

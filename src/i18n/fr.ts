@@ -476,6 +476,12 @@ export const fr = {
   'legal.notice.mediationBody':
     'aucune donnée traitée, aucun litige de service ; réclamations par e-mail',
 
+  // ————— mise à jour —————
+  // La version en attente ne s'installe pas d'elle-même : le bandeau annonce,
+  // il ne prévient pas d'un fait accompli.
+  'update.available': 'Une nouvelle version est prête.',
+  'update.action': 'recharger',
+
   // ————— page introuvable —————
   'site.notfound.title': 'Cette page n’existe pas.',
   'site.notfound.body':

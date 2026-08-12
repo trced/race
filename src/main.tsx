@@ -22,7 +22,6 @@
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { registerSW } from 'virtual:pwa-register'
 import { App } from './App.tsx'
 import { hasRaces } from './lib/storage.ts'
 
@@ -56,5 +55,6 @@ createRoot(root).render(
   </StrictMode>,
 )
 
-// Mise à jour silencieuse : la version suivante s'installe au rechargement.
-registerSW({ immediate: true })
+// L'enregistrement du service worker vit dans `UpdatePrompt` : c'est le même
+// geste que d'afficher le bandeau, et le séparer en deux endroits ferait
+// enregistrer deux fois.

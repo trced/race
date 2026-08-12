@@ -472,6 +472,10 @@ export const en: Record<MessageKey, string> = {
   'legal.notice.mediationBody':
     'no data processed, no service dispute; claims by email',
 
+  // ————— update —————
+  'update.available': 'A new version is ready.',
+  'update.action': 'reload',
+
   // ————— not found —————
   'site.notfound.title': 'This page does not exist.',
   'site.notfound.body':

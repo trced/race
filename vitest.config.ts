@@ -11,6 +11,16 @@ export default defineConfig({
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
   },
+  resolve: {
+    alias: {
+      // Le module du service worker n'existe qu'au build : sans ce
+      // remplaçant, tout test qui monte `UpdatePrompt` échoue à l'import.
+      'virtual:pwa-register/react': new URL(
+        './src/test/pwaRegister.ts',
+        import.meta.url,
+      ).pathname,
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',

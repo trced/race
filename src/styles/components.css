@@ -840,3 +840,39 @@ button.stat:hover {
   align-items: center;
   margin-top: var(--space-2);
 }
+
+/* ————— bandeau de mise à jour ————— */
+
+/* Posé au bas de la fenêtre, sur toute sa largeur : la proposition reste
+   lisible où qu'on en soit dans la page, et elle attend une réponse plutôt
+   que de s'effacer seule. Un filet suffit à la détacher du contenu — la
+   famille ne pose pas d'ombre pour dire « au-dessus ». */
+.update {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  padding: var(--space-3) var(--screen-margin);
+  /* Sur un téléphone, le bas de la fenêtre n'est pas le bas de l'écran. */
+  padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
+  background: var(--color-bg);
+  border-top: var(--rule-width) solid var(--color-ink);
+}
+
+.update__message {
+  font-size: var(--text-data);
+  line-height: var(--leading-data);
+}
+
+.update__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-6);
+}
