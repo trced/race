@@ -1,0 +1,326 @@
+/* app.css — coque de l'application.
+   En-tête ≤ 20 % de la hauteur, contenu au-dessus de la ligne de flottaison,
+   une seule action principale, atteignable au pouce. */
+
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  isolation: isolate;
+}
+
+/* Route /app : l'application occupe la fenêtre et défile en interne.
+   `flex: none` est nécessaire — dans un conteneur flex en colonne, un
+   `flex-basis` remplacerait `height` et la hauteur redeviendrait
+   indéfinie, ce qui laisserait la liste pousser la page entière. */
+.app--page {
+  flex: none;
+  height: 100dvh;
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 641px) {
+  .app--page {
+    border-left: var(--rule-width) solid var(--color-rule);
+    border-right: var(--rule-width) solid var(--color-rule);
+  }
+}
+
+/* Encart de la page de présentation : le vrai composant, en 390 × 844. */
+.app--embedded {
+  width: 390px;
+  max-width: 100%;
+  height: 844px;
+  border: var(--rule-width) solid var(--color-ink);
+}
+
+/* Sur un téléphone, 844 px dépassent l'écran : le cadre se contente de
+   la hauteur disponible, le contenu défile comme dans l'application. */
+@media (max-width: 639px) {
+  .app--embedded {
+    height: min(844px, 80dvh);
+  }
+}
+
+.app__head {
+  padding: var(--space-4) var(--screen-margin) var(--space-3);
+  padding-top: calc(var(--space-4) + env(safe-area-inset-top));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border-bottom: var(--rule-width) solid var(--color-ink);
+}
+
+.app__topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.app__crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.app__brand {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-brand);
+  letter-spacing: var(--tracking-brand);
+  min-height: 32px;
+}
+
+.app__crumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+.app__crumb-link {
+  font-size: var(--text-meta);
+  color: var(--color-muted-strong);
+  border-bottom: var(--rule-width) solid var(--color-rule);
+  min-height: 32px;
+}
+
+.app__crumb-current {
+  font-size: var(--text-meta);
+  color: var(--color-muted);
+}
+
+.app__settings {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-label);
+  color: var(--color-muted-strong);
+  border-bottom: var(--rule-width) solid var(--color-rule);
+  flex: 0 0 auto;
+}
+
+.app__settings:hover {
+  color: var(--color-ink);
+}
+
+.app__listhead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.app__titleline {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+  min-height: 30px;
+}
+
+.app__title {
+  font-size: var(--text-title);
+  letter-spacing: var(--tracking-title);
+  white-space: nowrap;
+}
+
+.app__titleaside {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.app__sort {
+  font-size: var(--text-meta);
+  color: var(--color-muted-strong);
+  border-bottom: var(--rule-width) solid var(--color-rule);
+  min-height: 30px;
+}
+
+.app__count {
+  font-size: var(--text-meta);
+  color: var(--color-muted);
+}
+
+.app__status {
+  font-size: var(--text-meta);
+  color: var(--color-ink);
+}
+
+.app__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.app__pad {
+  padding: 0 var(--screen-margin);
+}
+
+.app__foot {
+  padding: var(--space-4) var(--screen-margin) var(--space-6);
+  padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom));
+  border-top: var(--rule-width) solid var(--color-ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.app__foot-group {
+  display: flex;
+  gap: var(--space-5);
+  align-items: center;
+  min-width: 0;
+}
+
+/* Bandeau du mode exemple : dit ce qu'il est, offre la sortie. */
+.app__demo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-2) var(--screen-margin);
+  border-bottom: var(--rule-width) solid var(--color-rule);
+  font-size: var(--text-meta);
+  color: var(--color-muted-strong);
+}
+
+/* — vue année — */
+
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-1);
+  padding: var(--space-5) var(--screen-margin) 0;
+}
+
+.year-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: 72px;
+  padding: var(--row-padding-y) var(--space-2);
+  border-bottom: var(--rule-width) solid var(--color-rule);
+  transition: background var(--motion-micro) linear,
+    color var(--motion-micro) linear;
+}
+
+.year-cell:hover {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+.year-cell__name {
+  font-size: var(--text-label);
+}
+
+.year-cell__marker {
+  font-size: var(--text-data);
+  opacity: 0.72;
+}
+
+.year-legend {
+  padding: var(--space-5) var(--screen-margin) 0;
+  font-size: var(--text-meta);
+  color: var(--color-muted-strong);
+}
+
+/* — vue records — */
+
+.records {
+  padding: var(--space-2) var(--screen-margin) 0;
+}
+
+.records__section {
+  margin-top: var(--space-8);
+}
+
+.records__section:last-child {
+  padding-bottom: var(--space-2);
+}
+
+/* — fiche de course — */
+
+.detail__headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--rule-width) solid var(--color-rule);
+}
+
+.detail__time {
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-display);
+}
+
+.detail__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail__pair {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--row-padding-y) 0;
+  border-bottom: var(--rule-width) solid var(--color-rule);
+}
+
+.detail__notes {
+  margin-top: var(--space-2);
+  font-size: var(--text-data);
+  line-height: var(--leading-body);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* — formulaire — */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+/* — panneau de réglages — */
+
+.settings__head {
+  padding: var(--space-6) var(--screen-margin) var(--space-3);
+  padding-top: calc(var(--space-6) + env(safe-area-inset-top));
+  border-bottom: var(--rule-width) solid var(--color-ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.settings__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-5) var(--screen-margin) var(--space-6);
+  padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.settings__note {
+  margin-top: var(--space-3);
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+  color: var(--color-muted-strong);
+}
