@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div ref="{{ rootRef }}" tabindex="-1" style="width:390px;height:844px;background:{{ ui.bg }};border:1px solid {{ ui.ink }};display:flex;flex-direction:column;position:relative;overflow:hidden;outline:none">
+
+        <div style="padding:16px 24px 12px;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid {{ ui.ink }}">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <nav aria-label="Fil d'Ariane" style="display:flex;align-items:center;gap:8px;min-width:0">
+              <button onClick="{{ goList }}" style="display:inline-flex;align-items:center;font-size:20px;letter-spacing:-0.02em;min-height:32px">race.</button>
+              <sc-for list="{{ crumbs }}" as="c" hint-placeholder-count="0">
+                <span style="display:flex;align-items:center;gap:8px;white-space:nowrap">
+                  <span aria-hidden="true" style="font-size:12px;color:{{ ui.mute }}">›</span>
+                  <sc-if value="{{ c.link }}" hint-placeholder-val="{{ true }}">
+                    <button onClick="{{ c.go }}" style="font-size:12px;color:{{ ui.dim }};border-bottom:1px solid {{ ui.rule }};min-height:32px">{{ c.label }}</button>
+                  </sc-if>
+                  <sc-if value="{{ c.last }}" hint-placeholder-val="{{ false }}">
+                    <span aria-current="page" style="font-size:12px;color:{{ ui.mute }}">{{ c.label }}</span>
+                  </sc-if>
+                </span>
+              </sc-for>
+            </nav>
+            <button onClick="{{ openSettings }}" style="min-height:32px;display:inline-flex;align-items:center;font-size:13px;color:{{ ui.dim }};border-bottom:1px solid {{ ui.rule }};flex:0 0 auto">réglages</button>
+          </div>
+          <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;min-height:30px">
+                <span style="font-size:24px;letter-spacing:-0.02em;white-space:nowrap">courses</span>
+                <div style="display:flex;gap:8px;align-items:baseline;white-space:nowrap">
+                  <sc-if value="{{ noSaved }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-size:12px;color:{{ ui.mute }}" aria-live="polite">{{ resultLabel }}</span>
+                  </sc-if>
+                  <sc-if value="{{ hasSaved }}" hint-placeholder-val="{{ false }}">
+                    <span role="status" style="font-size:12px;color:{{ ui.ink }}">✓ {{ saved }}</span>
+                  </sc-if>
+                  <sc-if value="{{ hasRaces }}" hint-placeholder-val="{{ true }}">
+                    <button onClick="{{ cycleSort }}" aria-label="{{ sortAria }}" style="font-size:12px;color:{{ ui.dim }};border-bottom:1px solid {{ ui.rule }};min-height:30px">{{ sortLabel }}</button>
+                  </sc-if>
+                </div>
+              </div>
+              <sc-if value="{{ hasRaces }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;gap:8px;align-items:center">
+                <div style="flex:1;min-width:0;position:relative;display:flex">
+                  <input type="text" value="{{ query }}" onChange="{{ onSearch }}" aria-label="Rechercher une course" placeholder="nom, lieu, année" style="width:100%;min-height:44px;padding:0 44px 0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border:1px solid {{ ui.rule }};border-radius:4px">
+                  <sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}">
+                    <button onClick="{{ clearQuery }}" aria-label="Effacer la recherche" style="position:absolute;right:1px;top:1px;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;color:{{ ui.dim }}">×</button>
+                  </sc-if>
+                </div>
+                <select value="{{ typeValue }}" onChange="{{ onTypeFilter }}" aria-label="Filtrer par type" style="flex:0 0 auto;max-width:150px;min-height:44px;padding:0 8px 0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border:1px solid {{ ui.rule }};border-radius:4px;font-size:13px">
+                  <sc-for list="{{ typeOptions }}" as="t" hint-placeholder-count="3">
+                    <option value="{{ t.value }}">{{ t.label }}</option>
+                  </sc-for>
+                </select>
+              </div>
+              </sc-if>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isYear }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px">
+              <button onClick="{{ prevPeriod }}" aria-label="Année précédente" style="min-height:44px;padding:0 4px;font-size:13px;color:{{ ui.dim }}">‹ {{ prevLabel }}</button>
+              <button onClick="{{ goToday }}" title="{{ todayHint }}" style="display:flex;flex-direction:column;align-items:center;gap:2px;min-height:44px;padding:0 4px">
+                <span style="font-size:24px;letter-spacing:-0.02em;white-space:nowrap" aria-live="polite">{{ yearLabel }}</span>
+                <span style="font-size:12px;color:{{ ui.dim }};white-space:nowrap;border-bottom:1px solid {{ ui.rule }}">{{ todayCaption }}</span>
+              </button>
+              <button onClick="{{ nextPeriod }}" aria-label="Année suivante" style="min-height:44px;padding:0 4px;font-size:13px;color:{{ ui.dim }};text-align:right">{{ nextLabel }} ›</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isRecords }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;min-height:44px">
+              <span style="font-size:24px;letter-spacing:-0.02em">records</span>
+              <span style="font-size:12px;color:{{ ui.mute }};white-space:nowrap">meilleur temps par distance</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isMonth }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px">
+              <button onClick="{{ prevPeriod }}" aria-label="Mois précédent" style="min-height:44px;min-width:44px;padding:0 4px;font-size:16px;color:{{ ui.dim }}">‹</button>
+              <button onClick="{{ goToday }}" title="{{ todayHint }}" style="display:flex;flex-direction:column;align-items:center;gap:2px;min-height:44px;padding:0 4px">
+                <span style="font-size:24px;letter-spacing:-0.02em;white-space:nowrap" aria-live="polite">{{ monthLabel }}</span>
+                <span style="font-size:12px;color:{{ ui.dim }};white-space:nowrap;border-bottom:1px solid {{ ui.rule }}">{{ todayCaption }}</span>
+              </button>
+              <button onClick="{{ nextPeriod }}" aria-label="Mois suivant" style="min-height:44px;min-width:44px;padding:0 4px;font-size:16px;color:{{ ui.dim }};text-align:right">›</button>
+            </div>
+          </sc-if>
+
+        </div>
+
+        <div ref="{{ scrollRef }}" style="flex:1;overflow-y:auto;overscroll-behavior:contain">
+
+          <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:32px 24px">
+              <p style="font-size:15px">Aucune course enregistrée.</p>
+              <p style="margin-top:6px;font-size:15px;color:{{ ui.dim }}">Commencez par celle dont vous vous souvenez le mieux.</p>
+              <button onClick="{{ addRace }}" style="margin-top:20px;min-height:44px;font-size:14px;border-bottom:1px solid {{ ui.ink }}">+ ajouter une course</button>
+              <p style="margin-top:24px;font-size:12px;color:{{ ui.mute }}">Vous avez déjà un fichier race.json&nbsp;? Réglages → importer.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:32px 24px">
+              <p style="font-size:15px">Aucune course ne correspond.</p>
+              <p style="margin-top:6px;font-size:15px;color:{{ ui.dim }}">Essayez un autre mot, ou revenez à toutes les courses.</p>
+              <button onClick="{{ clearFilters }}" style="margin-top:20px;min-height:44px;font-size:14px;border-bottom:1px solid {{ ui.ink }}">effacer les filtres</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+            <ul style="padding:0 24px">
+              <sc-for list="{{ listItems }}" as="r" hint-placeholder-count="4">
+                <li style="border-bottom:1px solid {{ ui.rule }}">
+                  <sc-if value="{{ r.showYear }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:20px 0 6px;font-size:12px;color:{{ ui.mute }}">{{ r.year }}</div>
+                  </sc-if>
+                  <button onClick="{{ r.open }}" style="display:grid;grid-template-columns:16px 1fr;gap:12px;width:100%;padding:14px 4px" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}">
+                    <span style="width:6px;height:6px;border-radius:50%;background:currentColor;margin-top:7px"></span>
+                    <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                      <span style="font-size:15px">{{ r.name }}</span>
+                      <span style="font-size:14px;opacity:0.72">{{ r.meta }}</span>
+                      <span style="font-size:12px;opacity:0.72">{{ r.sub }}</span>
+                      <sc-if value="{{ r.showNotes }}" hint-placeholder-val="{{ false }}">
+                        <span style="font-size:12px;opacity:0.72;margin-top:4px">Notes : {{ r.notes }}</span>
+                      </sc-if>
+                    </span>
+                  </button>
+                </li>
+              </sc-for>
+            </ul>
+          </sc-if>
+
+          <sc-if value="{{ isYear }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:20px 24px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:4px">
+              <sc-for list="{{ months }}" as="m" hint-placeholder-count="12">
+                <button onClick="{{ m.open }}" style="display:flex;flex-direction:column;gap:4px;min-height:72px;padding:10px 8px;border-bottom:1px solid {{ ui.rule }}" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}">
+                  <span style="font-size:13px">{{ m.label }}</span>
+                  <span style="font-size:14px;opacity:0.72">{{ m.marker }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <p style="padding:20px 24px 0;font-size:12px;color:{{ ui.dim }}">Légende : ● N = N courses dans le mois · · = aucune course.</p>
+          </sc-if>
+
+          <sc-if value="{{ isRecords }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:8px 24px 0">
+              <ul>
+                <sc-for list="{{ recordRows }}" as="rec" hint-placeholder-count="4">
+                  <li style="border-bottom:1px solid {{ ui.rule }}">
+                  <button onClick="{{ rec.open }}" style="width:100%;padding:16px 4px;display:flex;flex-direction:column;gap:2px" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}">
+                    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+                      <span style="font-size:14px;opacity:0.72">{{ rec.label }}</span>
+                      <sc-if value="{{ rec.has }}" hint-placeholder-val="{{ true }}">
+                        <span style="font-size:24px;letter-spacing:-0.02em;white-space:nowrap">{{ rec.time }}</span>
+                      </sc-if>
+                      <sc-if value="{{ rec.empty }}" hint-placeholder-val="{{ false }}">
+                        <span style="font-size:24px;letter-spacing:-0.02em;color:{{ ui.mute }}">—</span>
+                      </sc-if>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+                      <span style="font-size:12px;opacity:0.72">{{ rec.detail }}</span>
+                      <span style="font-size:12px;opacity:0.72;white-space:nowrap">{{ rec.pace }}</span>
+                    </div>
+                    <sc-if value="{{ rec.has }}" hint-placeholder-val="{{ true }}">
+                      <span style="font-size:12px;opacity:0.72">{{ rec.n }}</span>
+                    </sc-if>
+                  </button>
+                  </li>
+                </sc-for>
+              </ul>
+              <div style="margin-top:32px">
+                <div style="font-size:12px;color:{{ ui.mute }};padding-bottom:8px;border-bottom:1px solid {{ ui.rule }}">hors format</div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 4px;border-bottom:1px solid {{ ui.rule }}"><span style="font-size:14px;color:{{ ui.dim }}">la plus longue</span><span style="font-size:13px;text-align:right">{{ longest }}</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 4px;border-bottom:1px solid {{ ui.rule }}"><span style="font-size:14px;color:{{ ui.dim }}">le plus de D+</span><span style="font-size:13px;text-align:right">{{ steepest }}</span></div>
+              </div>
+              <div style="margin-top:32px;padding-bottom:8px">
+                <div style="font-size:12px;color:{{ ui.mute }};padding-bottom:8px;border-bottom:1px solid {{ ui.rule }}">total</div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 4px;border-bottom:1px solid {{ ui.rule }}"><span style="font-size:14px;color:{{ ui.dim }}">courses</span><span style="font-size:13px">{{ totalRaces }}</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 4px;border-bottom:1px solid {{ ui.rule }}"><span style="font-size:14px;color:{{ ui.dim }}">distance</span><span style="font-size:13px">{{ totalKm }}</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 4px;border-bottom:1px solid {{ ui.rule }}"><span style="font-size:14px;color:{{ ui.dim }}">dénivelé</span><span style="font-size:13px">{{ totalElev }}</span></div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isMonth }}" hint-placeholder-val="{{ false }}">
+            <ul style="padding:8px 24px 0">
+              <sc-for list="{{ days }}" as="d" hint-placeholder-count="10">
+                <li style="border-bottom:1px solid {{ ui.rule }}">
+                  <sc-if value="{{ d.isGap }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;padding:10px 4px;font-size:12px;color:{{ ui.mute }}"><span>—</span><span></span><span>{{ d.gapLabel }}</span></div>
+                  </sc-if>
+                  <sc-if value="{{ d.notGap }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ d.open }}" style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;width:100%;align-items:stretch;min-height:44px;padding:10px 4px" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}">
+                    <span style="font-size:14px;opacity:0.72">{{ d.key }}</span>
+                    <span style="position:relative;width:16px">
+                      <sc-if value="{{ d.lineUp }}" hint-placeholder-val="{{ false }}">
+                        <span style="position:absolute;left:2px;top:-10px;height:20px;border-left:1px solid currentColor;opacity:0.72"></span>
+                      </sc-if>
+                      <sc-if value="{{ d.lineDown }}" hint-placeholder-val="{{ false }}">
+                        <span style="position:absolute;left:2px;top:10px;bottom:-10px;border-left:1px solid currentColor;opacity:0.72"></span>
+                      </sc-if>
+                      <sc-if value="{{ d.hasRace }}" hint-placeholder-val="{{ false }}">
+                        <span style="position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:currentColor"></span>
+                      </sc-if>
+                    </span>
+                    <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                      <span style="font-size:14px">{{ d.title }}</span>
+                      <span style="font-size:12px;opacity:0.72">{{ d.meta }}</span>
+                    </span>
+                  </button>
+                  </sc-if>
+                </li>
+              </sc-for>
+            </ul>
+          </sc-if>
+
+        </div>
+
+        <div style="padding:16px 24px 24px;border-top:1px solid {{ ui.ink }};display:flex;justify-content:space-between;align-items:center;gap:16px">
+          <div style="display:flex;gap:20px;align-items:center;min-width:0">
+            <sc-if value="{{ showSecondary }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ secondary }}" style="min-height:44px;font-size:13px;border-bottom:1px solid {{ ui.ink }};white-space:nowrap">{{ secondaryLabel }}</button>
+            </sc-if>
+            <sc-if value="{{ notRecords }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ goRecords }}" style="min-height:44px;font-size:13px;color:{{ ui.dim }};border-bottom:1px solid {{ ui.rule }};white-space:nowrap">records</button>
+            </sc-if>
+          </div>
+          <button onClick="{{ addRace }}" style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:6px;background:{{ ui.ink }};color:{{ ui.bg }};font-size:13px">+ ajouter</button>
+        </div>
+
+        <sc-if value="{{ settingsOpen }}" hint-placeholder-val="{{ false }}">
+          <div role="dialog" aria-modal="true" aria-label="Réglages" style="position:absolute;left:0;right:0;top:0;bottom:0;background:{{ ui.bg }};display:flex;flex-direction:column">
+            <div style="padding:24px 24px 12px;border-bottom:1px solid {{ ui.ink }};display:flex;justify-content:space-between;align-items:baseline">
+              <span style="font-size:20px;letter-spacing:-0.02em">réglages</span>
+              <button onClick="{{ closeSettings }}" style="min-height:44px;display:inline-flex;align-items:center;font-size:13px;color:{{ ui.dim }}">fermer</button>
+            </div>
+            <div ref="{{ settingsScrollRef }}" style="flex:1;min-height:0;overflow-y:auto;padding:20px 24px 24px;display:flex;flex-direction:column;gap:32px">
+              <div>
+                <div style="font-size:12px;color:{{ ui.mute }};padding-bottom:8px;border-bottom:1px solid {{ ui.rule }}">affichage</div>
+                <button onClick="{{ cycleTheme }}" aria-label="{{ themeAria }}" style="display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }}" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">thème</span><span style="font-size:13px;opacity:0.72">{{ themeValue }}</span></button>
+                <button onClick="{{ cycleUnit }}" aria-label="{{ unitAria }}" style="display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }}" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">unité</span><span style="font-size:13px;opacity:0.72">{{ unitValue }}</span></button>
+                <button onClick="{{ cyclePace }}" aria-label="{{ paceAria }}" style="display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }}" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">allure</span><span style="font-size:13px;opacity:0.72">{{ paceValue }}</span></button>
+                <button onClick="{{ cycleView }}" aria-label="{{ viewAria }}" style="display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }}" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">vue par défaut</span><span style="font-size:13px;opacity:0.72">{{ viewValue }}</span></button>
+                <p style="margin-top:12px;font-size:12px;color:{{ ui.dim }}">Chaque ligne défile ses valeurs au clic ; le changement s'applique aussitôt. La langue suit celle du système.</p>
+              </div>
+              <div>
+                <div style="font-size:12px;color:{{ ui.mute }};padding-bottom:8px;border-bottom:1px solid {{ ui.rule }}">données</div>
+                <button onClick="{{ exportFile }}" style="display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }}" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">exporter</span><span style="font-size:13px;opacity:0.72">race.json</span></button>
+                <sc-if value="{{ importIdle }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ askImport }}" style="display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }}" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">importer</span><span style="font-size:13px;opacity:0.72">choisir un fichier</span></button>
+                </sc-if>
+                <sc-if value="{{ importAsk }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:12px 4px;border-bottom:1px solid {{ ui.rule }}">
+                    <p style="font-size:14px">race.json — 3 courses</p>
+                    <p style="margin-top:4px;font-size:12px;color:{{ ui.dim }}">Fusionner ajoute les courses absentes et garde les vôtres. Remplacer efface les {{ raceCount }} courses de cet appareil.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;margin-top:8px">
+                      <button onClick="{{ cancelImport }}" style="min-height:44px;font-size:13px;color:{{ ui.dim }}">annuler</button>
+                      <button onClick="{{ mergeImport }}" style="min-height:44px;font-size:13px;border-bottom:1px solid {{ ui.ink }}">fusionner</button>
+                      <button onClick="{{ replaceImport }}" style="min-height:44px;font-size:13px;color:{{ ui.danger }};border-bottom:1px solid {{ ui.danger }}">remplacer</button>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ eraseIdle }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ askErase }}" style="display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }};color:{{ ui.danger }}" style-hover="background:{{ ui.danger }};color:{{ ui.bg }}"><span style="font-size:14px">tout effacer</span><span style="font-size:13px;opacity:0.72">{{ raceCount }} courses</span></button>
+                </sc-if>
+                <sc-if value="{{ eraseAsk }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:12px 4px;border-bottom:1px solid {{ ui.rule }}">
+                    <p style="font-size:14px;color:{{ ui.danger }}">Effacer les {{ raceCount }} courses de cet appareil&nbsp;?</p>
+                    <p style="margin-top:4px;font-size:12px;color:{{ ui.dim }}">Action définitive. Exportez d'abord si vous voulez les garder.</p>
+                    <div style="display:flex;gap:24px;align-items:center;margin-top:8px">
+                      <button onClick="{{ cancelErase }}" style="min-height:44px;font-size:13px;color:{{ ui.dim }}">annuler</button>
+                      <button onClick="{{ confirmErase }}" style="min-height:44px;font-size:13px;color:{{ ui.danger }};border-bottom:1px solid {{ ui.danger }}">effacer définitivement</button>
+                    </div>
+                  </div>
+                </sc-if>
+                <p style="margin-top:12px;font-size:12px;color:{{ ui.dim }}">{{ raceCount }} courses sur cet appareil. Aucun compte, aucun réseau.</p>
+              </div>
+              <div>
+                <div style="font-size:12px;color:{{ ui.mute }};padding-bottom:8px;border-bottom:1px solid {{ ui.rule }}">à propos</div>
+                <a href="#3a" style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }};text-decoration:none" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">à propos de race.</span><span style="font-size:13px;opacity:0.72">pourquoi ce projet</span></a>
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }}"><span style="font-size:14px">version</span><span style="font-size:13px;color:{{ ui.dim }}">1.0.0</span></div>
+                <a href="#2c" style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }};text-decoration:none" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">licence</span><span style="font-size:13px;opacity:0.72">AGPL-3.0</span></a>
+                <a href="#2c" style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid {{ ui.rule }};text-decoration:none" style-hover="background:{{ ui.ink }};color:{{ ui.bg }}"><span style="font-size:14px">conditions · confidentialité</span><span style="font-size:13px;opacity:0.72">lire</span></a>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ detailOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;left:0;right:0;top:0;bottom:0;background:{{ ui.scrim }};display:flex;flex-direction:column;justify-content:flex-end">
+            <button onClick="{{ closeDetail }}" aria-label="Fermer" style="flex:1"></button>
+            <div ref="{{ detailScrollRef }}" role="dialog" aria-modal="true" aria-label="Détail de la course" style="background:{{ ui.bg }};border-top:1px solid {{ ui.ink }};padding:24px;display:flex;flex-direction:column;gap:16px;max-height:640px;overflow-y:auto">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+                <span style="font-size:20px;letter-spacing:-0.02em">{{ det.name }}</span>
+                <button onClick="{{ closeDetail }}" style="min-height:44px;font-size:13px;color:{{ ui.dim }}">fermer</button>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:12px;border-bottom:1px solid {{ ui.rule }}">
+                <span style="font-size:32px;letter-spacing:-0.03em">{{ det.time }}</span>
+                <span style="font-size:13px;color:{{ ui.dim }}">{{ det.pace }}</span>
+              </div>
+              <dl style="display:flex;flex-direction:column">
+                <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid {{ ui.rule }}"><dt style="font-size:13px;color:{{ ui.dim }}">distance</dt><dd style="font-size:14px">{{ det.distance }}</dd></div>
+                <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid {{ ui.rule }}"><dt style="font-size:13px;color:{{ ui.dim }}">dénivelé</dt><dd style="font-size:14px">{{ det.elevation }}</dd></div>
+                <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid {{ ui.rule }}"><dt style="font-size:13px;color:{{ ui.dim }}">date</dt><dd style="font-size:14px">{{ det.date }}</dd></div>
+                <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid {{ ui.rule }}"><dt style="font-size:13px;color:{{ ui.dim }}">{{ det.placeLabel }}</dt><dd style="font-size:14px">{{ det.place }}</dd></div>
+              </dl>
+              <div>
+                <div style="font-size:12px;color:{{ ui.mute }}">notes</div>
+                <sc-if value="{{ hasNotes }}" hint-placeholder-val="{{ true }}">
+                  <p style="margin-top:6px;font-size:14px;line-height:1.6;white-space:pre-wrap">{{ det.notes }}</p>
+                </sc-if>
+                <sc-if value="{{ noNotes }}" hint-placeholder-val="{{ false }}">
+                  <p style="margin-top:6px;font-size:14px;color:{{ ui.mute }}">aucune note</p>
+                </sc-if>
+              </div>
+              <sc-if value="{{ deleteAsk }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:8px;padding-top:16px;border-top:1px solid {{ ui.rule }}">
+                  <p style="font-size:14px;color:{{ ui.danger }}">Supprimer « {{ det.name }} » ?</p>
+                  <p style="margin-top:4px;font-size:12px;color:{{ ui.dim }}">Action définitive, sur cet appareil uniquement.</p>
+                  <div style="display:flex;gap:24px;align-items:center;margin-top:8px">
+                    <button onClick="{{ cancelDelete }}" style="min-height:44px;font-size:13px;color:{{ ui.dim }}">annuler</button>
+                    <button onClick="{{ confirmDeleteDetail }}" style="min-height:44px;font-size:13px;color:{{ ui.danger }};border-bottom:1px solid {{ ui.danger }}">supprimer définitivement</button>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ deleteIdle }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:8px;padding-top:16px;border-top:1px solid {{ ui.rule }}">
+                  <button onClick="{{ askDeleteDetail }}" style="min-height:44px;font-size:13px;color:{{ ui.danger }}">supprimer</button>
+                  <button onClick="{{ editDetail }}" style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:6px;background:{{ ui.ink }};color:{{ ui.bg }};font-size:13px">modifier</button>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isEditing }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;left:0;right:0;top:0;bottom:0;background:{{ ui.scrim }};display:flex;flex-direction:column;justify-content:flex-end">
+            <button onClick="{{ closeEdit }}" aria-label="Fermer" style="flex:1"></button>
+            <div ref="{{ editScrollRef }}" role="dialog" aria-modal="true" style="background:{{ ui.bg }};border-top:1px solid {{ ui.ink }};padding:24px;display:flex;flex-direction:column;gap:16px;max-height:640px;overflow-y:auto">
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <span style="font-size:16px">{{ editTitle }}</span>
+                <button onClick="{{ closeEdit }}" style="font-size:13px;color:{{ ui.dim }}">fermer</button>
+              </div>
+              <label style="display:block">
+                <span style="display:block;font-size:12px;color:{{ ui.mute }}">Nom</span>
+                <input type="text" value="{{ edit.name }}" onChange="{{ onName }}" aria-invalid="{{ ariaName }}" placeholder="Marathon de Paris" style="width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border-radius:4px;border:1px solid {{ borderName }}">
+                <sc-if value="{{ hasErrName }}" hint-placeholder-val="{{ false }}">
+                  <span role="alert" style="display:block;margin-top:6px;font-size:12px;color:{{ ui.danger }}">{{ errName }}</span>
+                </sc-if>
+              </label>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <label style="display:block">
+                  <span style="display:block;font-size:12px;color:{{ ui.mute }}">Type</span>
+                  <select value="{{ edit.type }}" onChange="{{ onType }}" style="width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border-radius:4px;border:1px solid {{ ui.rule }};font-size:14px">
+                    <sc-for list="{{ typeChoices }}" as="t" hint-placeholder-count="7">
+                      <option value="{{ t.value }}">{{ t.label }}</option>
+                    </sc-for>
+                  </select>
+                </label>
+                <label style="display:block">
+                  <span style="display:block;font-size:12px;color:{{ ui.mute }}">Date</span>
+                  <input type="date" value="{{ edit.date }}" onChange="{{ onDate }}" aria-invalid="{{ ariaDate }}" style="width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border-radius:4px;border:1px solid {{ borderDate }};font-size:14px">
+                  <sc-if value="{{ hasErrDate }}" hint-placeholder-val="{{ false }}">
+                    <span role="alert" style="display:block;margin-top:6px;font-size:12px;color:{{ ui.danger }}">{{ errDate }}</span>
+                  </sc-if>
+                </label>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <label style="display:block">
+                  <span style="display:block;font-size:12px;color:{{ ui.mute }}">Distance (km)</span>
+                  <input type="text" inputmode="decimal" value="{{ edit.distance }}" onChange="{{ onDistance }}" aria-invalid="{{ ariaDistance }}" style="width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border-radius:4px;border:1px solid {{ borderDistance }}">
+                  <sc-if value="{{ hasErrDistance }}" hint-placeholder-val="{{ false }}">
+                    <span role="alert" style="display:block;margin-top:6px;font-size:12px;color:{{ ui.danger }}">{{ errDistance }}</span>
+                  </sc-if>
+                  <span style="display:block;margin-top:6px;font-size:12px;color:{{ ui.dim }}">{{ distHint }}</span>
+                </label>
+                <label style="display:block">
+                  <span style="display:block;font-size:12px;color:{{ ui.mute }}">Durée</span>
+                  <input type="text" inputmode="numeric" value="{{ edit.duration }}" onChange="{{ onDuration }}" aria-invalid="{{ ariaDuration }}" placeholder="3:45:00" style="width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border-radius:4px;border:1px solid {{ borderDuration }}">
+                  <sc-if value="{{ hasErrDuration }}" hint-placeholder-val="{{ false }}">
+                    <span role="alert" style="display:block;margin-top:6px;font-size:12px;color:{{ ui.danger }}">{{ errDuration }}</span>
+                  </sc-if>
+                  <span style="display:block;margin-top:6px;font-size:12px;color:{{ ui.dim }}">h:mm:ss ou mm:ss</span>
+                </label>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <label style="display:block">
+                  <span style="display:block;font-size:12px;color:{{ ui.mute }}">D+ (m) — facultatif</span>
+                  <input type="text" inputmode="numeric" value="{{ edit.elevationGain }}" onChange="{{ onElev }}" style="width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border:1px solid {{ ui.rule }};border-radius:4px">
+                </label>
+                <label style="display:block">
+                  <span style="display:block;font-size:12px;color:{{ ui.mute }}">Lieu</span>
+                  <input type="text" value="{{ edit.location }}" onChange="{{ onLocation }}" style="width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:{{ ui.bg }};color:{{ ui.ink }};border:1px solid {{ ui.rule }};border-radius:4px">
+                </label>
+              </div>
+              <label style="display:block">
+                <span style="display:block;font-size:12px;color:{{ ui.mute }}">Notes</span>
+                <textarea value="{{ edit.notes }}" onChange="{{ onNotes }}" rows="3" placeholder="ce dont vous vous souviendrez dans dix ans" style="width:100%;margin-top:6px;min-height:76px;padding:10px 12px;background:{{ ui.bg }};color:{{ ui.ink }};border:1px solid {{ ui.rule }};border-radius:4px;resize:vertical;line-height:1.5"></textarea>
+              </label>
+              <sc-if value="{{ deleteAsk }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:8px;padding-top:16px;border-top:1px solid {{ ui.rule }}">
+                  <p style="font-size:14px;color:{{ ui.danger }}">Supprimer « {{ edit.name }} » ?</p>
+                  <p style="margin-top:4px;font-size:12px;color:{{ ui.dim }}">Action définitive, sur cet appareil uniquement.</p>
+                  <div style="display:flex;gap:24px;align-items:center;margin-top:8px">
+                    <button onClick="{{ cancelDelete }}" style="min-height:44px;font-size:13px;color:{{ ui.dim }}">annuler</button>
+                    <button onClick="{{ confirmDelete }}" style="min-height:44px;font-size:13px;color:{{ ui.danger }};border-bottom:1px solid {{ ui.danger }}">supprimer définitivement</button>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ deleteIdle }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:8px;padding-top:16px;border-top:1px solid {{ ui.rule }}">
+                  <sc-if value="{{ canDelete }}" hint-placeholder-val="{{ true }}">
+                    <button onClick="{{ askDelete }}" style="min-height:44px;font-size:13px;color:{{ ui.danger }}">supprimer</button>
+                  </sc-if>
+                  <div style="display:flex;gap:24px;align-items:center;margin-left:auto">
+                    <button onClick="{{ closeEdit }}" style="min-height:44px;font-size:13px;color:{{ ui.dim }}">annuler</button>
+                    <button onClick="{{ saveRace }}" style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:6px;background:{{ ui.ink }};color:{{ ui.bg }};font-size:13px">{{ saveLabel }}</button>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+      
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;defaultView&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;list&quot;, &quot;options&quot;: [&quot;list&quot;, &quot;year&quot;, &quot;month&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;race.&quot; },
+  &quot;showPace&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;race.&quot; },
+  &quot;showNotes&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;race.&quot; }
+}">
+const MONTHS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const MONTHS_SHORT = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+const DAYS_SHORT = ["dim","lun","mar","mer","jeu","ven","sam"];
+const TYPES = [["5k",5],["10k",10],["Semi",21.1],["Marathon",42.2],["Trail",null],["Ultra",null],["Autre",null]];
+const THEME = {
+  light: { bg:"#f2f3f2", ink:"#17181a", rule:"#c8cac8", dim:"#6a6c6a", mute:"#8b8d8c", danger:"#a33", scrim:"rgba(242,243,242,0.88)" },
+  dark:  { bg:"#121311", ink:"#ecebe6", rule:"#34362f", dim:"#8e9089", mute:"#74766f", danger:"#d97070", scrim:"rgba(18,19,17,0.88)" }
+};
+const IMPORTED = [
+  { id: "i1", type: "10k", name: "Corrida de Noël", date: "2025-12-20", distance: 10, duration: "44:05", elevationGain: null, location: "Annecy", notes: "" },
+  { id: "i2", type: "Semi", name: "Semi de Turin", date: "2025-03-09", distance: 21.1, duration: "1:41:30", elevationGain: 60, location: "Turin", notes: "" },
+  { id: "i3", type: "Trail", name: "Trail de la Dent", date: "2024-09-14", distance: 28, duration: "3:24:00", elevationGain: 1300, location: "Genève", notes: "" }
+];
+
+class Component extends DCLogic {
+  races = [
+    { id: "r1", type: "Ultra", name: "UTMB", date: "2026-08-28", distance: 170, duration: "46:30:00", elevationGain: 10000, location: "Chamonix", notes: "Finisher ! Nuit difficile après Courmayeur, remontée sur les 40 derniers kilomètres." },
+    { id: "r2", type: "10k", name: "10k de Lyon", date: "2026-08-02", distance: 10, duration: "45:00", elevationGain: null, location: "Lyon", notes: "Parcours plat. Nouveau record !" },
+    { id: "r3", type: "Semi", name: "Semi de Genève", date: "2026-07-05", distance: 21.1, duration: "1:38:20", elevationGain: 120, location: "Genève", notes: "" },
+    { id: "r4", type: "Trail", name: "Trail des Aiguilles", date: "2026-06-14", distance: 32, duration: "4:12:00", elevationGain: 1450, location: "Chamonix", notes: "Descente prudente, genou fragile." },
+    { id: "r5", type: "5k", name: "5k du parc", date: "2026-06-07", distance: 5, duration: "21:40", elevationGain: null, location: "Lyon", notes: "" },
+    { id: "r6", type: "Marathon", name: "Marathon de Milan", date: "2026-04-19", distance: 42.2, duration: "3:32:10", elevationGain: 90, location: "Milan", notes: "Négative split tenu." },
+    { id: "r7", type: "10k", name: "10k hivernal", date: "2026-02-15", distance: 10, duration: "43:12", elevationGain: null, location: "Annecy", notes: "" },
+    { id: "r8", type: "Marathon", name: "Marathon de Lausanne", date: "2025-10-12", distance: 42.2, duration: "3:41:05", elevationGain: 210, location: "Lausanne", notes: "" },
+    { id: "r9", type: "Trail", name: "Trail du Salève", date: "2025-05-24", distance: 24, duration: "2:58:00", elevationGain: 1100, location: "Genève", notes: "" },
+    { id: "r10", type: "Marathon", name: "Marathon de Paris", date: "2022-04-10", distance: 42.2, duration: "3:45:00", elevationGain: 200, location: "Paris", notes: "Objectif 3h30 raté à cause du vent." }
+  ];
+
+  state = {
+    view: this.props.defaultView ?? "list",
+    year: 2026, month: 7,
+    edit: null, isNew: false, detail: null,
+    errors: {}, showErrors: false, deleteAsk: false,
+    query: "", type: "tous", sort: 0,
+    settings: false, importAsk: false, eraseAsk: false, saved: "",
+    sTheme: 0, sUnit: 0, sPace: (this.props.showPace ?? true) ? 0 : 1,
+    sView: ["list","year","month"].indexOf(this.props.defaultView ?? "list")
+  };
+
+  cycle(key, len) { this.setState(s => ({ [key]: (s[key] + 1) % len, eraseAsk: false, importAsk: false })); }
+  set(patch) { this.setState(patch); }
+  upd(k, v) { this.setState(s => ({ edit: Object.assign({}, s.edit, { [k]: v }), errors: s.showErrors ? this.validate(Object.assign({}, s.edit, { [k]: v })) : s.errors })); }
+  pad(n) { return String(n).padStart(2, "0"); }
+
+  secs(d) {
+    const p = String(d || "").split(":").map(Number);
+    if (p.length === 3) return p[0] * 3600 + p[1] * 60 + p[2];
+    if (p.length === 2) return p[0] * 60 + p[1];
+    return 0;
+  }
+
+  fmtDur(d) {
+    const s = this.secs(d), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+    return h ? h + "h" + this.pad(m) + ":" + this.pad(sec) : m + ":" + this.pad(sec);
+  }
+
+  unit() { return this.state.sUnit === 0 ? { f: 1, u: "km", e: "m" } : { f: 0.621371, u: "mi", e: "ft" }; }
+  num(v) { return String(v).replace(".", ","); }
+  dist(km) { const u = this.unit(); return this.num(Math.round(Number(km) * u.f * 10) / 10) + " " + u.u; }
+  elev(m) { const u = this.unit(); return (this.state.sUnit === 0 ? Math.round(m) : Math.round(m * 3.28084)).toLocaleString("fr-FR") + " " + u.e; }
+
+  pace(r) {
+    const u = this.unit(), d = Number(r.distance) * u.f;
+    if (!d) return "";
+    const p = Math.round(this.secs(r.duration) / d);
+    return Math.floor(p / 60) + ":" + this.pad(p % 60) + "/" + u.u;
+  }
+
+  meta(r, withType) {
+    const parts = [];
+    if (withType) parts.push(r.type);
+    parts.push(this.dist(r.distance));
+    parts.push(this.fmtDur(r.duration) + (this.state.sPace === 0 ? " (" + this.pace(r) + ")" : ""));
+    if (r.elevationGain) parts.push("D+ " + this.elev(r.elevationGain));
+    return parts.join(" – ");
+  }
+
+  dateLabel(iso) {
+    const p = String(iso || "").split("-").map(Number);
+    if (p.length !== 3 || !p[1]) return iso || "";
+    return p[2] + " " + MONTHS[p[1] - 1] + " " + p[0];
+  }
+
+  validate(e) {
+    const err = {};
+    if (!String(e.name || "").trim()) err.name = "Un nom est nécessaire pour la retrouver.";
+    const d = new Date(String(e.date) + "T00:00:00");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(e.date || ""))) err.date = "Date attendue au format AAAA-MM-JJ.";
+    else if (isNaN(d.getTime())) err.date = "Cette date n'existe pas.";
+    const km = Number(String(e.distance).replace(",", "."));
+    if (!km || km <= 0) err.distance = "Distance en kilomètres, supérieure à 0.";
+    if (!/^\d{1,3}(:[0-5]\d){1,2}$/.test(String(e.duration || "").trim())) err.duration = "Format attendu : h:mm:ss ou mm:ss.";
+    return err;
+  }
+
+  spanDays(r) { return Math.max(1, Math.ceil(this.secs(r.duration) / 86400)); }
+
+  flash(msg) {
+    clearTimeout(this._t);
+    this.set({ saved: msg });
+    this._t = setTimeout(() => this.set({ saved: "" }), 3000);
+  }
+
+  componentDidMount() {
+    this._keys = e => {
+      const st = this.state;
+      if (!this._root || !this._root.contains(document.activeElement)) return;
+      if (e.key === "Escape") return this.set({ edit: null, isNew: false, detail: null, settings: false, deleteAsk: false, importAsk: false });
+      if (st.edit || st.detail || st.settings) return;
+      const k = e.key.toLowerCase();
+      if (k === "t") this.goToday();
+      else if (e.key === "ArrowLeft") this.shift(-1);
+      else if (e.key === "ArrowRight") this.shift(1);
+    };
+    window.addEventListener("keydown", this._keys);
+  }
+
+  componentDidUpdate() {
+    const s = this.state;
+    const k = s.view + "|" + s.year + "|" + s.month + "|" + s.sort + "|" + s.query + "|" + s.type;
+    if (this._scroll && this._lastKey !== undefined && k !== this._lastKey) this._scroll.scrollTop = 0;
+    this._lastKey = k;
+    const sheet = (s.detail ? "d" + s.detail.id : "") + (s.edit ? "e" + s.edit.id : "") + (s.settings ? "s" : "");
+    if (this._lastSheet !== undefined && sheet !== this._lastSheet) {
+      [this._detailScroll, this._editScroll, this._settingsScroll].forEach(el => { if (el) el.scrollTop = 0; });
+    }
+    this._lastSheet = sheet;
+  }
+
+  componentWillUnmount() { window.removeEventListener("keydown", this._keys); clearTimeout(this._t); }
+
+  goToday() { const n = new Date(); this.set({ year: n.getFullYear(), month: n.getMonth() }); }
+
+  shift(k) {
+    const st = this.state;
+    if (st.view === "year") return this.set({ year: st.year + k });
+    if (st.view !== "month") return;
+    let m = st.month + k, y = st.year;
+    if (m < 0) { m = 11; y--; } else if (m > 11) { m = 0; y++; }
+    this.set({ year: y, month: m });
+  }
+
+  openDetail(r) { this.set({ detail: r, edit: null, isNew: false, deleteAsk: false }); }
+
+  records() {
+    const CATS = [["5 km", 5], ["10 km", 10], ["Semi-marathon", 21.1], ["Marathon", 42.2]];
+    return CATS.map(([label, d]) => {
+      const pool = this.races.filter(r => Math.abs(Number(r.distance) - d) <= d * 0.02)
+        .sort((a, b) => this.secs(a.duration) - this.secs(b.duration));
+      if (!pool.length) return { label, empty: true, has: false, time: "—", detail: "aucune course à cette distance", pace: "", n: "", open: () => {} };
+      const best = pool[0], prev = pool[1] || null;
+      const gap = prev ? this.secs(prev.duration) - this.secs(best.duration) : 0;
+      return {
+        label, empty: false, has: true,
+        time: this.fmtDur(best.duration),
+        pace: this.pace(best),
+        detail: [best.name, this.dateLabel(best.date)].filter(Boolean).join(" · "),
+        n: pool.length + (pool.length > 1 ? " courses" : " course") + (prev ? " · −" + this.fmtDur(Math.floor(gap / 60) + ":" + this.pad(gap % 60)) + " sur la 2e" : ""),
+        open: () => this.openDetail(best)
+      };
+    });
+  }
+
+  renderVals() {
+    const st = this.state;
+    const ui = THEME[st.sTheme === 2 ? "dark" : "light"];
+    const now = new Date();
+    const isList = st.view === "list", isYear = st.view === "year", isMonth = st.view === "month", isRecords = st.view === "records";
+    const atToday = isYear ? st.year === now.getFullYear() : st.year === now.getFullYear() && st.month === now.getMonth();
+    const showNotes = this.props.showNotes ?? true;
+
+    const q = st.query.trim().toLowerCase();
+    const filtered = this.races.filter(r => {
+      if (st.type !== "tous" && r.type !== st.type) return false;
+      if (!q) return true;
+      return [r.name, r.location, r.type, r.notes, r.date].join(" ").toLowerCase().indexOf(q) !== -1;
+    }).sort((a, b) =>
+      st.sort === 0 ? (a.date < b.date ? 1 : -1)
+      : st.sort === 1 ? (a.date > b.date ? 1 : -1)
+      : Number(b.distance) - Number(a.distance)
+    );
+    const types = ["tous"].concat(TYPES.map(t => t[0]).filter(t => this.races.some(r => r.type === t)));
+
+    let lastYear = null;
+    const listItems = filtered.map(r => {
+      const y = r.date.slice(0, 4);
+      const showYear = st.sort !== 2 && y !== lastYear;
+      lastYear = y;
+      return {
+        name: r.name, meta: this.meta(r, true),
+        sub: [this.dateLabel(r.date), r.location].filter(Boolean).join(" · "),
+        dateLabel: this.dateLabel(r.date),
+        location: r.location, notes: r.notes,
+        showNotes: showNotes && !!r.notes, showYear, year: y,
+        open: () => this.openDetail(r)
+      };
+    });
+
+    const months = MONTHS_SHORT.map((label, i) => {
+      const n = this.races.filter(r => r.date.slice(0, 7) === st.year + "-" + this.pad(i + 1)).length;
+      return { label, marker: n ? "● " + n : "·", open: () => this.set({ view: "month", month: i }) };
+    });
+
+    const dim = new Date(st.year, st.month + 1, 0).getDate();
+    const raw = [];
+    for (let d = 1; d <= dim; d++) {
+      const iso = st.year + "-" + this.pad(st.month + 1) + "-" + this.pad(d);
+      const race = this.races.find(r => r.date === iso);
+      let cont = null, isLastCont = false;
+      this.races.forEach(r => {
+        const n = this.spanDays(r);
+        if (n < 2) return;
+        const start = new Date(r.date + "T00:00:00");
+        for (let k = 1; k < n; k++) {
+          const dt = new Date(start.getTime() + k * 86400000);
+          const kiso = dt.getFullYear() + "-" + this.pad(dt.getMonth() + 1) + "-" + this.pad(dt.getDate());
+          if (kiso === iso) { cont = r; isLastCont = k === n - 1; }
+        }
+      });
+      const wd = DAYS_SHORT[new Date(st.year, st.month, d).getDay()];
+      raw.push({
+        empty: !race && !cont,
+        key: wd + " " + this.pad(d),
+        hasRace: !!race, isGap: false, notGap: true,
+        lineUp: !race && !!cont,
+        lineDown: (!!race && this.spanDays(race) > 1) || (!!cont && !race && !isLastCont),
+        title: race ? race.name : cont ? cont.name + " — suite" : "—",
+        meta: race ? this.meta(race, false) : "",
+        open: race ? () => this.openDetail(race) : cont ? () => this.openDetail(cont) : () => {}
+      });
+    }
+    const days = [];
+    for (let i = 0; i < raw.length; i++) {
+      if (!raw[i].empty) { days.push(raw[i]); continue; }
+      let j = i;
+      while (j < raw.length && raw[j].empty) j++;
+      const n = j - i;
+      if (n >= 3) days.push({ isGap: true, notGap: false, gapLabel: n + " jours sans course", key: "", title: "", meta: "", hasRace: false, lineUp: false, lineDown: false, open: () => {} });
+      else for (let k = i; k < j; k++) days.push(raw[k]);
+      i = j - 1;
+    }
+
+    const e = st.edit || {};
+    const err = st.showErrors ? st.errors : {};
+    const stdDist = (TYPES.find(t => t[0] === e.type) || [null, null])[1];
+    const det = st.detail || {};
+
+    return {
+      ui,
+      rootRef: el => { this._root = el; },
+      scrollRef: el => { this._scroll = el; },
+      detailScrollRef: el => { this._detailScroll = el; },
+      editScrollRef: el => { this._editScroll = el; },
+      settingsScrollRef: el => { this._settingsScroll = el; },
+      isList, isYear, isMonth, isRecords, notRecords: !isRecords,
+      goRecords: () => this.set({ view: "records" }),
+      recordRows: this.records(),
+      totalRaces: this.races.length,
+      totalKm: this.dist(this.races.reduce((a, r) => a + Number(r.distance), 0)),
+      totalElev: this.elev(this.races.reduce((a, r) => a + (Number(r.elevationGain) || 0), 0)),
+      longest: (() => { const r = this.races.slice().sort((a, b) => b.distance - a.distance)[0]; return r ? r.name + " — " + this.dist(r.distance) : "—"; })(),
+      steepest: (() => { const r = this.races.filter(x => x.elevationGain).sort((a, b) => b.elevationGain - a.elevationGain)[0]; return r ? r.name + " — D+ " + this.elev(r.elevationGain) : "—"; })(),
+      atToday,
+      todayCaption: atToday ? "aujourd'hui" : "revenir à aujourd'hui",
+      todayHint: isYear ? "revenir à " + now.getFullYear() : "revenir à " + MONTHS[now.getMonth()] + " " + now.getFullYear(),
+      goToday: () => this.goToday(),
+      raceCount: this.races.length,
+
+      showCrumbs: !isList,
+      crumbs: (isYear ? [{ label: String(st.year), go: () => {}, link: false, last: true }]
+        : isMonth ? [{ label: String(st.year), go: () => this.set({ view: "year" }), link: true, last: false }, { label: MONTHS[st.month], go: () => {}, link: false, last: true }]
+        : isRecords ? [{ label: "records", go: () => {}, link: false, last: true }]
+        : []),
+      settingsOpen: st.settings,
+      openSettings: () => this.set({ settings: true }),
+      closeSettings: () => this.set({ settings: false, eraseAsk: false, importAsk: false }),
+      themeValue: ["système", "clair", "sombre"][st.sTheme],
+      unitValue: ["kilomètres", "miles"][st.sUnit],
+      paceValue: ["affichée", "masquée"][st.sPace],
+      viewValue: ["liste", "année", "mois"][st.sView],
+      themeAria: "thème : " + ["système", "clair", "sombre"][st.sTheme] + ", changer",
+      unitAria: "unité : " + ["kilomètres", "miles"][st.sUnit] + ", changer",
+      paceAria: "allure : " + ["affichée", "masquée"][st.sPace] + ", changer",
+      viewAria: "vue par défaut : " + ["liste", "année", "mois"][st.sView] + ", changer",
+      cycleTheme: () => this.cycle("sTheme", 3),
+      cycleUnit: () => this.cycle("sUnit", 2),
+      cyclePace: () => this.cycle("sPace", 2),
+      cycleView: () => this.cycle("sView", 3),
+
+      exportFile: () => { this.set({ settings: false }); this.flash("race.json exporté — " + this.races.length + " courses"); },
+      importIdle: !st.importAsk,
+      importAsk: st.importAsk,
+      askImport: () => this.set({ importAsk: true, eraseAsk: false }),
+      cancelImport: () => this.set({ importAsk: false }),
+      mergeImport: () => {
+        const add = IMPORTED.filter(i => !this.races.some(r => r.name === i.name && r.date === i.date));
+        this.races = this.races.concat(add);
+        this.set({ importAsk: false, settings: false });
+        this.flash(add.length + " courses ajoutées");
+      },
+      replaceImport: () => {
+        this.races = IMPORTED.slice();
+        this.set({ importAsk: false, settings: false, view: "list" });
+        this.flash("données remplacées — 3 courses");
+      },
+      eraseAsk: st.eraseAsk,
+      eraseIdle: !st.eraseAsk,
+      askErase: () => this.set({ eraseAsk: true, importAsk: false }),
+      cancelErase: () => this.set({ eraseAsk: false }),
+      confirmErase: () => { this.races = []; this.set({ eraseAsk: false, settings: false, view: "list" }); this.flash("toutes les courses ont été effacées"); },
+
+      listItems, months, days,
+      query: st.query,
+      onSearch: ev => this.set({ query: ev.target.value }),
+      hasQuery: !!st.query,
+      clearQuery: () => this.set({ query: "" }),
+      clearFilters: () => this.set({ query: "", type: "tous" }),
+      hasFilters: !!q || st.type !== "tous",
+      noResults: isList && this.races.length > 0 && filtered.length === 0,
+      isEmpty: isList && this.races.length === 0,
+      hasRaces: this.races.length > 0,
+      resultLabel: this.races.length === 0 ? "" : filtered.length === this.races.length ? filtered.length + " courses" : filtered.length + " sur " + this.races.length,
+      sortLabel: ["date ↓", "date ↑", "distance ↓"][st.sort],
+      sortAria: "tri : " + ["date décroissante", "date croissante", "distance décroissante"][st.sort] + ", changer",
+      cycleSort: () => this.cycle("sort", 3),
+      saved: st.saved,
+      hasSaved: !!st.saved,
+      noSaved: !st.saved,
+      typeOptions: types.map(t => ({ label: t === "tous" ? "tous les types" : t, value: t })),
+      typeValue: st.type,
+      onTypeFilter: ev => this.set({ type: ev.target.value }),
+
+      yearLabel: String(st.year),
+      monthLabel: MONTHS[st.month] + " " + st.year,
+      prevLabel: isYear ? String(st.year - 1) : MONTHS[(st.month + 11) % 12],
+      nextLabel: isYear ? String(st.year + 1) : MONTHS[(st.month + 1) % 12],
+      prevPeriod: () => this.shift(-1),
+      nextPeriod: () => this.shift(1),
+      goList: () => this.set({ view: ["list", "year", "month"][st.sView] }),
+      showSecondary: isList || isRecords,
+      secondaryLabel: "voir par année",
+      secondary: () => this.set({ view: "year" }),
+
+      detailOpen: !!st.detail,
+      closeDetail: () => this.set({ detail: null }),
+      det: {
+        name: det.name || "", type: det.type || "", location: det.location || "",
+        time: det.duration ? this.fmtDur(det.duration) : "",
+        pace: det.duration ? this.pace(det) : "",
+        distance: det.distance ? this.dist(det.distance) : "",
+        elevation: det.elevationGain ? "D+ " + this.elev(det.elevationGain) : "—",
+        date: det.date ? this.dateLabel(det.date) : "",
+        place: [det.location, det.type].filter(Boolean).join(" · "),
+        placeLabel: det.location ? "lieu · type" : "type",
+        notes: det.notes || ""
+      },
+      hasNotes: !!det.notes,
+      noNotes: !det.notes,
+      editDetail: () => this.set({ edit: Object.assign({}, st.detail), isNew: false, detail: null, errors: {}, showErrors: false, deleteAsk: false }),
+      askDeleteDetail: () => this.set({ deleteAsk: true }),
+      confirmDeleteDetail: () => {
+        const name = (st.detail || {}).name || "";
+        this.races = this.races.filter(r => r.id !== (st.detail || {}).id);
+        this.set({ detail: null, deleteAsk: false });
+        this.flash("« " + name + " » supprimée");
+      },
+
+      addRace: () => this.set({
+        isNew: true, detail: null, deleteAsk: false, errors: {}, showErrors: false,
+        edit: { id: "new", name: "", type: "10k", date: now.getFullYear() + "-" + this.pad(now.getMonth() + 1) + "-" + this.pad(now.getDate()), distance: 10, duration: "", elevationGain: "", location: "", notes: "" }
+      }),
+      isEditing: !!st.edit,
+      editTitle: st.isNew ? "nouvelle course" : "modifier la course",
+      saveLabel: st.isNew ? "ajouter" : "enregistrer",
+      canDelete: !st.isNew,
+      edit: e,
+      typeChoices: TYPES.map(t => ({ label: t[0], value: t[0] })),
+      distHint: stdDist ? "distance officielle : " + this.num(stdDist) + " km" : "distance parcourue, en kilomètres",
+      onName: ev => this.upd("name", ev.target.value),
+      onType: ev => {
+        const t = ev.target.value, d = (TYPES.find(x => x[0] === t) || [null, null])[1];
+        const cur = String(this.state.edit.distance || "");
+        const wasStd = cur === "" || TYPES.some(x => x[1] !== null && String(x[1]) === cur.replace(",", "."));
+        this.setState(s => ({ edit: Object.assign({}, s.edit, { type: t, distance: d !== null && wasStd ? d : s.edit.distance }) }));
+      },
+      onDate: ev => this.upd("date", ev.target.value),
+      onDistance: ev => this.upd("distance", ev.target.value),
+      onDuration: ev => this.upd("duration", ev.target.value),
+      onElev: ev => this.upd("elevationGain", ev.target.value),
+      onLocation: ev => this.upd("location", ev.target.value),
+      onNotes: ev => this.upd("notes", ev.target.value),
+      errName: err.name || "", errDate: err.date || "", errDistance: err.distance || "", errDuration: err.duration || "",
+      hasErrName: !!err.name, hasErrDate: !!err.date, hasErrDistance: !!err.distance, hasErrDuration: !!err.duration,
+      ariaName: err.name ? "true" : "false", ariaDate: err.date ? "true" : "false",
+      ariaDistance: err.distance ? "true" : "false", ariaDuration: err.duration ? "true" : "false",
+      borderName: err.name ? ui.danger : ui.rule, borderDate: err.date ? ui.danger : ui.rule,
+      borderDistance: err.distance ? ui.danger : ui.rule, borderDuration: err.duration ? ui.danger : ui.rule,
+      closeEdit: () => this.set({ edit: null, isNew: false, deleteAsk: false, errors: {}, showErrors: false }),
+      deleteAsk: st.deleteAsk, deleteIdle: !st.deleteAsk,
+      askDelete: () => this.set({ deleteAsk: true }),
+      cancelDelete: () => this.set({ deleteAsk: false }),
+      confirmDelete: () => {
+        const name = st.edit ? st.edit.name : "";
+        this.races = this.races.filter(r => r.id !== (st.edit || {}).id);
+        this.set({ edit: null, isNew: false, deleteAsk: false });
+        this.flash("« " + name + " » supprimée");
+      },
+      saveRace: () => {
+        const cur = st.edit;
+        if (!cur) return;
+        const errs = this.validate(cur);
+        if (Object.keys(errs).length) return this.set({ errors: errs, showErrors: true });
+        const rec = Object.assign({}, cur, {
+          name: String(cur.name).trim(),
+          distance: Number(String(cur.distance).replace(",", ".")),
+          elevationGain: cur.elevationGain ? Number(cur.elevationGain) : null
+        });
+        if (st.isNew) { rec.id = "r" + Date.now(); this.races = this.races.concat([rec]); }
+        else this.races = this.races.map(r => (r.id === rec.id ? rec : r));
+        this.set({ edit: null, isNew: false, errors: {}, showErrors: false });
+        this.flash("« " + rec.name + " » " + (st.isNew ? "ajoutée" : "enregistrée"));
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

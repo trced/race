@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>race. — maquettes</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #e6e7e5;
+    color: #17181a;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+    font-variant-ligatures: none;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
+  }
+  h1, h2, h3, p, ul, ol, dl, dd, pre { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  a { color: #17181a; text-decoration: underline; text-underline-offset: 0.2em; }
+  a:hover { text-decoration-thickness: 2px; }
+  button { font: inherit; color: inherit; background: none; border: 0; text-align: left; cursor: pointer; }
+  input, textarea { font: inherit; }
+  :focus-visible { outline: 2px solid #17181a; outline-offset: 3px; }
+  code { font-family: inherit; }
+</style>
+</helmet>
+
+<section style="max-width:1560px;margin:0 auto;padding:40px 24px 0;display:flex;flex-direction:column;gap:40px">
+
+  <header style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end;padding-bottom:20px;border-bottom:1px solid #17181a">
+    <div>
+      <div style="font-size:12px;color:#8b8d8c">tour 4 · pages web en mobile</div>
+      <h1 style="font-size:36px;line-height:1.1;letter-spacing:-0.03em;font-weight:500;margin-top:8px">race. — présentation &amp; à propos, 390 px</h1>
+      <p style="margin-top:12px;font-size:13px;color:#6a6c6a;max-width:64ch">Même contenu, même ordre, rien de retiré : la page passe en une colonne, le bandeau de faits en deux, la FAQ en question puis réponse. Les corps de texte montent d'un cran (15 px) pour rester lisibles à bout de bras.</p>
+    </div>
+    <dl style="display:grid;grid-template-columns:auto auto;gap:2px 16px;font-size:12px;color:#8b8d8c">
+      <dt>options</dt><dd style="color:#17181a"><a href="#4a">4a</a> présentation · <a href="#4b">4b</a> à propos</dd>
+      <dt>équivalents desktop</dt><dd style="color:#17181a"><a href="#2a">2a</a> · <a href="#3a">3a</a></dd>
+    </dl>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+
+    <div id="4a" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">4a</span><span style="font-size:13px">présentation — mobile</span></div>
+      <div style="width:390px;background:#f2f3f2;border:1px solid #17181a;padding:24px 24px 32px;display:flex;flex-direction:column;gap:40px">
+
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px solid #17181a">
+          <span style="font-size:18px;letter-spacing:-0.02em">race.</span>
+          <div style="display:flex;gap:16px;font-size:12px">
+            <span aria-current="page" style="border-bottom:1px solid #17181a;padding-bottom:2px">présentation</span>
+            <a href="#4b" style="text-decoration:none;color:#6a6c6a">à propos</a>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <h2 style="font-size:28px;line-height:1.15;letter-spacing:-0.02em;font-weight:500">Toutes vos courses. Une ligne chacune.</h2>
+          <p style="font-size:15px;line-height:1.6;color:#6a6c6a">race. répond à une seule question : qu'est-ce que j'ai couru&nbsp;? Pas de plan d'entraînement, pas de graphique, pas de classement. Vous notez la course, elle reste lisible dans dix ans.</p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:15px">ajouter ma première course</span>
+            <span style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;font-size:14px;border:1px solid #c8cac8;border-radius:6px">voir un exemple</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 24px;border-top:1px solid #17181a">
+            <div style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">Sans compte</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">ni e-mail, ni mot de passe</div></div>
+            <div style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">Gratuit</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">sans version payante</div></div>
+            <div style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">Hors ligne</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">en avion, en montagne</div></div>
+            <div style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">Sur votre appareil</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">rien n'est envoyé</div></div>
+            <div style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">Installable</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">sur l'écran d'accueil</div></div>
+            <div style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">Transférable</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">export puis import</div></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">trois concepts</div>
+          <ol>
+            <li style="display:grid;grid-template-columns:20px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #c8cac8"><span style="color:#8b8d8c;font-size:12px">01</span><span><strong style="font-weight:500;font-size:15px">une course</strong><br><span style="font-size:14px;color:#6a6c6a">Un nom, une date, une distance, une durée. Le reste est facultatif.</span></span></li>
+            <li style="display:grid;grid-template-columns:20px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #c8cac8"><span style="color:#8b8d8c;font-size:12px">02</span><span><strong style="font-weight:500;font-size:15px">trois vues</strong><br><span style="font-size:14px;color:#6a6c6a">Liste pour tout revoir, année pour la densité, mois pour le détail.</span></span></li>
+            <li style="display:grid;grid-template-columns:20px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #c8cac8"><span style="color:#8b8d8c;font-size:12px">03</span><span><strong style="font-weight:500;font-size:15px">le point</strong><br><span style="font-size:14px;color:#6a6c6a">● une course a eu lieu. · rien ce mois-là. C'est tout le vocabulaire.</span></span></li>
+          </ol>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">ce que race. ne fait pas</div>
+          <ul>
+            <li style="display:grid;grid-template-columns:16px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #c8cac8;font-size:14px;color:#6a6c6a"><span style="color:#8b8d8c">—</span>aucun suivi GPS, aucune montre à connecter</li>
+            <li style="display:grid;grid-template-columns:16px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #c8cac8;font-size:14px;color:#6a6c6a"><span style="color:#8b8d8c">—</span>aucun badge, aucune série à ne pas rompre</li>
+            <li style="display:grid;grid-template-columns:16px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #c8cac8;font-size:14px;color:#6a6c6a"><span style="color:#8b8d8c">—</span>aucun partage, aucun classement</li>
+            <li style="display:grid;grid-template-columns:16px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #c8cac8;font-size:14px;color:#6a6c6a"><span style="color:#8b8d8c">—</span>aucune notification</li>
+          </ul>
+        </div>
+
+        <div style="border-top:1px solid #17181a;padding-top:20px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:15px">Prêt&nbsp;? La première course prend trente secondes.</span>
+            <span style="font-size:12px;color:#8b8d8c">Thème clair, sombre ou système · kilomètres ou miles</span>
+          </div>
+          <span style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:15px">commencer</span>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px 24px;font-size:13px;margin-top:8px">
+            <a href="https://github.com/race-app/race" style="text-decoration:none;border-bottom:1px solid #17181a;padding:6px 0;width:fit-content">dépôt GitHub</a>
+            <a href="#4b" style="text-decoration:none;border-bottom:1px solid #17181a;padding:6px 0;width:fit-content">à propos</a>
+            <a href="https://github.com/race-app/race/blob/main/LICENSE" style="text-decoration:none;border-bottom:1px solid #17181a;padding:6px 0;width:fit-content">AGPL-3.0</a>
+            <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding:6px 0;width:fit-content">pages légales</a>
+          </div>
+          <span style="font-size:12px;color:#8b8d8c">race. 1.0 — une chose. bien faite.</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="4b" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">4b</span><span style="font-size:13px">à propos — mobile</span></div>
+      <div style="width:390px;background:#f2f3f2;border:1px solid #17181a;padding:24px 24px 32px;display:flex;flex-direction:column;gap:40px">
+
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px solid #17181a">
+          <a href="#4a" style="font-size:18px;letter-spacing:-0.02em;text-decoration:none">race.</a>
+          <div style="display:flex;gap:16px;font-size:12px">
+            <a href="#4a" style="text-decoration:none;color:#6a6c6a">présentation</a>
+            <span aria-current="page" style="border-bottom:1px solid #17181a;padding-bottom:2px">à propos</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <h2 style="font-size:28px;line-height:1.15;letter-spacing:-0.02em;font-weight:500">Un carnet de courses, rien de plus.</h2>
+          <p style="font-size:15px;line-height:1.6;color:#6a6c6a">Quatre champs, trente secondes, et c'est noté. Pas d'entraînement, pas de classement, pas de compte : juste ce que vous avez couru, dans un fichier gardé sur votre appareil.</p>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">pourquoi</div>
+          <ol>
+            <li style="display:grid;grid-template-columns:20px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #c8cac8"><span style="color:#8b8d8c;font-size:12px">01</span><span><strong style="font-weight:500;font-size:15px">une course se raconte</strong><br><span style="font-size:14px;color:#6a6c6a">Un temps, un lieu, la jambe qui tire au 32e. Ces détails-là se relisent avec plaisir des années après.</span></span></li>
+            <li style="display:grid;grid-template-columns:20px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #c8cac8"><span style="color:#8b8d8c;font-size:12px">02</span><span><strong style="font-weight:500;font-size:15px">pensé pour durer</strong><br><span style="font-size:14px;color:#6a6c6a">Un fichier simple, sur votre appareil. Rien ne dépend d'un service en ligne.</span></span></li>
+            <li style="display:grid;grid-template-columns:20px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #c8cac8"><span style="color:#8b8d8c;font-size:12px">03</span><span><strong style="font-weight:500;font-size:15px">sans rien vous demander</strong><br><span style="font-size:14px;color:#6a6c6a">Pas de série à entretenir, pas de rappel. Six mois sans courir ne changent rien.</span></span></li>
+          </ol>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">les partis pris</div>
+          <p style="margin-top:16px;font-size:15px">La règle du projet tient en quatre mots : <strong style="font-weight:500">une chose, bien faite</strong>. Ce qu'elle donne, côté fabrication :</p>
+          <ul style="margin-top:12px">
+            <li style="padding:12px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">saisie manuelle</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">quatre champs, aucun capteur à autoriser</div></li>
+            <li style="padding:12px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">trois vues</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">liste, année, mois — et rien de plus</div></li>
+            <li style="padding:12px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">monospace, sans couleur</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">les chiffres s'alignent, l'écran reste calme</div></li>
+            <li style="padding:12px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">code libre</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">AGPL-3.0, reprenable par n'importe qui</div></li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">questions fréquentes</div>
+          <dl>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:15px">Où sont mes données&nbsp;?</dt><dd style="margin-top:4px;font-size:14px;color:#6a6c6a">Sur votre appareil, nulle part ailleurs. Vider le stockage du navigateur les efface : pensez à exporter.</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:15px">Passer d'un appareil à l'autre&nbsp;?</dt><dd style="margin-top:4px;font-size:14px;color:#6a6c6a">Exportez race.json depuis le premier, importez-le sur le second — en fusionnant ou en remplaçant. La synchronisation automatique demanderait un compte : ce n'est pas prévu.</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:15px">Import depuis une montre&nbsp;?</dt><dd style="margin-top:4px;font-size:14px;color:#6a6c6a">Pas de connexion directe pour le moment. L'import JSON reprend un historique ; sinon, une course s'ajoute en trente secondes.</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:15px">Combien ça coûte&nbsp;?</dt><dd style="margin-top:4px;font-size:14px;color:#6a6c6a">Rien, et il n'y a pas de version payante : sans serveur, il n'y a rien à financer.</dd></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:15px">Et si le projet s'arrête&nbsp;?</dt><dd style="margin-top:4px;font-size:14px;color:#6a6c6a">Elle continue de fonctionner, vos données sont chez vous et le code reste public.</dd></div>
+          </dl>
+        </div>
+
+        <div style="border-top:1px solid #17181a;padding-top:20px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:15px">Une critique, une idée, un bug&nbsp;?</span>
+          <span style="font-size:12px;color:#8b8d8c">Le dépôt est ouvert, les issues aussi.</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;font-size:13px;margin-top:4px">
+            <a href="https://github.com/race-app/race/issues" style="text-decoration:none;border-bottom:1px solid #17181a;padding:6px 0">signaler</a>
+            <a href="mailto:contact@race.app" style="text-decoration:none;border-bottom:1px solid #17181a;padding:6px 0">écrire</a>
+            <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding:6px 0">pages légales</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="max-width:1560px;margin:0 auto;padding:56px 24px 0;display:flex;flex-direction:column;gap:40px">
+
+  <header style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end;padding-bottom:20px;border-bottom:1px solid #17181a">
+    <div>
+      <div style="font-size:12px;color:#8b8d8c">tour 3 · à propos</div>
+      <h1 style="font-size:36px;line-height:1.1;letter-spacing:-0.03em;font-weight:500;margin-top:8px">race. — à propos</h1>
+      <p style="margin-top:12px;font-size:13px;color:#6a6c6a;max-width:64ch">La page que quelqu'un lit avant de décider s'il vous fait confiance : pourquoi l'application existe, ce qu'elle refuse de faire, comment elle est faite, ce qu'il advient de vos données.</p>
+    </div>
+    <dl style="display:grid;grid-template-columns:auto auto;gap:2px 16px;font-size:12px;color:#8b8d8c">
+      <dt>option</dt><dd style="color:#17181a"><a href="#3a">3a</a> à propos — web</dd>
+      <dt>tours précédents</dt><dd style="color:#17181a"><a href="#2a">2a</a> · <a href="#2c">2c</a> · <a href="#1a">1a</a></dd>
+    </dl>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+    <div id="3a" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">3a</span><span style="font-size:13px">à propos — web, 880 px</span></div>
+      <div style="width:880px;background:#f2f3f2;border:1px solid #17181a;padding:56px 56px 40px;display:flex;flex-direction:column;gap:64px">
+
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:16px;border-bottom:1px solid #17181a">
+          <a href="#2a" style="font-size:20px;letter-spacing:-0.02em;text-decoration:none">race.</a>
+          <div style="display:flex;gap:20px;align-items:center;font-size:12px">
+            <a href="#2a" style="text-decoration:none;color:#6a6c6a;padding-bottom:2px">présentation</a>
+            <span aria-current="page" style="border-bottom:1px solid #17181a;padding-bottom:2px">à propos</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <h2 style="font-size:36px;line-height:1.1;letter-spacing:-0.03em;font-weight:500;max-width:26ch">Un carnet de courses, rien de plus.</h2>
+          <p style="font-size:15px;line-height:1.6;color:#6a6c6a;max-width:58ch">Quatre champs, trente secondes, et c'est noté. Pas d'entraînement, pas de classement, pas de compte : juste ce que vous avez couru, dans un fichier gardé sur votre appareil.</p>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">pourquoi</div>
+          <ol style="margin-top:0">
+            <li style="display:grid;grid-template-columns:24px minmax(180px,1fr) 2fr;gap:24px;padding:18px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="color:#8b8d8c;font-size:12px">01</span><strong style="font-weight:500;font-size:15px">une course se raconte</strong><span style="font-size:14px;color:#6a6c6a">Un temps, un lieu, la jambe qui tire au 32e. Ces détails-là se relisent avec plaisir des années après.</span></li>
+            <li style="display:grid;grid-template-columns:24px minmax(180px,1fr) 2fr;gap:24px;padding:18px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="color:#8b8d8c;font-size:12px">02</span><strong style="font-weight:500;font-size:15px">pensé pour durer</strong><span style="font-size:14px;color:#6a6c6a">Un fichier simple, sur votre appareil. Rien ne dépend d'un service en ligne.</span></li>
+            <li style="display:grid;grid-template-columns:24px minmax(180px,1fr) 2fr;gap:24px;padding:18px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="color:#8b8d8c;font-size:12px">03</span><strong style="font-weight:500;font-size:15px">sans rien vous demander</strong><span style="font-size:14px;color:#6a6c6a">Pas de série à entretenir, pas de rappel. Six mois sans courir ne changent rien.</span></li>
+          </ol>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">les partis pris</div>
+          <p style="margin-top:16px;font-size:15px;max-width:58ch">La règle du projet tient en quatre mots : <strong style="font-weight:500">une chose, bien faite</strong>. Ce qu'elle donne, côté fabrication :</p>
+          <ul style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;margin-top:12px">
+            <li style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">saisie manuelle</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">quatre champs, aucun capteur à autoriser</div></li>
+            <li style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">trois vues</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">liste, année, mois — et rien de plus</div></li>
+            <li style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">monospace, sans couleur</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">les chiffres s'alignent, l'écran reste calme</div></li>
+            <li style="padding:14px 0;border-bottom:1px solid #c8cac8"><div style="font-size:14px">code libre</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">AGPL-3.0, reprenable par n'importe qui</div></li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">questions fréquentes</div>
+          <dl style="margin-top:12px">
+            <div style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:24px;padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:14px">Où sont mes données&nbsp;?</dt><dd style="font-size:14px;color:#6a6c6a">Sur votre appareil, nulle part ailleurs. Vider le stockage du navigateur les efface : pensez à exporter.</dd></div>
+            <div style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:24px;padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:14px">Passer d'un appareil à l'autre&nbsp;?</dt><dd style="font-size:14px;color:#6a6c6a">Exportez race.json depuis le premier, importez-le sur le second — au choix en fusionnant avec ce qui s'y trouve déjà, ou en remplaçant tout. La synchronisation automatique, elle, demanderait un compte : ce n'est pas prévu.</dd></div>
+            <div style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:24px;padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:14px">Import depuis une montre&nbsp;?</dt><dd style="font-size:14px;color:#6a6c6a">Pas de connexion directe pour le moment. L'import JSON reprend un historique ; sinon, une course s'ajoute en trente secondes.</dd></div>
+            <div style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:24px;padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:14px">Combien ça coûte&nbsp;?</dt><dd style="font-size:14px;color:#6a6c6a">Rien, et il n'y a pas de version payante : sans serveur, il n'y a rien à financer.</dd></div>
+            <div style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:24px;padding:16px 0;border-bottom:1px solid #c8cac8"><dt style="font-size:14px">Et si le projet s'arrête&nbsp;?</dt><dd style="font-size:14px;color:#6a6c6a">Elle continue de fonctionner, vos données sont chez vous et le code reste public.</dd></div>
+          </dl>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid #17181a">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:15px">Une critique, une idée, un bug&nbsp;?</span>
+            <span style="font-size:12px;color:#8b8d8c">Le dépôt est ouvert, les issues aussi.</span>
+          </div>
+          <div style="display:flex;gap:24px;align-items:center;font-size:13px">
+            <a href="https://github.com/race-app/race/issues" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">signaler</a>
+            <a href="mailto:contact@race.app" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">écrire</a>
+            <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">pages légales</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1560px;margin:0 auto;padding:56px 24px 0;display:flex;flex-direction:column;gap:40px">
+
+  <header style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end;padding-bottom:20px;border-bottom:1px solid #17181a">
+    <div>
+      <div style="font-size:12px;color:#8b8d8c">tour 2 · présentation &amp; pages légales</div>
+      <h1 style="font-size:36px;line-height:1.1;letter-spacing:-0.03em;font-weight:500;margin-top:8px">race. — page de présentation</h1>
+      <p style="margin-top:12px;font-size:13px;color:#6a6c6a;max-width:64ch">La première chose que voit quelqu'un qui découvre race. : la promesse, les faits, les trois concepts, l'application elle-même, puis une seule action. Aucune image, aucun dégradé — texte, ligne, point, espace.</p>
+    </div>
+    <dl style="display:grid;grid-template-columns:auto auto;gap:2px 16px;font-size:12px;color:#8b8d8c">
+      <dt>options</dt><dd style="color:#17181a"><a href="#2a">2a</a> présentation · <a href="#2c">2c</a> pages légales</dd>
+      <dt>tour précédent</dt><dd style="color:#17181a"><a href="#1a">1a</a> · <a href="#1b">1b</a> · <a href="#1c">1c</a></dd>
+    </dl>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+
+    <div id="2a" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">2a</span><span style="font-size:13px">présentation — web, 880 px</span></div>
+      <div style="width:880px;background:#f2f3f2;border:1px solid #17181a;padding:56px 56px 40px;display:flex;flex-direction:column;gap:64px">
+
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:16px;border-bottom:1px solid #17181a">
+          <span style="font-size:20px;letter-spacing:-0.02em">race.</span>
+          <div style="display:flex;gap:20px;align-items:center;font-size:12px">
+            <span aria-current="page" style="border-bottom:1px solid #17181a;padding-bottom:2px">présentation</span>
+            <a href="#3a" style="text-decoration:none;color:#6a6c6a">à propos</a>
+            <a href="https://github.com/race-app/race" style="text-decoration:none;color:#6a6c6a">code source</a>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <h2 style="font-size:36px;line-height:1.1;letter-spacing:-0.03em;font-weight:500;max-width:24ch">Toutes vos courses. Une ligne chacune.</h2>
+          <p style="font-size:15px;line-height:1.6;color:#6a6c6a;max-width:56ch">race. répond à une seule question : qu'est-ce que j'ai couru&nbsp;? Pas de plan d'entraînement, pas de graphique, pas de classement. Vous notez la course, elle reste lisible dans dix ans.</p>
+          <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:14px">ajouter ma première course</span>
+            <span style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;border-bottom:1px solid #17181a">voir un exemple</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;border-top:1px solid #17181a;margin-top:8px">
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><div style="font-size:15px">Sans compte</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">ni e-mail, ni mot de passe</div></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><div style="font-size:15px">Gratuit</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">sans version payante</div></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><div style="font-size:15px">Hors ligne</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">fonctionne en avion, en montagne</div></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><div style="font-size:15px">Sur votre appareil</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">rien n'est envoyé nulle part</div></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><div style="font-size:15px">Installable</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">sur l'écran d'accueil, comme une app</div></div>
+            <div style="padding:16px 0;border-bottom:1px solid #c8cac8"><div style="font-size:15px">Transférable</div><div style="margin-top:2px;font-size:12px;color:#6a6c6a">export d'un appareil, import sur l'autre</div></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">trois concepts</div>
+          <ol style="margin-top:0">
+            <li style="display:grid;grid-template-columns:24px minmax(160px,1fr) 2fr;gap:24px;padding:18px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="color:#8b8d8c;font-size:12px">01</span><strong style="font-weight:500;font-size:15px">une course</strong><span style="font-size:14px;color:#6a6c6a">L'unité. Un nom, une date, une distance, une durée. Le lieu, le dénivelé et les notes restent facultatifs.</span></li>
+            <li style="display:grid;grid-template-columns:24px minmax(160px,1fr) 2fr;gap:24px;padding:18px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="color:#8b8d8c;font-size:12px">02</span><strong style="font-weight:500;font-size:15px">trois vues</strong><span style="font-size:14px;color:#6a6c6a">Liste pour tout revoir, Année pour la densité, Mois pour le détail. Chaque vue tient sur une page : aucun scroll infini.</span></li>
+            <li style="display:grid;grid-template-columns:24px minmax(160px,1fr) 2fr;gap:24px;padding:18px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="color:#8b8d8c;font-size:12px">03</span><strong style="font-weight:500;font-size:15px">le point</strong><span style="font-size:14px;color:#6a6c6a">● une course a eu lieu. · rien ce mois-là. Un trait vertical prolonge une course de plusieurs jours. C'est tout le vocabulaire.</span></li>
+          </ol>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">l'application</div>
+          <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:24px">
+            <div style="flex:0 0 auto;display:flex;flex-direction:column;gap:8px">
+              <dc-import name="RaceApp" hint-size="390px,844px"></dc-import>
+              <span style="font-size:12px;color:#8b8d8c">application réelle — cliquez dedans</span>
+            </div>
+            <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:16px">
+              <p style="font-size:14px;color:#6a6c6a;max-width:44ch">L'application, en état de marche. Une course par ligne, l'année en rappel, la recherche au-dessus, une seule action en bas.</p>
+              <ul style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#8b8d8c;max-width:44ch">
+                <li>cliquez une course pour ouvrir sa fiche, puis « modifier »</li>
+                <li>« voir par année » puis un mois pour la vue calendrier</li>
+                <li>« records » pour les meilleurs temps par distance</li>
+                <li>« réglages » pour le thème sombre, les miles, l'export</li>
+              </ul>
+            </div>
+          </div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a;margin-top:48px">les trois vues</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:24px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="font-size:13px">liste — par défaut</div>
+              <div style="border-top:1px solid #c8cac8;padding-top:12px;display:flex;flex-direction:column;gap:10px;font-size:12px;color:#6a6c6a">
+                <div style="display:grid;grid-template-columns:12px 1fr;gap:8px"><span style="width:5px;height:5px;border-radius:50%;background:#17181a;margin-top:6px"></span><span><span style="color:#17181a">UTMB</span><br>170 km – 46h30:00</span></div>
+                <div style="display:grid;grid-template-columns:12px 1fr;gap:8px"><span style="width:5px;height:5px;border-radius:50%;background:#17181a;margin-top:6px"></span><span><span style="color:#17181a">10k de Lyon</span><br>10 km – 45:00</span></div>
+                <div style="display:grid;grid-template-columns:12px 1fr;gap:8px"><span style="width:5px;height:5px;border-radius:50%;background:#17181a;margin-top:6px"></span><span><span style="color:#17181a">Semi de Genève</span><br>21,1 km – 1h38:20</span></div>
+              </div>
+              <p style="font-size:12px;color:#8b8d8c">Toutes les années, date décroissante.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="font-size:13px">année</div>
+              <div style="border-top:1px solid #c8cac8;padding-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px 4px;font-size:12px;color:#6a6c6a">
+                <span>janv.<br><span style="color:#8b8d8c">·</span></span><span>févr.<br><span style="color:#17181a">● 1</span></span><span>mars<br><span style="color:#8b8d8c">·</span></span>
+                <span>avr.<br><span style="color:#17181a">● 1</span></span><span>mai<br><span style="color:#8b8d8c">·</span></span><span>juin<br><span style="color:#17181a">● 2</span></span>
+                <span>juil.<br><span style="color:#17181a">● 1</span></span><span>août<br><span style="color:#17181a">● 2</span></span><span>sept.<br><span style="color:#8b8d8c">·</span></span>
+                <span>oct.<br><span style="color:#8b8d8c">·</span></span><span>nov.<br><span style="color:#8b8d8c">·</span></span><span>déc.<br><span style="color:#8b8d8c">·</span></span>
+              </div>
+              <p style="font-size:12px;color:#8b8d8c">Une année tient en un coup d'œil.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="font-size:13px">mois</div>
+              <div style="border-top:1px solid #c8cac8;padding-top:12px;display:flex;flex-direction:column;gap:8px;font-size:12px;color:#6a6c6a">
+                <div style="display:grid;grid-template-columns:44px 12px 1fr;gap:8px"><span>dim 02</span><span style="position:relative;width:12px"><span style="position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:#17181a"></span></span><span style="color:#17181a">10k de Lyon</span></div>
+                <div style="display:grid;grid-template-columns:44px 12px 1fr;gap:8px;align-items:stretch"><span>ven 28</span><span style="position:relative;width:12px;align-self:stretch"><span style="position:absolute;left:2px;top:8px;bottom:-8px;border-left:1px solid #17181a"></span><span style="position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:#17181a"></span></span><span style="color:#17181a">UTMB</span></div>
+                <div style="display:grid;grid-template-columns:44px 12px 1fr;gap:8px"><span>sam 29</span><span style="position:relative;width:12px"><span style="position:absolute;left:2px;top:-8px;height:16px;border-left:1px solid #17181a"></span></span><span>suite</span></div>
+              </div>
+              <p style="font-size:12px;color:#8b8d8c">Le détail, jour par jour.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #17181a">ce que race. ne fait pas</div>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;margin-top:12px">
+            <ul style="display:flex;flex-direction:column">
+              <li style="display:grid;grid-template-columns:16px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:14px;color:#6a6c6a"><span style="color:#8b8d8c">—</span>aucun suivi GPS, aucune montre à connecter</li>
+              <li style="display:grid;grid-template-columns:16px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:14px;color:#6a6c6a"><span style="color:#8b8d8c">—</span>aucun badge, aucune série à ne pas rompre</li>
+            </ul>
+            <ul style="display:flex;flex-direction:column">
+              <li style="display:grid;grid-template-columns:16px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:14px;color:#6a6c6a"><span style="color:#8b8d8c">—</span>aucun partage, aucun classement</li>
+              <li style="display:grid;grid-template-columns:16px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:14px;color:#6a6c6a"><span style="color:#8b8d8c">—</span>aucune notification</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid #17181a">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:15px">Prêt&nbsp;? La première course prend trente secondes.</span>
+            <span style="font-size:12px;color:#8b8d8c">Thème clair, sombre ou système · kilomètres ou miles</span>
+          </div>
+          <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:14px">commencer</span>
+        </div>
+
+        <div style="border-top:1px solid #17181a;padding-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">projet</div>
+            <ul style="margin-top:10px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+              <li><a href="https://github.com/race-app/race" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">dépôt GitHub</a></li>
+              <li><a href="https://github.com/race-app/race/releases" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">versions</a></li>
+              <li><a href="https://github.com/race-app/race/issues" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">signaler un bug</a></li>
+              <li><a href="#3a" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">à propos</a></li>
+              <li><a href="https://github.com/race-app/race/blob/main/CHANGELOG.md" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">journal des changements</a></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">licence</div>
+            <ul style="margin-top:10px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+              <li><a href="https://github.com/race-app/race/blob/main/LICENSE" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">AGPL-3.0</a></li>
+              <li><a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">contribuer</a></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Libre et copyleft : toute version modifiée et distribuée reste libre.</p>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">légal</div>
+            <ul style="margin-top:10px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+              <li><a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">conditions d'utilisation</a></li>
+              <li><a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">confidentialité</a></li>
+              <li><a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">mentions légales</a></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">contact</div>
+            <ul style="margin-top:10px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+              <li><a href="mailto:contact@race.app" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">contact@race.app</a></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">race. 1.0 — une chose. bien faite.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="2c" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">2c</span><span style="font-size:13px">pages légales</span></div>
+
+      <div style="width:720px;background:#f2f3f2;border:1px solid #17181a;padding:48px;display:flex;flex-direction:column;gap:32px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:16px;border-bottom:1px solid #17181a">
+          <div style="display:flex;gap:20px;align-items:baseline">
+            <a href="#2a" style="font-size:20px;letter-spacing:-0.02em;text-decoration:none">race.</a>
+            <a href="#2a" style="font-size:12px;color:#6a6c6a;text-decoration:none;border-bottom:1px solid #c8cac8;padding-bottom:2px">‹ présentation</a>
+            <a href="#3a" style="font-size:12px;color:#6a6c6a;text-decoration:none;border-bottom:1px solid #c8cac8;padding-bottom:2px">à propos</a>
+          </div>
+          <span style="font-size:12px;color:#8b8d8c">mise à jour 11 août 2026</span>
+        </div>
+        <div>
+          <h2 style="font-size:24px;letter-spacing:-0.02em;font-weight:500">Conditions d'utilisation</h2>
+          <p style="margin-top:12px;font-size:13px;color:#8b8d8c;max-width:64ch">Courtes par construction : l'application ne collecte rien, ne vend rien et ne promet rien d'autre que de fonctionner.</p>
+        </div>
+        <ol style="display:flex;flex-direction:column">
+          <li style="display:grid;grid-template-columns:24px minmax(150px,1fr) 2fr;gap:20px;padding:16px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">01</span><strong style="font-weight:500;font-size:14px">objet</strong><span style="font-size:14px;color:#6a6c6a">race. est un journal de courses personnel qui s'exécute sur votre appareil. Ni compte, ni service en ligne, ni abonnement.</span></li>
+          <li style="display:grid;grid-template-columns:24px minmax(150px,1fr) 2fr;gap:20px;padding:16px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">02</span><strong style="font-weight:500;font-size:14px">vos données</strong><span style="font-size:14px;color:#6a6c6a">Elles restent dans le stockage local du navigateur. Le vider ou désinstaller l'application les supprime définitivement : exportez votre fichier régulièrement.</span></li>
+          <li style="display:grid;grid-template-columns:24px minmax(150px,1fr) 2fr;gap:20px;padding:16px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">03</span><strong style="font-weight:500;font-size:14px">usage attendu</strong><span style="font-size:14px;color:#6a6c6a">Usage personnel, non médical. Distances, durées et allures sont celles que vous saisissez : ni mesure officielle, ni conseil d'entraînement.</span></li>
+          <li style="display:grid;grid-template-columns:24px minmax(150px,1fr) 2fr;gap:20px;padding:16px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">04</span><strong style="font-weight:500;font-size:14px">licence</strong><span style="font-size:14px;color:#6a6c6a">Code publié sous AGPL-3.0. Vous pouvez l'utiliser, l'étudier, le modifier et le redistribuer ; toute version distribuée ou exposée en réseau doit rester sous la même licence, code source inclus.</span></li>
+          <li style="display:grid;grid-template-columns:24px minmax(150px,1fr) 2fr;gap:20px;padding:16px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">05</span><strong style="font-weight:500;font-size:14px">garantie</strong><span style="font-size:14px;color:#6a6c6a">Logiciel fourni « tel quel », sans garantie d'aucune sorte. La responsabilité de l'auteur ne peut être engagée en cas de perte de données.</span></li>
+          <li style="display:grid;grid-template-columns:24px minmax(150px,1fr) 2fr;gap:20px;padding:16px 0;border-bottom:1px solid #c8cac8;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">06</span><strong style="font-weight:500;font-size:14px">évolutions</strong><span style="font-size:14px;color:#6a6c6a">Ces conditions peuvent changer avec une version majeure. La date figure en haut de page, l'historique dans le dépôt.</span></li>
+        </ol>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:16px;border-top:1px solid #c8cac8;font-size:13px">
+          <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">confidentialité</a>
+          <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">mentions légales</a>
+          <a href="https://github.com/race-app/race/blob/main/LICENSE" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">licence AGPL-3.0</a>
+        </div>
+      </div>
+
+      <div style="width:720px;background:#f2f3f2;border:1px solid #17181a;padding:48px;display:flex;flex-direction:column;gap:32px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:16px;border-bottom:1px solid #17181a">
+          <div style="display:flex;gap:20px;align-items:baseline">
+            <a href="#2a" style="font-size:20px;letter-spacing:-0.02em;text-decoration:none">race.</a>
+            <a href="#2a" style="font-size:12px;color:#6a6c6a;text-decoration:none;border-bottom:1px solid #c8cac8;padding-bottom:2px">‹ présentation</a>
+            <a href="#3a" style="font-size:12px;color:#6a6c6a;text-decoration:none;border-bottom:1px solid #c8cac8;padding-bottom:2px">à propos</a>
+          </div>
+          <span style="font-size:12px;color:#8b8d8c">mise à jour 11 août 2026</span>
+        </div>
+        <div>
+          <h2 style="font-size:24px;letter-spacing:-0.02em;font-weight:500">Confidentialité</h2>
+          <p style="margin-top:12px;font-size:15px">race. ne collecte aucune donnée. Rien ne quitte votre appareil.</p>
+          <p style="margin-top:6px;font-size:13px;color:#8b8d8c;max-width:64ch">Il n'existe aucun serveur à qui envoyer quoi que ce soit : c'est une conséquence de l'architecture, pas une promesse commerciale.</p>
+        </div>
+        <div>
+          <div style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c"><span>sujet</span><span>ce que fait race.</span></div>
+          <ul style="display:flex;flex-direction:column">
+            <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><span>compte utilisateur</span><span style="color:#6a6c6a">aucun — pas d'e-mail, pas de mot de passe</span></li>
+            <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><span>stockage</span><span style="color:#6a6c6a">local à l'appareil, non chiffré par l'application</span></li>
+            <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><span>analytique, télémétrie</span><span style="color:#6a6c6a">aucune — aucun événement mesuré</span></li>
+            <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><span>cookies, traceurs</span><span style="color:#6a6c6a">aucun — donc aucune bannière de consentement</span></li>
+            <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><span>services tiers</span><span style="color:#6a6c6a">aucun — aucune police, carte ou script distant</span></li>
+            <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><span>réseau</span><span style="color:#6a6c6a">au téléchargement de l'application uniquement, jamais à l'usage</span></li>
+            <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><span>export</span><span style="color:#6a6c6a">un fichier JSON que vous seul déclenchez et transmettez</span></li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">vos droits</div>
+          <p style="margin-top:12px;font-size:14px;color:#6a6c6a;max-width:64ch">Accès, rectification, effacement et portabilité s'exercent directement dans l'application : consulter, modifier, supprimer une course, tout effacer, exporter le fichier. Aucune demande à adresser à personne — personne d'autre ne détient vos données.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:16px;border-top:1px solid #c8cac8;font-size:13px">
+          <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">conditions d'utilisation</a>
+          <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">mentions légales</a>
+        </div>
+      </div>
+
+      <div style="width:720px;background:#f2f3f2;border:1px solid #17181a;padding:48px;display:flex;flex-direction:column;gap:32px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:16px;border-bottom:1px solid #17181a">
+          <div style="display:flex;gap:20px;align-items:baseline">
+            <a href="#2a" style="font-size:20px;letter-spacing:-0.02em;text-decoration:none">race.</a>
+            <a href="#2a" style="font-size:12px;color:#6a6c6a;text-decoration:none;border-bottom:1px solid #c8cac8;padding-bottom:2px">‹ présentation</a>
+            <a href="#3a" style="font-size:12px;color:#6a6c6a;text-decoration:none;border-bottom:1px solid #c8cac8;padding-bottom:2px">à propos</a>
+          </div>
+          <span style="font-size:12px;color:#8b8d8c">mise à jour 11 août 2026</span>
+        </div>
+        <div>
+          <h2 style="font-size:24px;letter-spacing:-0.02em;font-weight:500">Mentions légales</h2>
+          <p style="margin-top:12px;font-size:13px;color:#8b8d8c">Éditeur et hébergeur du site de présentation. Les crochets marquent les valeurs à renseigner avant publication.</p>
+        </div>
+        <dl style="display:flex;flex-direction:column">
+          <div style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><dt>éditeur</dt><dd style="color:#6a6c6a">[nom de l'éditeur] — personne physique</dd></div>
+          <div style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><dt>statut</dt><dd style="color:#6a6c6a">projet personnel, sans activité commerciale</dd></div>
+          <div style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><dt>responsable de publication</dt><dd style="color:#6a6c6a">[nom de l'éditeur]</dd></div>
+          <div style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><dt>contact</dt><dd style="color:#6a6c6a"><a href="mailto:contact@race.app" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">contact@race.app</a></dd></div>
+          <div style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><dt>hébergeur</dt><dd style="color:#6a6c6a">[nom de l'hébergeur], [adresse postale], [pays]</dd></div>
+          <div style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><dt>propriété intellectuelle</dt><dd style="color:#6a6c6a">code sous AGPL-3.0 ; nom et identité visuelle « race. » réservés</dd></div>
+          <div style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:20px;padding:14px 0;border-bottom:1px solid #c8cac8;font-size:14px"><dt>médiation</dt><dd style="color:#6a6c6a">aucune donnée traitée, aucun litige de service ; réclamations par e-mail</dd></div>
+        </dl>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;padding-top:16px;border-top:1px solid #c8cac8;font-size:13px">
+          <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">conditions d'utilisation</a>
+          <a href="#2c" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">confidentialité</a>
+          <a href="https://github.com/race-app/race" style="text-decoration:none;border-bottom:1px solid #17181a;padding-bottom:2px">dépôt GitHub</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="max-width:1560px;margin:0 auto;padding:56px 24px 96px;display:flex;flex-direction:column;gap:40px">
+
+  <header style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end;padding-bottom:20px;border-bottom:1px solid #17181a">
+    <div>
+      <div style="font-size:12px;color:#8b8d8c">maquettes · famille «&nbsp;.&nbsp;» 1.0.0</div>
+      <h1 style="font-size:36px;line-height:1.1;letter-spacing:-0.03em;font-weight:500;margin-top:8px">race.</h1>
+      <p style="margin-top:12px;font-size:13px;color:#6a6c6a;max-width:64ch">Journal de courses, trois vues : Liste (défaut) → Année → Mois. Le premier cadre est cliquable : navigation, changement de période, ouverture du formulaire d'édition.</p>
+    </div>
+    <dl style="display:grid;grid-template-columns:auto auto;gap:2px 16px;font-size:12px;color:#8b8d8c">
+      <dt>question</dt><dd style="color:#17181a">qu'est-ce que j'ai couru&nbsp;?</dd>
+      <dt>unité</dt><dd style="color:#17181a">une course</dd>
+      <dt>vue par défaut</dt><dd style="color:#17181a">liste</dd>
+      <dt>données</dt><dd style="color:#17181a">locales, schemaVersion 1</dd>
+    </dl>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+
+    <div id="1a" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">1a</span><span style="font-size:13px">prototype cliquable — liste / année / mois / édition</span></div>
+      <dc-import name="RaceApp" hint-size="390px,844px"></dc-import>
+      <p style="width:390px;font-size:12px;color:#6a6c6a">Liste → « voir par année » → tap sur un mois → Mois. Tap sur une course : formulaire d'édition.</p>
+    </div>
+
+    <div id="1b" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">1b</span><span style="font-size:13px">vue Mois — thème sombre</span></div>
+      <div style="width:390px;height:844px;background:#121311;color:#ecebe6;border:1px solid #34362f;display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:24px 24px 12px;display:flex;flex-direction:column;gap:16px;border-bottom:1px solid #ecebe6">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:20px;letter-spacing:-0.02em">race.</span>
+            <span style="font-size:12px;color:#74766f">2 courses</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px">
+            <span style="font-size:13px;color:#8e9089">‹ juillet</span>
+            <span style="font-size:24px;letter-spacing:-0.02em">août 2026</span>
+            <span style="font-size:13px;color:#8e9089">septembre ›</span>
+          </div>
+        </div>
+        <ul style="flex:1;overflow:hidden;padding:8px 24px 0">
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f"><span style="font-size:14px;color:#8e9089">sam 01</span><span></span><span style="font-size:14px;color:#74766f">—</span></li>
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f;align-items:start">
+            <span style="font-size:14px;color:#8e9089">dim 02</span>
+            <span style="position:relative;width:16px"><span style="position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:#ecebe6"></span></span>
+            <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px">10k de Lyon</span><span style="font-size:12px;color:#8e9089">10 km – 45:00 (4:30/km)</span></span>
+          </li>
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f"><span style="font-size:14px;color:#8e9089">lun 03</span><span></span><span style="font-size:14px;color:#74766f">—</span></li>
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f"><span style="font-size:14px;color:#8e9089">mar 04</span><span></span><span style="font-size:14px;color:#74766f">—</span></li>
+          <li style="display:flex;justify-content:center;padding:10px 4px;border-bottom:1px solid #34362f;font-size:12px;color:#74766f">…</li>
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f"><span style="font-size:14px;color:#8e9089">jeu 27</span><span></span><span style="font-size:14px;color:#74766f">—</span></li>
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f;background:#1b1c19;box-shadow:inset 2px 0 0 #ecebe6;align-items:stretch">
+            <span style="font-size:14px;color:#ecebe6">ven 28</span>
+            <span style="position:relative;width:16px">
+              <span style="position:absolute;left:2px;top:10px;bottom:-10px;border-left:1px solid #74766f"></span>
+              <span style="position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:#ecebe6"></span>
+            </span>
+            <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px">UTMB</span><span style="font-size:12px;color:#8e9089">170 km – 46h30:00 (16:25/km) – D+ 10000 m</span></span>
+          </li>
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f;align-items:stretch">
+            <span style="font-size:14px;color:#8e9089">sam 29</span>
+            <span style="position:relative;width:16px">
+              <span style="position:absolute;left:2px;top:-10px;height:20px;border-left:1px solid #74766f"></span>
+            </span>
+            <span style="font-size:14px;color:#74766f">UTMB — suite</span>
+          </li>
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f"><span style="font-size:14px;color:#8e9089">dim 30</span><span></span><span style="font-size:14px;color:#74766f">—</span></li>
+          <li style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;min-height:44px;padding:10px 4px;border-bottom:1px solid #34362f"><span style="font-size:14px;color:#8e9089">lun 31</span><span></span><span style="font-size:14px;color:#74766f">—</span></li>
+        </ul>
+        <div style="padding:16px 24px 24px;border-top:1px solid #ecebe6;display:flex;justify-content:space-between;align-items:center;gap:16px">
+          <span style="font-size:13px;border-bottom:1px solid #ecebe6">retour à l'année</span>
+          <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:6px;background:#ecebe6;color:#121311;font-size:13px">+ ajouter</span>
+        </div>
+      </div>
+      <p style="width:390px;font-size:12px;color:#6a6c6a">Course multi-jours : affichée le jour de départ, continuation en trait vertical.</p>
+    </div>
+
+    <div id="1c" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font-size:12px;color:#8b8d8c">1c</span><span style="font-size:13px">réglages · état vide</span></div>
+      <div style="width:390px;background:#f2f3f2;border:1px solid #17181a;display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:24px 24px 12px;border-bottom:1px solid #17181a;display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-size:20px;letter-spacing:-0.02em">race.</span>
+          <span style="font-size:13px;color:#6a6c6a">fermer</span>
+        </div>
+        <div style="padding:20px 24px 24px;display:flex;flex-direction:column;gap:32px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">affichage</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8"><span>thème</span><span style="font-size:13px;color:#6a6c6a">système</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8"><span>langue</span><span style="font-size:13px;color:#6a6c6a">français</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8"><span>allure</span><span style="font-size:13px;color:#6a6c6a">affichée</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8"><span>vue par défaut</span><span style="font-size:13px;color:#6a6c6a">liste</span></div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">données</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8"><span>exporter</span><span style="font-size:13px;color:#6a6c6a">race.json</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8"><span>importer</span><span style="font-size:13px;color:#6a6c6a">fusionner ou remplacer</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8"><span style="color:#a33">tout effacer</span><span style="font-size:13px;color:#6a6c6a">confirmation requise</span></div>
+            <p style="margin-top:12px;font-size:12px;color:#6a6c6a">Tout est stocké sur cet appareil. Aucun compte, aucun réseau.</p>
+          </div>
+        </div>
+      </div>
+      <div style="width:390px;background:#f2f3f2;border:1px solid #17181a;padding:24px;display:flex;flex-direction:column;gap:0">
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">état vide — première ouverture</div>
+        <p style="margin-top:24px;font-size:15px">Aucune course enregistrée.</p>
+        <p style="margin-top:6px;font-size:15px;color:#6a6c6a">Commencez par celle dont vous vous souvenez le mieux.</p>
+        <p style="margin-top:20px;font-size:14px;display:inline-block;width:fit-content;border-bottom:1px solid #17181a;padding-bottom:2px">+ ajouter une course</p>
+      </div>
+      <div style="width:390px;background:#f2f3f2;border:1px solid #17181a;padding:24px">
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">message — import refusé</div>
+        <p style="margin-top:24px;font-size:15px;color:#a33">Impossible d'importer ce fichier.</p>
+        <p style="margin-top:6px;font-size:15px;color:#6a6c6a">La version des données n'est pas compatible avec cette application.</p>
+        <p style="margin-top:20px;font-size:14px;display:inline-block;width:fit-content;border-bottom:1px solid #17181a;padding-bottom:2px">choisir un autre fichier</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer style="border-top:1px solid #17181a;padding-top:16px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:12px;color:#8b8d8c">
+    <span>race. — maquettes conformes à famille «&nbsp;.&nbsp;» 1.0.0</span>
+    <span>une chose. bien faite.</span>
+  </footer>
+
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

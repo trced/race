@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Famille « . » — Design System 1.0</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: #f2f3f2;
+    color: #17181a;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+    font-variant-ligatures: none;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
+  }
+  a { color: #17181a; text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid #17181a; outline-offset: 3px; }
+  ::selection { background: #dfe0de; }
+  h1, h2, h3, h4, p, ul, ol, dl, dd, figure, pre { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  code { font-family: inherit; }
+  @media (min-width: 1000px) {
+    #ds-nav { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow-y: auto; overscroll-behavior: contain; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</helmet>
+
+<div style="max-width:1240px;margin:0 auto;padding:40px 24px 120px">
+
+  <header style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end;padding-bottom:20px;border-bottom:1px solid #17181a">
+    <div>
+      <div style="font-size:12px;color:#8b8d8c">design system</div>
+      <h1 style="font-size:40px;line-height:1;letter-spacing:-0.03em;font-weight:500;margin-top:8px">famille «&nbsp;.&nbsp;»</h1>
+      <p style="margin-top:12px;font-size:13px;color:#8b8d8c;max-width:58ch">Référence unique pour la conception et l'implémentation de month., habit. et des micro-applications suivantes. Ce document fait foi : toute divergence entre une maquette, du code et cette page est un bug.</p>
+    </div>
+    <dl style="display:grid;grid-template-columns:auto auto;gap:2px 16px;font-size:12px;color:#8b8d8c">
+      <dt>version</dt><dd style="color:#17181a">1.1.0</dd>
+      <dt>statut</dt><dd style="color:#17181a">stable</dd>
+      <dt>plateformes</dt><dd style="color:#17181a">web / PWA</dd>
+      <dt>dernière révision</dt><dd style="color:#17181a">2026-08-11</dd>
+    </dl>
+  </header>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start;padding-top:32px">
+
+    <nav id="ds-nav" aria-label="Sommaire" style="flex:0 1 190px;font-size:12px;display:flex;flex-direction:column;gap:20px">
+      <div>
+        <div style="color:#8b8d8c;padding-bottom:6px;border-bottom:1px solid #c8cac8">00 — cadre</div>
+        <ul style="margin-top:8px">
+          <li><a href="#d-lire" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">comment lire</a></li>
+          <li><a href="#d-principes" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">principes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="color:#8b8d8c;padding-bottom:6px;border-bottom:1px solid #c8cac8">01 — fondations</div>
+        <ul style="margin-top:8px">
+          <li><a href="#f-couleur" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">couleur</a></li>
+          <li><a href="#f-typo" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">typographie</a></li>
+          <li><a href="#f-espace" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">espace &amp; grille</a></li>
+          <li><a href="#f-forme" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">forme &amp; ligne</a></li>
+          <li><a href="#f-motion" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">mouvement</a></li>
+          <li><a href="#f-icones" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">iconographie</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="color:#8b8d8c;padding-bottom:6px;border-bottom:1px solid #c8cac8">02 — tokens</div>
+        <ul style="margin-top:8px">
+          <li><a href="#t-modele" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">modèle &amp; nommage</a></li>
+          <li><a href="#t-ref" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">référence</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="color:#8b8d8c;padding-bottom:6px;border-bottom:1px solid #c8cac8">03 — composants</div>
+        <ul style="margin-top:8px">
+          <li><a href="#c-button" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">Button</a></li>
+          <li><a href="#c-field" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">TextField</a></li>
+          <li><a href="#c-toggle" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">Toggle</a></li>
+          <li><a href="#c-row" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">ListRow</a></li>
+          <li><a href="#c-dot" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">Dot</a></li>
+          <li><a href="#c-nav" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">PeriodNav</a></li>
+          <li><a href="#c-search" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">SearchFilterBar</a></li>
+          <li><a href="#c-stat" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">StatRow</a></li>
+          <li><a href="#c-sheet" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">Sheet</a></li>
+          <li><a href="#c-feedback" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">EmptyState / Message</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="color:#8b8d8c;padding-bottom:6px;border-bottom:1px solid #c8cac8">04 — patterns</div>
+        <ul style="margin-top:8px">
+          <li><a href="#p-page" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">page &amp; responsive</a></li>
+          <li><a href="#p-data" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">données &amp; i18n</a></li>
+          <li><a href="#p-a11y" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">accessibilité</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="color:#8b8d8c;padding-bottom:6px;border-bottom:1px solid #c8cac8">05 — gouvernance</div>
+        <ul style="margin-top:8px">
+          <li><a href="#g-handoff" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">handoff</a></li>
+          <li><a href="#g-process" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">versions &amp; contribution</a></li>
+          <li><a href="#g-dod" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">definition of done</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main style="flex:1 1 640px;min-width:0;display:flex;flex-direction:column;gap:88px">
+
+      <section id="d-lire">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">00.1</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Comment lire ce document</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c">designer</div>
+            <p style="margin-top:8px;font-size:13px">Les fondations fixent ce qui est décidé une fois pour toutes. Chaque composant donne son anatomie, ses variantes, ses états et ses mesures. Aucune valeur en dehors des échelles listées ne doit apparaître dans une maquette.</p>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c">développeur</div>
+            <p style="margin-top:8px;font-size:13px">Les tokens sont la seule source de valeurs. Chaque composant donne son API, son balisage de référence et ses exigences d'accessibilité. Une valeur en dur dans un composant est un défaut de conformité.</p>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c">notation</div>
+            <ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+              <li><span style="color:#8b8d8c">obligatoire</span> — doit</li>
+              <li><span style="color:#8b8d8c">recommandé</span> — devrait</li>
+              <li><span style="color:#8b8d8c">interdit</span> — ne doit jamais</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="d-principes">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">00.2</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Principes de conception</h2>
+        </div>
+        <ol style="margin-top:24px;display:flex;flex-direction:column">
+          <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:24px;padding:14px 0;border-bottom:1px solid #c8cac8"><strong style="font-weight:500">Une chose, bien faite</strong><span style="color:#8b8d8c">Une application répond à une question. Une fonctionnalité qui ne sert pas cette question n'est pas ajoutée.</span></li>
+          <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:24px;padding:14px 0;border-bottom:1px solid #c8cac8"><strong style="font-weight:500">Le texte d'abord</strong><span style="color:#8b8d8c">Texte, ligne, point, espace. Toute autre primitive doit être justifiée.</span></li>
+          <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:24px;padding:14px 0;border-bottom:1px solid #c8cac8"><strong style="font-weight:500">La couleur est un renfort</strong><span style="color:#8b8d8c">Aucune information ne dépend de la couleur seule. Le monochrome est l'état par défaut.</span></li>
+          <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:24px;padding:14px 0;border-bottom:1px solid #c8cac8"><strong style="font-weight:500">L'espace avant la boîte</strong><span style="color:#8b8d8c">On dépense de l'espace avant d'ajouter une bordure, une carte, une ombre ou une icône.</span></li>
+          <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:24px;padding:14px 0;border-bottom:1px solid #c8cac8"><strong style="font-weight:500">Local par défaut</strong><span style="color:#8b8d8c">Offline-first, aucune dépendance réseau implicite, aucun compte obligatoire.</span></li>
+          <li style="display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:24px;padding:14px 0;border-bottom:1px solid #c8cac8"><strong style="font-weight:500">Le clavier est prioritaire</strong><span style="color:#8b8d8c">Tout parcours réalisable à la souris est réalisable au clavier, avec un focus visible.</span></li>
+        </ol>
+      </section>
+
+      <section id="f-couleur">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">01.1</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Couleur</h2>
+        </div>
+        <p style="margin-top:20px;max-width:64ch;font-size:13px;color:#8b8d8c">Quatre rôles sémantiques, deux thèmes. Le rôle est stable, la valeur change avec le thème. Un composant ne référence jamais une valeur : il référence un rôle.</p>
+
+        <div style="margin-top:28px;overflow-x:auto">
+          <div style="min-width:560px">
+            <div style="display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1.4fr;gap:16px;align-items:center;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c">
+              <span></span><span>rôle</span><span>light</span><span>dark</span><span>contraste / usage</span>
+            </div>
+            <div style="display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1.4fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #c8cac8">
+              <span style="height:28px;background:#f2f3f2;border:1px solid #c8cac8"></span>
+              <span>color-bg</span><span style="color:#8b8d8c">#f2f3f2</span><span style="color:#8b8d8c">#121311</span>
+              <span style="font-size:12px;color:#8b8d8c">fond global — jamais #fff / #000</span>
+            </div>
+            <div style="display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1.4fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #c8cac8">
+              <span style="height:28px;background:#17181a"></span>
+              <span>color-ink</span><span style="color:#8b8d8c">#17181a</span><span style="color:#8b8d8c">#ecebe6</span>
+              <span style="font-size:12px;color:#8b8d8c">16.3:1 / 15.5:1 — texte principal, AAA</span>
+            </div>
+            <div style="display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1.4fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #c8cac8">
+              <span style="height:28px;background:#8b8d8c"></span>
+              <span>color-muted</span><span style="color:#8b8d8c">#8b8d8c</span><span style="color:#8b8d8c">#74766f</span>
+              <span style="font-size:12px;color:#8b8d8c">3.0:1 / 4.0:1 — métadonnée ≥ 16px uniquement</span>
+            </div>
+            <div style="display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1.4fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #c8cac8">
+              <span style="height:28px;background:#6a6c6a"></span>
+              <span>color-muted-strong</span><span style="color:#8b8d8c">#6a6c6a</span><span style="color:#8b8d8c">#8e9089</span>
+              <span style="font-size:12px;color:#8b8d8c">4.8:1 — texte secondaire &lt; 16px, AA</span>
+            </div>
+            <div style="display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1.4fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #c8cac8">
+              <span style="height:28px;background:#c8cac8"></span>
+              <span>color-rule</span><span style="color:#8b8d8c">#c8cac8</span><span style="color:#8b8d8c">#34362f</span>
+              <span style="font-size:12px;color:#8b8d8c">1.5:1 — trait structurel, jamais porteur de sens</span>
+            </div>
+            <div style="display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1.4fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #c8cac8">
+              <span style="height:28px;background:#a33"></span>
+              <span>color-danger</span><span style="color:#8b8d8c">#a33</span><span style="color:#8b8d8c">#d97a72</span>
+              <span style="font-size:12px;color:#8b8d8c">5.8:1 — destructif, toujours doublé d'un mot</span>
+            </div>
+            <div style="display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1.4fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #c8cac8">
+              <span style="height:28px;background: {{ accent }}"></span>
+              <span>color-accent</span><span style="color:#8b8d8c">= ink</span><span style="color:#8b8d8c">= ink</span>
+              <span style="font-size:12px;color:#8b8d8c">optionnel, désaturé, jamais seul porteur d'état</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;margin-top:40px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">palette d'accent — une seule active à la fois</div>
+            <ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:12px;margin-top:12px">
+              <li><span style="display:block;height:32px;background:#17181a"></span><span style="display:block;margin-top:6px;font-size:12px;color:#8b8d8c">mono</span></li>
+              <li><span style="display:block;height:32px;background:#6f7d6a"></span><span style="display:block;margin-top:6px;font-size:12px;color:#8b8d8c">sage</span></li>
+              <li><span style="display:block;height:32px;background:#5a6f8c"></span><span style="display:block;margin-top:6px;font-size:12px;color:#8b8d8c">blue</span></li>
+              <li><span style="display:block;height:32px;background:#6f6a8c"></span><span style="display:block;margin-top:6px;font-size:12px;color:#8b8d8c">violet</span></li>
+              <li><span style="display:block;height:32px;background:#8c7350"></span><span style="display:block;margin-top:6px;font-size:12px;color:#8b8d8c">orange</span></li>
+              <li><span style="display:block;height:32px;background:#8c5f5a"></span><span style="display:block;margin-top:6px;font-size:12px;color:#8b8d8c">coral</span></li>
+              <li><span style="display:block;height:32px;background:#4a4c4a"></span><span style="display:block;margin-top:6px;font-size:12px;color:#8b8d8c">graphite</span></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Contrainte : tout accent doit atteindre 4.5:1 sur --color-bg dans les deux thèmes.</p>
+          </div>
+          <div style="background:#121311;color:#ecebe6;padding:20px">
+            <div style="font-size:12px;color:#74766f;padding-bottom:8px;border-bottom:1px solid #34362f">dark — parité de rôles</div>
+            <p style="margin-top:12px;font-size:13px">Le thème sombre est une palette conçue, pas une inversion. Les rôles, les épaisseurs de trait et les états restent identiques ; seules les valeurs changent.</p>
+            <div style="margin-top:16px;display:flex;gap:8px">
+              <span style="height:28px;flex:1;background:#121311;border:1px solid #34362f"></span>
+              <span style="height:28px;flex:1;background:#34362f"></span>
+              <span style="height:28px;flex:1;background:#74766f"></span>
+              <span style="height:28px;flex:1;background:#ecebe6"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="f-typo">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">01.2</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Typographie</h2>
+        </div>
+        <p style="margin-top:20px;font-size:13px;color:#8b8d8c;max-width:64ch">Une seule famille, monospace système. Deux graisses : 400 et 500. Aucune italique, aucune police distante.</p>
+        <div style="margin-top:24px;overflow-x:auto">
+          <div style="min-width:620px">
+            <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c">
+              <span>token</span><span>taille</span><span>interligne</span><span>tracking</span><span>usage</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
+              <span>text-display</span><span style="color:#8b8d8c">36 px</span><span style="color:#8b8d8c">1.1</span><span style="color:#8b8d8c">-0.03em</span><span style="font-size:12px;color:#8b8d8c">titre de période, une occurrence par écran</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
+              <span>text-title</span><span style="color:#8b8d8c">24 px</span><span style="color:#8b8d8c">1.25</span><span style="color:#8b8d8c">-0.02em</span><span style="font-size:12px;color:#8b8d8c">titre de page ou de panneau</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
+              <span>text-brand</span><span style="color:#8b8d8c">20 px</span><span style="color:#8b8d8c">1.2</span><span style="color:#8b8d8c">-0.02em</span><span style="font-size:12px;color:#8b8d8c">nom de l'application</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
+              <span>text-body</span><span style="color:#8b8d8c">15 px</span><span style="color:#8b8d8c">1.6</span><span style="color:#8b8d8c">0</span><span style="font-size:12px;color:#8b8d8c">texte courant, max 64ch</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
+              <span>text-data</span><span style="color:#8b8d8c">14 px</span><span style="color:#8b8d8c">1.45</span><span style="color:#8b8d8c">0</span><span style="font-size:12px;color:#8b8d8c">lignes, matrices, valeurs, contrôles</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
+              <span>text-label</span><span style="color:#8b8d8c">13 px</span><span style="color:#8b8d8c">1.4</span><span style="color:#8b8d8c">0</span><span style="font-size:12px;color:#8b8d8c">label de section, en-tête de colonne</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
+              <span>text-meta</span><span style="color:#8b8d8c">12 px</span><span style="color:#8b8d8c">1.4</span><span style="color:#8b8d8c">0</span><span style="font-size:12px;color:#8b8d8c">métadonnée, aide, compteur</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px">
+          <div style="border-top:1px solid #c8cac8;padding-top:12px"><div style="font-size:36px;line-height:1.1;letter-spacing:-0.03em">août 2026</div><span style="font-size:12px;color:#8b8d8c">display / 500</span></div>
+          <div style="border-top:1px solid #c8cac8;padding-top:12px"><div style="font-size:15px;line-height:1.6">Ajoutez ce qui compte ce mois-ci.</div><span style="font-size:12px;color:#8b8d8c">body / 400</span></div>
+          <div style="border-top:1px solid #c8cac8;padding-top:12px"><div style="font-size:14px">14 ven — 21:00</div><span style="font-size:12px;color:#8b8d8c">data / 400 — tabulaire par construction</span></div>
+        </div>
+      </section>
+
+      <section id="f-espace">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">01.3</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Espace &amp; grille</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">échelle — base 4 px</div>
+            <ul style="margin-top:12px;display:flex;flex-direction:column;gap:6px">
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-1</span><span style="height:10px;width:4px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">4 — interne icône/texte</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-2</span><span style="height:10px;width:8px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">8 — label ↔ contrôle</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-3</span><span style="height:10px;width:12px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">12 — colonnes d'une ligne</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-4</span><span style="height:10px;width:16px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">16 — gouttière par défaut</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-5</span><span style="height:10px;width:20px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">20 — padding-x bouton</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-6</span><span style="height:10px;width:24px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">24 — marge d'écran mobile</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-8</span><span style="height:10px;width:32px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">32 — bloc ↔ bloc</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-10</span><span style="height:10px;width:40px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">40 — titre ↔ contenu</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-12</span><span style="height:10px;width:48px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">48 — section ↔ section (mobile)</span></li>
+              <li style="display:flex;align-items:center;gap:12px"><span style="width:72px;font-size:12px;color:#8b8d8c">space-16</span><span style="height:10px;width:64px;background:#17181a"></span><span style="font-size:12px;color:#8b8d8c">64 — section ↔ section (desktop)</span></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">grille &amp; largeurs</div>
+            <ul style="margin-top:12px;display:flex;flex-direction:column;gap:0">
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>marge écran</span><span style="color:#8b8d8c">24 / 32 / 40 px</span></li>
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>colonnes</span><span style="color:#8b8d8c">1 / 2 / 12</span></li>
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>gouttière</span><span style="color:#8b8d8c">16 px</span></li>
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>largeur texte</span><span style="color:#8b8d8c">max 64ch</span></li>
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>largeur donnée</span><span style="color:#8b8d8c">libre, scroll horizontal permis</span></li>
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>conteneur max</span><span style="color:#8b8d8c">1120 px</span></li>
+            </ul>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">breakpoints</div>
+            <ul style="margin-top:12px;display:flex;flex-direction:column;gap:0">
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>sm</span><span style="color:#8b8d8c">&lt; 640 — référence UX</span></li>
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>md</span><span style="color:#8b8d8c">640 – 1024</span></li>
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>lg</span><span style="color:#8b8d8c">&gt; 1024</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="f-forme">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">01.4</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Forme, ligne, élévation</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">rayon</div>
+            <ul style="margin-top:12px">
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>radius-sm</span><span style="color:#8b8d8c">4 px — champs, puces</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>radius-md</span><span style="color:#8b8d8c">6 px — boutons pleins</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>radius-full</span><span style="color:#8b8d8c">50% — point uniquement</span></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Conteneurs structurels : angle vif.</p>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">ligne</div>
+            <ul style="margin-top:12px">
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>rule</span><span style="color:#8b8d8c">1 px --color-rule</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>rule-strong</span><span style="color:#8b8d8c">1 px --color-ink</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>direction</span><span style="color:#8b8d8c">bottom ou top, jamais les 4</span></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">rule-strong ouvre une section ; rule sépare des pairs.</p>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">élévation</div>
+            <ul style="margin-top:12px">
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>niveau 0</span><span style="color:#8b8d8c">tout le contenu</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>niveau 1</span><span style="color:#8b8d8c">sheet — trait 1 px, pas d'ombre</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>overlay</span><span style="color:#8b8d8c">bg à 88 % d'opacité</span></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Aucune ombre portée dans le système.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="f-motion">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">01.5</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Mouvement</h2>
+        </div>
+        <div style="margin-top:24px;max-width:720px">
+          <div style="display:grid;grid-template-columns:1fr 0.8fr 1.4fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c"><span>token</span><span>durée</span><span>courbe / usage</span></div>
+          <div style="display:grid;grid-template-columns:1fr 0.8fr 1.4fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8"><span>motion-micro</span><span style="color:#8b8d8c">120 ms</span><span style="font-size:12px;color:#8b8d8c">linear — hover, sélection, coche</span></div>
+          <div style="display:grid;grid-template-columns:1fr 0.8fr 1.4fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8"><span>motion-panel</span><span style="color:#8b8d8c">200 ms</span><span style="font-size:12px;color:#8b8d8c">cubic-bezier(.2,0,0,1) — sheet, drawer</span></div>
+          <div style="display:grid;grid-template-columns:1fr 0.8fr 1.4fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8"><span>motion-view</span><span style="color:#8b8d8c">260 ms</span><span style="font-size:12px;color:#8b8d8c">cubic-bezier(.2,0,0,1) — changement de période</span></div>
+        </div>
+        <p style="margin-top:16px;font-size:12px;color:#8b8d8c;max-width:64ch">Propriétés animables : opacity, transform. Interdites : width, height, top/left, color de fond sur de grandes surfaces. Sous <code>prefers-reduced-motion: reduce</code>, les durées passent à 0 et les transitions deviennent des changements d'état immédiats.</p>
+      </section>
+
+      <section id="f-icones">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">01.6</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Iconographie</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">spécification</div>
+            <ul style="margin-top:12px">
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>grille</span><span style="color:#8b8d8c">20 × 20</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>stroke</span><span style="color:#8b8d8c">1.5 px, currentColor</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>terminaisons</span><span style="color:#8b8d8c">butt, jointures nettes</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>remplissage</span><span style="color:#8b8d8c">aucun</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>jeu autorisé</span><span style="color:#8b8d8c">6 icônes maximum</span></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">jeu autorisé</div>
+            <p style="margin-top:12px;font-size:13px">précédent · suivant · fermer · paramètres · ajouter · plus d'options.</p>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Toute icône hors de ce jeu doit être validée en revue. Une icône n'est jamais seule porteuse d'action : elle accompagne un libellé ou porte un <code>aria-label</code>. Aucun emoji, aucune icône décorative.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="t-modele">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">02.1</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Tokens — modèle &amp; nommage</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:24px">
+          <div style="border-top:1px solid #17181a;padding-top:12px"><div style="font-size:12px;color:#8b8d8c">niveau 1 — primitif</div><p style="margin-top:8px;font-size:13px">Valeur brute. <code>--grey-850: #17181a</code>. Jamais utilisé dans un composant.</p></div>
+          <div style="border-top:1px solid #17181a;padding-top:12px"><div style="font-size:12px;color:#8b8d8c">niveau 2 — sémantique</div><p style="margin-top:8px;font-size:13px">Rôle. <code>--color-ink: var(--grey-850)</code>. Change avec le thème.</p></div>
+          <div style="border-top:1px solid #17181a;padding-top:12px"><div style="font-size:12px;color:#8b8d8c">niveau 3 — composant</div><p style="margin-top:8px;font-size:13px">Décision locale. <code>--button-height: 44px</code>. Ne référence que le niveau 2.</p></div>
+        </div>
+        <p style="margin-top:20px;font-size:13px;max-width:64ch">Convention : <code>--{catégorie}-{rôle}-{variante}</code>, en minuscules, séparé par des tirets, en anglais. Les mêmes noms sont utilisés dans Figma (variables) et dans le CSS — un renommage se fait des deux côtés dans la même version.</p>
+      </section>
+
+      <section id="t-ref">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">02.2</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Tokens — référence</h2>
+        </div>
+        <sc-if value="{{ showCode }}" hint-placeholder-val="{{ true }}">
+          <pre style="margin-top:20px;font-size:12px;line-height:1.75;white-space:pre-wrap;border-left:1px solid #c8cac8;padding-left:16px">/* tokens.css — source unique */
+:root {
+  /* 1 · primitifs */
+  --grey-50:  #f2f3f2;  --grey-300: #c8cac8;  --grey-500: #8b8d8c;
+  --grey-600: #6a6c6a;  --grey-850: #17181a;  --grey-900: #121311;
+  --grey-800: #34362f;  --grey-550: #74766f;  --paper-100:#ecebe6;
+  --red-600:  #a33;     --red-400:  #d97a72;
+
+  /* 2 · sémantiques — thème clair */
+  --color-bg: var(--grey-50);
+  --color-ink: var(--grey-850);
+  --color-muted: var(--grey-500);
+  --color-muted-strong: var(--grey-600);
+  --color-rule: var(--grey-300);
+  --color-accent: var(--color-ink);
+  --color-focus: var(--color-ink);
+  --color-danger: var(--red-600);
+  --color-selection: color-mix(in srgb, var(--color-ink) 8%, var(--color-bg));
+
+  /* 3 · échelles */
+  --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px;
+  --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
+  --space-12:48px;--space-16:64px;
+  --radius-sm:4px; --radius-md:6px;
+  --touch-target:44px;
+  --rule-width:1px;
+  --motion-micro:120ms; --motion-panel:200ms; --motion-view:260ms;
+  --ease-out:cubic-bezier(.2,0,0,1);
+
+  /* 4 · composants */
+  --button-height:44px;      --button-padding-x:var(--space-5);
+  --field-height:44px;       --field-padding-x:var(--space-3);
+  --row-min-height:44px;     --row-padding-y:10px;
+  --dot-size:6px;            --dot-size-lg:8px;
+  --sheet-max-width:480px;
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--grey-900);
+  --color-ink: var(--paper-100);
+  --color-muted: var(--grey-550);
+  --color-muted-strong: #8e9089;
+  --color-rule: var(--grey-800);
+  --color-danger: var(--red-400);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-micro:0ms; --motion-panel:0ms; --motion-view:0ms; }
+}</pre>
+          <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Le thème suit <code>prefers-color-scheme</code> par défaut ; <code>data-theme</code> sur <code>&lt;html&gt;</code> force le choix utilisateur. Export JSON équivalent disponible pour Figma / Style Dictionary.</p>
+        </sc-if>
+      </section>
+
+      <section id="c-button">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.1</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Button</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Déclenche une action immédiate. Par défaut textuel : la surface n'apparaît que pour l'action principale d'un écran ou d'un panneau.</p>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">anatomie</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:16px;align-items:start">
+          <div style="padding:24px 0;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:14px">enregistrer</span>
+            <span style="display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid #17181a;font-size:14px">+ ajouter</span>
+          </div>
+          <ol style="font-size:12px;display:flex;flex-direction:column;gap:6px">
+            <li><span style="color:#8b8d8c">1</span> conteneur — hauteur 44, radius 6, sans bordure</li>
+            <li><span style="color:#8b8d8c">2</span> zone tactile — 44 × 44 minimum, padding-x 20</li>
+            <li><span style="color:#8b8d8c">3</span> libellé — text-data, verbe à l'infinitif, minuscule</li>
+            <li><span style="color:#8b8d8c">4</span> variante textuelle — pas de conteneur, trait 1 px sous le libellé</li>
+          </ol>
+        </div>
+        <sc-if value="{{ showRedlines }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-wrap:wrap;gap:24px;font-size:12px;color:#8b8d8c;border-top:1px dashed #c8cac8;padding-top:8px">
+            <span>↕ height 44</span><span>↔ padding-x 20</span><span>↔ gap icône/libellé 8</span><span>⌐ radius 6</span><span>↔ bouton ↔ bouton 24</span>
+          </div>
+        </sc-if>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">variantes × états</div>
+        <div style="margin-top:16px;overflow-x:auto">
+          <div style="min-width:620px">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c"><span>variante</span><span>default</span><span>hover</span><span>focus</span><span>disabled</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c8cac8;align-items:center">
+              <span style="font-size:13px">primary</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:13px">action</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:6px;background:#000;color:#f2f3f2;font-size:13px">action</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:13px;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px">action</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:6px;background:#c8cac8;color:#8b8d8c;font-size:13px">action</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c8cac8;align-items:center">
+              <span style="font-size:13px">text</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;border-bottom:1px solid #17181a;width:fit-content">action</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 8px;font-size:13px;background:#17181a;color:#f2f3f2;width:fit-content">action</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;border-bottom:1px solid #17181a;width:fit-content;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px">action</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:#8b8d8c;width:fit-content">action</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c8cac8;align-items:center">
+              <span style="font-size:13px">destructive</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:#a33;width:fit-content">supprimer</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 8px;font-size:13px;background:#a33;color:#f2f3f2;width:fit-content">supprimer</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:#a33;width:fit-content;outline-width:2px;outline-style:solid;outline-color:#a33;outline-offset:3px">supprimer</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:#8b8d8c;width:fit-content">supprimer</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">API</div>
+        <div style="margin-top:12px;overflow-x:auto">
+          <div style="min-width:560px">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #c8cac8;font-size:12px;color:#8b8d8c"><span>prop</span><span>type</span><span>valeurs</span><span>défaut</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>variant</span><span style="color:#8b8d8c">enum</span><span style="color:#8b8d8c">primary · text · destructive</span><span style="color:#8b8d8c">text</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>type</span><span style="color:#8b8d8c">enum</span><span style="color:#8b8d8c">button · submit</span><span style="color:#8b8d8c">button</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>disabled</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">—</span><span style="color:#8b8d8c">false</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>onClick</span><span style="color:#8b8d8c">function</span><span style="color:#8b8d8c">requis</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>aria-label</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">requis si libellé non textuel</span><span style="color:#8b8d8c">—</span></div>
+          </div>
+        </div>
+
+        <sc-if value="{{ showCode }}" hint-placeholder-val="{{ true }}">
+          <pre style="margin-top:24px;font-size:12px;line-height:1.75;white-space:pre-wrap;border-left:1px solid #c8cac8;padding-left:16px">&lt;button class="btn btn--primary" type="button"&gt;enregistrer&lt;/button&gt;
+
+.btn {
+  font: inherit;
+  min-height: var(--touch-target);
+  padding: 0 var(--button-padding-x);
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background var(--motion-micro) linear;
+}
+.btn--primary { background: var(--color-accent); color: var(--color-bg); border-radius: var(--radius-md); }
+.btn--text { padding: 0; border-bottom: var(--rule-width) solid currentColor; }
+.btn--destructive { color: var(--color-danger); }
+.btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.btn[disabled] { color: var(--color-muted); cursor: not-allowed; }</pre>
+        </sc-if>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:28px">
+          <div style="border-top:1px solid #17181a;padding-top:12px">
+            <div style="font-size:12px;color:#8b8d8c">à faire</div>
+            <ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:6px"><li>un seul bouton primaire par écran</li><li>libellé = le verbe de l'action</li><li>ordre : action secondaire à gauche, principale à droite</li></ul>
+          </div>
+          <div style="border-top:1px solid #c8cac8;padding-top:12px">
+            <div style="font-size:12px;color:#8b8d8c">à ne pas faire</div>
+            <ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:6px"><li>bouton en majuscules ou avec crochets</li><li>icône seule sans <code>aria-label</code></li><li>désactiver sans expliquer pourquoi à côté</li></ul>
+          </div>
+          <div style="border-top:1px solid #c8cac8;padding-top:12px">
+            <div style="font-size:12px;color:#8b8d8c">accessibilité</div>
+            <ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:6px"><li>élément <code>&lt;button&gt;</code> natif</li><li>activation Entrée et Espace</li><li>action destructive : confirmation explicite</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="c-field">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.2</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">TextField</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.1</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Saisie d'une valeur courte sur une ligne. Le label est toujours visible ; le placeholder ne remplace jamais le label.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px;align-items:start">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">anatomie</div>
+            <label style="display:block;margin-top:16px;max-width:320px">
+              <span style="display:block;font-size:12px;color:#8b8d8c">Nom</span>
+              <input type="text" value="Golf trip" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:4px">
+              <span style="display:block;margin-top:6px;font-size:12px;color:#6a6c6a">64 caractères maximum</span>
+            </label>
+            <ol style="margin-top:16px;font-size:12px;display:flex;flex-direction:column;gap:6px">
+              <li><span style="color:#8b8d8c">1</span> label — text-meta, muted, obligatoire</li>
+              <li><span style="color:#8b8d8c">2</span> champ — hauteur 44, padding-x 12, radius 4, trait 1 px rule</li>
+              <li><span style="color:#8b8d8c">3</span> aide — text-meta, muted-strong, sous le champ</li>
+              <li><span style="color:#8b8d8c">4</span> erreur — remplace l'aide, --color-danger + texte</li>
+              <li><span style="color:#8b8d8c">5</span> effacement — bouton 42 × 42 dans le champ, à droite, visible quand la valeur n'est pas vide</li>
+            </ol>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">états</div>
+            <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px;max-width:320px">
+              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">focus</span><input type="text" value="14 août" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #17181a;border-radius:4px;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px"></label>
+              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">erreur</span><input type="text" value="32/08/2026" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #a33;border-radius:4px"><span style="display:block;margin-top:6px;font-size:12px;color:#a33">Date invalide. Format attendu : AAAA-MM-JJ.</span></label>
+              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">désactivé</span><input type="text" value="—" disabled="disabled" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#8b8d8c;border:1px dashed #c8cac8;border-radius:4px"></label>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">API</div>
+        <div style="margin-top:12px;overflow-x:auto">
+          <div style="min-width:560px">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #c8cac8;font-size:12px;color:#8b8d8c"><span>prop</span><span>type</span><span>valeurs</span><span>défaut</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>label</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">requis</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>value / onChange</span><span style="color:#8b8d8c">string / fn</span><span style="color:#8b8d8c">contrôlé</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>hint</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">—</span><span style="color:#8b8d8c">null</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>error</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">message complet, pas un code</span><span style="color:#8b8d8c">null</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>clearable</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">bouton × dessiné, jamais le rendu natif</span><span style="color:#8b8d8c">false</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>inputMode</span><span style="color:#8b8d8c">enum</span><span style="color:#8b8d8c">text · numeric · none</span><span style="color:#8b8d8c">text</span></div>
+          </div>
+        </div>
+        <p style="margin-top:16px;font-size:12px;color:#8b8d8c;max-width:64ch">Accessibilité — <code>&lt;label for&gt;</code> lié à l'<code>id</code>, <code>aria-describedby</code> vers l'aide, <code>aria-invalid</code> et message annoncé en <code>role="alert"</code> à la validation. Erreur affichée après soumission ou perte de focus, jamais à chaque frappe. Le bouton d'effacement porte <code>aria-label</code> et rend le focus au champ ; il est positionné en absolu dans le champ pour que son apparition ne décale rien.</p>
+      </section>
+
+      <section id="c-toggle">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.3</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Toggle</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.1</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Change un réglage à choix fermé, appliqué immédiatement. Représenté par un mot d'état qui défile au clic, pas par un interrupteur graphique. Une phrase de 12 px sous le groupe explique la mécanique : la règle « le libellé dit ce qui se passe » vaut aussi pour un contrôle qu'on découvre.</p>
+        <div style="margin-top:24px;max-width:480px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8" style-hover="background:#17181a;color:#f2f3f2"><span>thème sombre</span><span style="font-size:13px">système</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8" style-hover="background:#17181a;color:#f2f3f2"><span>semaine commence le</span><span style="font-size:13px">lundi</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8;color:#8b8d8c"><span>notifications</span><span style="font-size:13px">indisponible hors ligne</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
+          <div><div style="font-size:12px;color:#8b8d8c">spécification</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>ligne de 44 px minimum, cible = toute la ligne</li><li>valeur alignée à droite, text-data</li><li>cycle des valeurs au clic, Entrée et Espace</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">accessibilité</div><ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:4px"><li><code>&lt;button&gt;</code> simple dont le nom accessible porte la valeur : « thème : système, changer »</li><li>ni <code>role="switch"</code> ni <code>radiogroup</code> — un bouton qui fait défiler n'est ni l'un ni l'autre</li><li>l'état est lu comme texte, pas comme couleur</li></ul></div>
+        </div>
+      </section>
+
+      <section id="c-row">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.4</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">ListRow</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.1</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Unité de liste : une clé, un marqueur, un contenu. Base de <code>DayRow</code> (month.) et des lignes de réglages. C'est le composant le plus utilisé de la famille.</p>
+        <div style="margin-top:24px;max-width:560px">
+          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c"><span>clé 56</span><span>◦ 16</span><span>contenu</span><span>méta</span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8" style-hover="background:#17181a;color:#f2f3f2"><span style="font-size:14px">13 jeu</span><span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span><span>dentiste</span><span style="font-size:12px;color:inherit;opacity:0.6">09:30</span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8;background:#e6e7e5;box-shadow:inset 2px 0 0 #17181a"><span style="font-size:14px">14 ven</span><span style="width:6px;height:6px;border-radius:50%;background:#17181a"></span><span>Golf trip</span><span style="font-size:12px;color:#8b8d8c">sélectionné</span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px;color:#8b8d8c">15 sam</span><span style="height:16px;border-left:1px solid #17181a;margin-left:2px"></span><span style="color:#8b8d8c">Golf trip</span><span style="font-size:12px;color:#8b8d8c">suite</span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px">16 dim</span><span></span><span style="color:#8b8d8c">—</span><span></span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
+          <div><div style="font-size:12px;color:#8b8d8c">mesures</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>hauteur min 44, padding 10 / 4</li><li>colonnes 56 · 16 · 1fr · auto, gap 12</li><li>séparateur : border-bottom 1 px rule</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">états</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>hover : inversion complète de la ligne</li><li>selected : fond discret + trait gauche 2 px en <code>inset</code>, jamais en <code>border</code> — sinon la ligne se décale</li><li>continuation : trait vertical à la place du point</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">accessibilité</div><ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:4px"><li>liste = <code>&lt;ul&gt;</code>, ligne interactive = <code>&lt;button&gt;</code> pleine largeur</li><li>navigation ↑ ↓ dans la liste, Entrée pour ouvrir</li><li>date lue en entier par le lecteur d'écran</li></ul></div>
+        </div>
+      </section>
+
+      <section id="c-dot">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.5</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Dot</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.1</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Marqueur atomique de la famille : présence d'un événement, d'une action réalisée, d'une identité. Jamais un badge, jamais un compteur.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:24px;align-items:flex-start">
+          <div><div style="height:32px;display:flex;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">filled / 6 px<br>fait, présent</div></div>
+          <div><div style="height:32px;display:flex;align-items:center"><span style="width:6px;height:6px;border-radius:50%;border:1px solid #8b8d8c;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">outline / 6 px<br>prévu, à venir</div></div>
+          <div><div style="height:32px;display:flex;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">large / 8 px<br>identité, marque</div></div>
+          <div><div style="height:32px;display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">série / gap 4<br>3 maximum, puis « +n »</div></div>
+          <div><div style="height:32px;display:flex;align-items:center"><span style="width:16px;height:1px;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">trait<br>continuation multi-jours</div></div>
+        </div>
+        <div style="margin-top:32px;max-width:560px">
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">liaison point ↔ trait</div>
+          <div style="margin-top:16px">
+            <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:stretch;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px;color:#8b8d8c">14 ven</span><span style="position:relative;width:16px;align-self:stretch"><span style="position:absolute;left:2px;top:9px;bottom:-10px;border-left:1px solid #17181a"></span><span style="position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:#17181a"></span></span><span style="font-size:14px">Golf trip</span></div>
+            <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:stretch;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px;color:#8b8d8c">15 sam</span><span style="position:relative;width:16px;align-self:stretch"><span style="position:absolute;left:2px;top:-10px;bottom:-10px;border-left:1px solid #17181a"></span></span><span style="font-size:14px;color:#8b8d8c">suite</span></div>
+            <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:stretch;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px;color:#8b8d8c">16 dim</span><span style="position:relative;width:16px;align-self:stretch"><span style="position:absolute;left:2px;top:-10px;height:19px;border-left:1px solid #17181a"></span></span><span style="font-size:14px;color:#8b8d8c">fin</span></div>
+          </div>
+          <ul style="margin-top:16px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+            <li>colonne de marqueur en <code>position:relative</code>, largeur 16, <code>align-self:stretch</code> — sans hauteur résolue, <code>top</code>/<code>bottom</code> n'ont rien contre quoi se calculer</li>
+            <li>point et trait partagent le même axe : point à <code>left:0</code> (6 px), trait à <code>left:2px</code></li>
+            <li>le trait déborde du padding de la ligne (<code>bottom:-10px</code>) pour franchir le séparateur : la continuité doit être visible d'une ligne à l'autre</li>
+            <li>dernier jour d'une série : le trait s'arrête à la hauteur où serait le point</li>
+          </ul>
+        </div>
+        <p style="margin-top:20px;font-size:12px;color:#8b8d8c;max-width:64ch">Le point n'est jamais seul porteur d'information : il est doublé d'un texte, d'un <code>aria-label</code> ou d'un décompte lisible. Zone tactile parente de 44 px minimum.</p>
+      </section>
+
+      <section id="c-nav">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.6</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">PeriodNav</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.1</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Navigation temporelle : précédent, période courante, suivant. Une seule instance par écran, en haut du contenu.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">large — période courante</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:12px">
+              <span style="min-height:44px;display:inline-flex;align-items:center;padding:0 4px;font-size:13px;color:#6a6c6a">‹ juillet</span>
+              <span style="display:flex;flex-direction:column;align-items:center;gap:2px;min-height:44px;justify-content:center"><span style="font-size:20px;letter-spacing:-0.02em">août 2026</span><span style="font-size:12px;color:#6a6c6a;border-bottom:1px solid #c8cac8">aujourd'hui</span></span>
+              <span style="min-height:44px;display:inline-flex;align-items:center;padding:0 4px;font-size:13px;color:#6a6c6a">septembre ›</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">étroit — période éloignée</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:12px">
+              <span style="min-height:44px;min-width:44px;display:inline-flex;align-items:center;font-size:16px;color:#6a6c6a">‹</span>
+              <span style="display:flex;flex-direction:column;align-items:center;gap:2px;min-height:44px;justify-content:center"><span style="font-size:20px;letter-spacing:-0.02em">mars 2024</span><span style="font-size:12px;color:#6a6c6a;border-bottom:1px solid #c8cac8">revenir à aujourd'hui</span></span>
+              <span style="min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:flex-end;font-size:16px;color:#6a6c6a">›</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
+          <div><div style="font-size:12px;color:#8b8d8c">comportement</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>libellés adjacents nommés, pas « précédent »</li><li>sous 480 px : libellés réduits aux chevrons (44 × 44, <code>aria-label</code> nommé), titre en <code>nowrap</code></li><li>le titre EST le retour à la période courante : bloc titre + légende, une seule cible</li><li>légende permanente de 12 px sous le titre — « aujourd'hui » sur la période courante, « revenir à aujourd'hui » ailleurs. Elle ne disparaît jamais : rien à deviner, aucun décalage de mise en page</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">clavier</div><ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:4px"><li>← / → changent de période</li><li><code>T</code> revient à aujourd'hui</li><li>changement annoncé via <code>aria-live="polite"</code></li></ul></div>
+        </div>
+      </section>
+
+      <section id="c-search">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.7</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">SearchFilterBar</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Réduire une liste longue : un champ de recherche libre et un filtre à choix fermé, sur une seule rangée de 44 px, directement sous le titre de la vue.</p>
+        <div style="margin-top:24px;max-width:480px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;min-height:30px">
+            <span style="font-size:24px;letter-spacing:-0.02em;white-space:nowrap">éléments</span>
+            <span style="font-size:12px;color:#8b8d8c;white-space:nowrap">4 sur 12 · date ↓</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+            <div style="flex:1;min-width:0;position:relative;display:flex">
+              <input type="text" value="chamonix" style="font:inherit;width:100%;min-height:44px;padding:0 44px 0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:4px">
+              <span style="position:absolute;right:1px;top:1px;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;color:#6a6c6a">×</span>
+            </div>
+            <span style="flex:0 0 auto;max-width:150px;min-height:44px;display:inline-flex;align-items:center;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:4px;font-size:13px">tous les types ⌄</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
+          <div><div style="font-size:12px;color:#8b8d8c">spécification</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>recherche = TextField <code>clearable</code>, placeholder listant les champs couverts, sans le mot « rechercher »</li><li>filtre à choix fermé = <code>&lt;select&gt;</code> natif dès 4 valeurs ou plus : tient sur une ligne quel qu'en soit le nombre</li><li>en dessous de 4 valeurs courtes : libellés texte, actif souligné 1 px</li><li>décompte « N sur M » dans la ligne de titre, jamais sur une ligne à part</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">règles</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>aucun contrôle conditionnel dans la barre : un élément qui apparaît décale la liste</li><li>remise à zéro par les affordances existantes — le × du champ, l'option « tous » du select</li><li>« effacer les filtres » n'existe que dans l'EmptyState « aucun résultat », où rien ne se décale</li><li>filtrage immédiat à la frappe, décompte en <code>aria-live="polite"</code></li></ul></div>
+        </div>
+      </section>
+
+      <section id="c-stat">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.8</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">StatRow</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Une valeur remarquable et ce qui la qualifie. Sert aux pages de synthèse — meilleurs résultats, totaux, extrêmes. Aucun graphique : le chiffre est le graphique.</p>
+        <div style="margin-top:24px;max-width:480px">
+          <div style="padding:16px 4px;border-bottom:1px solid #c8cac8;display:flex;flex-direction:column;gap:2px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><span style="font-size:14px;color:#6a6c6a">catégorie</span><span style="font-size:24px;letter-spacing:-0.02em;white-space:nowrap">43:12</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px"><span style="font-size:12px;color:#6a6c6a">ce qui a produit la valeur · 15 février 2026</span><span style="font-size:12px;color:#8b8d8c;white-space:nowrap">4:19/u</span></div>
+            <span style="font-size:12px;color:#8b8d8c">3 mesures · −1:48 sur la 2e</span>
+          </div>
+          <div style="padding:16px 4px;border-bottom:1px solid #c8cac8;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+            <span style="font-size:14px;color:#6a6c6a">catégorie sans donnée</span><span style="font-size:24px;letter-spacing:-0.02em;color:#8b8d8c">—</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
+          <div><div style="font-size:12px;color:#8b8d8c">spécification</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>valeur en 24 px à droite, libellé en 14 px muted à gauche</li><li>deux lignes de contexte maximum, 12 px</li><li>catégorie sans donnée : « — », jamais masquée — l'absence est une information</li><li>comparaison exprimée en écart signé, jamais en pourcentage inventé</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">regroupement</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>sections titrées en 12 px muted : catégories comparables, hors format, totaux</li><li>ce qui n'est pas comparable ne se compare pas : section distincte</li><li>tri fixe et prévisible, jamais par valeur</li></ul></div>
+        </div>
+      </section>
+
+      <section id="c-sheet">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.9</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Sheet</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Surface temporaire pour créer ou éditer. Bottom sheet en mobile, panneau latéral en desktop. Jamais utilisée pour afficher du contenu consultable.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px;align-items:start">
+          <div style="border-top:1px solid #17181a;padding:16px 0 0">
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:16px">nouvel événement</span><span style="font-size:13px;color:#8b8d8c">fermer</span></div>
+            <label style="display:block;margin-top:20px"><span style="display:block;font-size:12px;color:#8b8d8c">Titre</span><input type="text" value="Golf trip" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;border:1px solid #c8cac8;border-radius:4px;color:#17181a"></label>
+            <label style="display:block;margin-top:16px"><span style="display:block;font-size:12px;color:#8b8d8c">Date</span><input type="text" value="2026-08-14" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;border:1px solid #c8cac8;border-radius:4px;color:#17181a"></label>
+            <div style="display:flex;justify-content:flex-end;gap:24px;align-items:center;margin-top:24px;padding-top:16px;border-top:1px solid #c8cac8">
+              <span style="font-size:13px;color:#8b8d8c;min-height:44px;display:inline-flex;align-items:center">annuler</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:13px">ajouter</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">spécification</div>
+            <ul style="margin-top:12px">
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>largeur</span><span style="color:#8b8d8c">100% / 480 px max</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>padding</span><span style="color:#8b8d8c">24 px</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>séparation</span><span style="color:#8b8d8c">trait 1 px ink, pas d'ombre</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>entrée</span><span style="color:#8b8d8c">translateY 200 ms ease-out</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>fermeture</span><span style="color:#8b8d8c">Échap, clic hors zone, « fermer »</span></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c"><code>role="dialog"</code>, <code>aria-modal="true"</code>, focus déplacé sur le premier champ, focus piégé, restitué à l'élément déclencheur à la fermeture.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="c-feedback">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">03.10</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">EmptyState / Message</h2>
+          <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px">
+          <div style="border-top:1px solid #c8cac8;padding-top:16px">
+            <div style="font-size:12px;color:#8b8d8c">EmptyState</div>
+            <p style="margin-top:20px">Aucun événement prévu.</p>
+            <p style="margin-top:6px;color:#6a6c6a">Ajoutez ce qui compte ce mois-ci.</p>
+            <p style="margin-top:20px;display:inline-block;border-bottom:1px solid #17181a;padding-bottom:2px">+ ajouter</p>
+            <p style="margin-top:20px;font-size:12px;color:#8b8d8c">Structure : constat · invitation · action. Trois lignes maximum, aucune illustration.</p>
+          </div>
+          <div style="border-top:1px solid #c8cac8;padding-top:16px">
+            <div style="font-size:12px;color:#8b8d8c">Message — erreur</div>
+            <p style="margin-top:20px;color:#a33">Impossible d'importer ce fichier.</p>
+            <p style="margin-top:6px;color:#6a6c6a">Le format ou la version des données n'est pas compatible.</p>
+            <p style="margin-top:20px;display:inline-block;border-bottom:1px solid #17181a;padding-bottom:2px">choisir un autre fichier</p>
+            <p style="margin-top:20px;font-size:12px;color:#8b8d8c">Structure : ce qui s'est passé · pourquoi · quoi faire. Jamais de code technique. <code>role="alert"</code> pour les erreurs bloquantes.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="p-page">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">04.1</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Page &amp; responsive</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
+          <div style="border:1px solid #c8cac8;padding:16px;display:flex;flex-direction:column;gap:12px;min-height:260px">
+            <div style="font-size:12px;color:#8b8d8c;border-bottom:1px solid #c8cac8;padding-bottom:8px">identité · nav</div>
+            <div style="font-size:16px">titre de période</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px"><div style="height:1px;background:#c8cac8"></div><div style="height:1px;background:#c8cac8"></div><div style="height:1px;background:#c8cac8"></div><span style="font-size:12px;color:#8b8d8c">contenu — 60 % de la hauteur minimum</span></div>
+            <div style="font-size:12px;color:#8b8d8c;border-top:1px solid #c8cac8;padding-top:8px">action principale · secondaires</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">règles de mise en page</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li>en-tête ≤ 20 % de la hauteur d'écran</li>
+              <li>le contenu commence au-dessus de la ligne de flottaison</li>
+              <li>une seule action principale, atteignable au pouce en mobile</li>
+              <li>aucune sidebar permanente en dessous de lg</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">adaptation par breakpoint</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li><span style="color:#8b8d8c">sm</span> — 1 colonne, sheet plein écran, marges 24</li>
+              <li><span style="color:#8b8d8c">md</span> — 2 colonnes possibles, drawer, marges 32</li>
+              <li><span style="color:#8b8d8c">lg</span> — panneau contextuel, raccourcis clavier, marges 40</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="p-data">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">04.2</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Données, i18n, persistance</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">formats</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li>dates stockées en ISO 8601 <code>AAAA-MM-JJ</code></li>
+              <li>affichage via <code>Intl.DateTimeFormat</code> selon la locale</li>
+              <li>premier jour de semaine issu de la locale, surchargeable</li>
+              <li>aucune date formatée en base</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">i18n</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li>FR / EN / System, clés <code>domaine.composant.clé</code></li>
+              <li>aucun texte en dur dans un composant</li>
+              <li>prévoir +30 % de longueur de libellé</li>
+              <li>pluriels via <code>Intl.PluralRules</code></li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">export / import</div>
+            <sc-if value="{{ showCode }}" hint-placeholder-val="{{ true }}">
+              <pre style="margin-top:12px;font-size:12px;line-height:1.7;white-space:pre-wrap">{
+  "schemaVersion": 1,
+  "data": {},
+  "settings": {}
+}</pre>
+            </sc-if>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Import validé contre le schéma, migration explicite entre versions, jamais d'écrasement silencieux : l'utilisateur choisit fusionner ou remplacer.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="p-a11y">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">04.3</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Accessibilité — niveau requis</h2>
+        </div>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Cible : WCAG 2.2 AA. Les points ci-dessous sont vérifiés à chaque revue de composant.</p>
+        <div style="margin-top:24px;overflow-x:auto">
+          <div style="min-width:560px">
+            <div style="display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c"><span>critère</span><span>seuil</span><span>vérification</span></div>
+            <div style="display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>contraste texte</span><span style="color:#8b8d8c">4.5:1</span><span style="color:#8b8d8c">muted réservé au ≥ 16 px, sinon muted-strong</span></div>
+            <div style="display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>contraste non-texte</span><span style="color:#8b8d8c">3:1</span><span style="color:#8b8d8c">bordure de champ, focus, indicateur d'état</span></div>
+            <div style="display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>cible tactile</span><span style="color:#8b8d8c">44 × 44</span><span style="color:#8b8d8c">mesurée sur la zone cliquable réelle</span></div>
+            <div style="display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>focus visible</span><span style="color:#8b8d8c">2 px / offset 3</span><span style="color:#8b8d8c">jamais supprimé, jamais masqué par overflow</span></div>
+            <div style="display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>clavier</span><span style="color:#8b8d8c">100 %</span><span style="color:#8b8d8c">ordre logique, aucun piège hors dialogue</span></div>
+            <div style="display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>zoom texte</span><span style="color:#8b8d8c">200 %</span><span style="color:#8b8d8c">aucune perte de contenu ni de fonction</span></div>
+            <div style="display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>mouvement</span><span style="color:#8b8d8c">réductible</span><span style="color:#8b8d8c">prefers-reduced-motion respecté</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="g-handoff">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">05.1</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Handoff</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">parité design / code</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li>même nom de composant des deux côtés (<code>ListRow</code>, pas « ligne jour »)</li>
+              <li>variables Figma = noms de tokens CSS</li>
+              <li>une variante Figma = une valeur de prop</li>
+              <li>toute nouvelle valeur passe d'abord par un token</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">livrables</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li><code>tokens.css</code> + <code>tokens.json</code></li>
+              <li>bibliothèque Figma « famille . »</li>
+              <li>cette page de référence, versionnée avec le code</li>
+              <li>jeu d'icônes SVG (6 fichiers)</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">budget technique</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li>CSS du système ≤ 8 Ko compressé</li>
+              <li>zéro police distante, zéro image dans l'UI</li>
+              <li>zéro dépendance UI tierce</li>
+              <li>première interaction &lt; 1 s sur mobile milieu de gamme</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="g-process">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">05.2</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Versions &amp; contribution</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">versionnage — semver</div>
+            <ul style="margin-top:12px">
+              <li style="display:grid;grid-template-columns:64px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>major</span><span style="color:#8b8d8c">rupture : token supprimé ou renommé, API modifiée</span></li>
+              <li style="display:grid;grid-template-columns:64px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>minor</span><span style="color:#8b8d8c">ajout rétrocompatible : composant, variante, token</span></li>
+              <li style="display:grid;grid-template-columns:64px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>patch</span><span style="color:#8b8d8c">correction visuelle ou d'accessibilité</span></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Un token déprécié reste disponible une version majeure, marqué <code>@deprecated</code>.</p>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">ajouter un composant</div>
+            <ol style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li><span style="color:#8b8d8c">1</span> prouver que trois écrans en ont besoin</li>
+              <li><span style="color:#8b8d8c">2</span> vérifier qu'aucune composition existante ne suffit</li>
+              <li><span style="color:#8b8d8c">3</span> documenter anatomie, états, API, a11y</li>
+              <li><span style="color:#8b8d8c">4</span> revue design + dev, une seule passe</li>
+              <li><span style="color:#8b8d8c">5</span> publier en minor, mettre à jour cette page</li>
+            </ol>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Une fonctionnalité ne crée pas automatiquement un composant.</p>
+          </div>
+        </div>
+        <div style="margin-top:32px">
+          <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">journal</div>
+          <ul style="margin-top:12px">
+            <li style="display:grid;grid-template-columns:88px 64px 1fr;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">2026-08-11</span><span>1.1.0</span><span>PeriodNav 1.1 (titre = retour à la période courante, légende permanente) · Dot 1.1 (liaison point ↔ trait) · Toggle 1.1 (bouton simple, nom accessible porteur de la valeur) · TextField 1.1 (effacement dessiné) · ListRow 1.1 (sélection en inset) · SearchFilterBar et StatRow ajoutés</span></li>
+            <li style="display:grid;grid-template-columns:88px 64px 1fr;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">2026-08-11</span><span>1.0.0</span><span style="color:#8b8d8c">première version stable — fondations, 8 composants, gouvernance</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="g-dod">
+        <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
+          <span style="font-size:12px;color:#8b8d8c">05.3</span>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Definition of Done</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 48px;margin-top:24px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">un composant</div>
+            <ul style="margin-top:8px">
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>anatomie et mesures documentées</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>7 états définis</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>aucune valeur hors token</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>clavier et lecteur d'écran testés</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>light et dark vérifiés</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>libellés FR / EN présents</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>parité Figma / code</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">une application de la famille</div>
+            <ul style="margin-top:8px">
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>répond à une seule question</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>une unité principale évidente</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>utilise les tokens sans surcharge locale</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>mobile traité en premier</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>offline et données locales</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>export / import versionné</li>
+              <li style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">☐</span>s'affiche à côté de month. et habit. sans rupture</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer style="border-top:1px solid #17181a;padding-top:16px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:12px;color:#8b8d8c">
+        <span>famille «&nbsp;.&nbsp;» — design system 1.0.0</span>
+        <span>une chose. bien faite.</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: {
+    &quot;editor&quot;: &quot;color&quot;,
+    &quot;default&quot;: &quot;#17181a&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Système&quot;,
+    &quot;options&quot;: [&quot;#17181a&quot;, &quot;#6f7d6a&quot;, &quot;#5a6f8c&quot;, &quot;#6f6a8c&quot;, &quot;#8c7350&quot;, &quot;#8c5f5a&quot;, &quot;#4a4c4a&quot;]
+  },
+  &quot;showCode&quot;: {
+    &quot;editor&quot;: &quot;boolean&quot;,
+    &quot;default&quot;: true,
+    &quot;tsType&quot;: &quot;boolean&quot;,
+    &quot;section&quot;: &quot;Système&quot;
+  },
+  &quot;showRedlines&quot;: {
+    &quot;editor&quot;: &quot;boolean&quot;,
+    &quot;default&quot;: true,
+    &quot;tsType&quot;: &quot;boolean&quot;,
+    &quot;section&quot;: &quot;Système&quot;
+  }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? "#17181a",
+      showCode: this.props.showCode ?? true,
+      showRedlines: this.props.showRedlines ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
