@@ -65,3 +65,13 @@ export function saveState(state: StoredState): void {
 export function isStorageAvailable(): boolean {
   return storage() !== null
 }
+
+/** Un journal déjà commencé. Sert à décider, au démarrage, si « / » doit
+ *  ouvrir l'application plutôt que la page de présentation.
+ *
+ *  Passe par loadState : un fichier illisible compte comme journal vide,
+ *  ce qui est la réponse prudente — on montre la présentation plutôt que
+ *  d'envoyer sur une application qu'on n'a pas su relire. */
+export function hasRaces(): boolean {
+  return loadState().races.length > 0
+}

@@ -24,12 +24,28 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { registerSW } from 'virtual:pwa-register'
 import { App } from './App.tsx'
+import { hasRaces } from './lib/storage.ts'
 
 import './styles/tokens.css'
 import './styles/base.css'
 import './styles/components.css'
 import './styles/app.css'
 import './styles/site.css'
+
+/** Arriver sur « / » avec un journal déjà commencé ouvre l'application : la
+ *  page de présentation n'a plus rien à présenter à qui s'en sert.
+ *
+ *  Décidé ici, avant le montage, et non dans une route : le routeur lit
+ *  l'URL une fois, donc l'arbitrage ne se rejoue pas et les navigations
+ *  suivantes vers « / » sont respectées — sinon le lien « présentation » du
+ *  site se retournerait contre lui-même, et un retour arrière depuis
+ *  l'application rebondirait en boucle.
+ *
+ *  replaceState plutôt que redirection : « / » ne laisse pas d'entrée dans
+ *  l'historique, donc le bouton retour sort du site au lieu d'y revenir. */
+if (window.location.pathname === '/' && hasRaces()) {
+  window.history.replaceState(null, '', '/app')
+}
 
 const root = document.getElementById('root')
 if (!root) throw new Error('#root introuvable')
