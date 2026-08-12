@@ -28,6 +28,23 @@ export function formatDuration(duration: string): string {
   return h > 0 ? `${h}h${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`
 }
 
+/** Range une frappe en « h:mm:ss ».
+ *
+ *  Le clavier d'un téléphone n'offre pas de « : » sur un pavé numérique :
+ *  sans cela, la durée y serait tout bonnement impossible à saisir. Les
+ *  chiffres se rangent donc depuis la droite — secondes, puis minutes,
+ *  puis heures — et les séparateurs apparaissent d'eux-mêmes. Rejouer le
+ *  masque sur son propre résultat ne déplace rien : corriger une course
+ *  déjà enregistrée reste sûr. */
+export function maskDurationInput(raw: string): string {
+  const digits = String(raw ?? '')
+    .replace(/\D/g, '')
+    .slice(0, 7)
+  if (digits.length <= 2) return digits
+  if (digits.length <= 4) return `${digits.slice(0, -2)}:${digits.slice(-2)}`
+  return `${digits.slice(0, -4)}:${digits.slice(-4, -2)}:${digits.slice(-2)}`
+}
+
 /** Réécrit un nombre de secondes en durée canonique, pour un écart. */
 export function secondsToDuration(total: number): string {
   const t = Math.max(0, Math.round(total))

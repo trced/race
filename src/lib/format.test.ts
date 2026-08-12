@@ -6,6 +6,7 @@ import {
   formatDuration,
   formatElevation,
   formatPace,
+  maskDurationInput,
   parseISODate,
   secondsToDuration,
   spanDays,
@@ -51,6 +52,48 @@ describe('formatDuration', () => {
     expect(formatDuration('1:38:20')).toBe('1h38:20')
     expect(formatDuration('46:30:00')).toBe('46h30:00')
     expect(formatDuration('3:05:07')).toBe('3h05:07')
+  })
+})
+
+describe('maskDurationInput', () => {
+  it('pose les deux-points au fur et à mesure de la frappe', () => {
+    // Un pavé numérique de téléphone n'a pas de « : » : les chiffres
+    // arrivent seuls et se rangent depuis la droite.
+    expect(maskDurationInput('4')).toBe('4')
+    expect(maskDurationInput('45')).toBe('45')
+    expect(maskDurationInput('453')).toBe('4:53')
+    expect(maskDurationInput('4530')).toBe('45:30')
+    expect(maskDurationInput('45300')).toBe('4:53:00')
+    expect(maskDurationInput('345000')).toBe('34:50:00')
+  })
+
+  it('laisse une durée déjà écrite telle quelle', () => {
+    // Rejouer le masque sur son propre résultat ne doit rien déplacer,
+    // sans quoi ouvrir une course pour la corriger la déformerait.
+    expect(maskDurationInput('45:30')).toBe('45:30')
+    expect(maskDurationInput('3:45:00')).toBe('3:45:00')
+    expect(maskDurationInput('46:30:00')).toBe('46:30:00')
+    expect(maskDurationInput('999:59:59')).toBe('999:59:59')
+  })
+
+  it('ignore tout ce qui n’est pas un chiffre', () => {
+    expect(maskDurationInput('45h30')).toBe('45:30')
+    expect(maskDurationInput('45 30')).toBe('45:30')
+    expect(maskDurationInput('abc')).toBe('')
+  })
+
+  it('efface un chiffre à la fois, sans se bloquer sur un deux-points', () => {
+    // Ce que voit quelqu'un qui corrige : « 45:30 » puis retour arrière.
+    expect(maskDurationInput('45:3')).toBe('4:53')
+    expect(maskDurationInput('4:5')).toBe('45')
+    expect(maskDurationInput('4')).toBe('4')
+    expect(maskDurationInput('')).toBe('')
+  })
+
+  it('s’arrête à ce que le format accepte', () => {
+    // h:mm:ss va jusqu'à trois chiffres d'heures ; au-delà, la frappe
+    // n'ajoute plus rien plutôt que de décaler ce qui est déjà juste.
+    expect(maskDurationInput('12345678')).toBe('123:45:67')
   })
 })
 

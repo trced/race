@@ -87,6 +87,28 @@ describe('ajouter une course', () => {
     expect(stored.data.races[0].name).toBe('10k de Lyon')
   })
 
+  it('accepte une durée tapée au pavé numérique, sans deux-points', async () => {
+    // Sur iPhone, le clavier d'un champ numérique n'a pas de « : » : la
+    // durée y serait impossible à saisir si le champ l'exigeait.
+    const { user } = renderApp()
+
+    await user.click(screen.getByRole('button', { name: '+ ajouter' }))
+    await user.type(screen.getByLabelText('Nom'), '10k de Lyon')
+    await user.clear(screen.getByLabelText('Durée'))
+    await user.type(screen.getByLabelText('Durée'), '4500')
+
+    const field = screen.getByLabelText('Durée') as HTMLInputElement
+    expect(field.value).toBe('45:00')
+
+    await user.click(screen.getByRole('button', { name: 'ajouter' }))
+
+    await waitFor(() => {
+      expect(screen.getByText('10k de Lyon')).toBeTruthy()
+    })
+    const stored = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? '{}')
+    expect(stored.data.races[0].duration).toBe('45:00')
+  })
+
   it('refuse d’enregistrer un formulaire incomplet', async () => {
     const { user } = renderApp()
 

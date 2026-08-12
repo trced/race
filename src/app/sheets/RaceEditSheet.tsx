@@ -12,7 +12,7 @@ import {
 } from '../../components/TextField.tsx'
 import { useI18n } from '../../i18n/index.tsx'
 import type { MessageKey } from '../../i18n/index.tsx'
-import { unitSystem } from '../../lib/format.ts'
+import { maskDurationInput, unitSystem } from '../../lib/format.ts'
 import {
   RACE_TYPES,
   STANDARD_DISTANCE,
@@ -254,7 +254,9 @@ export function RaceEditForm({
           label={t('app.edit.duration')}
           inputMode="numeric"
           value={draft.duration}
-          onValueChange={(duration) => update({ duration })}
+          onValueChange={(duration) =>
+            update({ duration: maskDurationInput(duration) })
+          }
           placeholder={t('app.edit.durationPlaceholder')}
           hint={t('app.edit.durationHint')}
           error={error('duration')}
