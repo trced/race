@@ -5,11 +5,9 @@ import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router'
 import { useI18n } from '../i18n/index.tsx'
 import type { MessageKey } from '../i18n/index.tsx'
+import { CONTACT, CONTACT_EMAIL, LICENCE_URL, REPO } from '../lib/links.ts'
 import { APP_VERSION } from '../lib/version.ts'
 import { useStore } from '../state/store.tsx'
-
-export const REPO = 'https://github.com/race-app/race'
-export const CONTACT = 'mailto:contact@race.app'
 
 /** Renseigne le titre et la description sans dépendance de plus. */
 export function useDocumentMeta(titleKey: MessageKey, descriptionKey?: MessageKey) {
@@ -130,7 +128,7 @@ function SiteFooter() {
         <ul className="site__footer-list">
           <li>
             <a
-              href="https://www.gnu.org/licenses/agpl-3.0.html"
+              href={LICENCE_URL}
               rel="noreferrer noopener license"
               target="_blank"
             >
@@ -169,7 +167,7 @@ function SiteFooter() {
         <div className="section-label">{t('site.footer.contact')}</div>
         <ul className="site__footer-list">
           <li>
-            <a href={CONTACT}>contact@race.app</a>
+            <a href={CONTACT}>{CONTACT_EMAIL}</a>
           </li>
         </ul>
         <p className="site__footer-note">

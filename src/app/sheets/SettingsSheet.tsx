@@ -14,6 +14,7 @@ import {
 import { useI18n } from '../../i18n/index.tsx'
 import type { MessageKey } from '../../i18n/index.tsx'
 import { downloadFile, parseFile } from '../../lib/io.ts'
+import { LICENCE_URL, REPO } from '../../lib/links.ts'
 import type { Race, Settings } from '../../lib/types.ts'
 import { APP_VERSION } from '../../lib/version.ts'
 import { useStore } from '../../state/store.tsx'
@@ -302,9 +303,17 @@ export function SettingsSheet({
           />
           <LinkRow
             external
-            to="https://www.gnu.org/licenses/agpl-3.0.html"
+            to={LICENCE_URL}
             name={t('app.settings.licence')}
             value="AGPL-3.0"
+          />
+          {/* L'AGPL demande qu'une application offre son code source depuis
+              son interface : c'est ici que l'utilisateur le trouve. */}
+          <LinkRow
+            external
+            to={REPO}
+            name={t('app.settings.source')}
+            value={t('app.settings.sourceValue')}
           />
         </section>
       </div>

@@ -206,6 +206,8 @@ export const en: Record<MessageKey, string> = {
   'app.settings.version': 'version',
   'app.settings.changelog': 'changelog',
   'app.settings.changelogValue': 'what changed',
+  'app.settings.source': 'source code',
+  'app.settings.sourceValue': 'GitHub repository',
   'app.settings.licence': 'licence',
   'app.settings.legal': 'terms · privacy',
   'app.settings.read': 'read',

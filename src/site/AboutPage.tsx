@@ -4,7 +4,8 @@
 import { Link } from 'react-router'
 import { useI18n } from '../i18n/index.tsx'
 import type { MessageKey } from '../i18n/index.tsx'
-import { CONTACT, REPO, useDocumentMeta } from './SiteLayout.tsx'
+import { CONTACT, REPO } from '../lib/links.ts'
+import { useDocumentMeta } from './SiteLayout.tsx'
 
 const WHY: [MessageKey, MessageKey][] = [
   ['site.about.why.story', 'site.about.why.storyBody'],

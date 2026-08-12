@@ -204,6 +204,19 @@ describe('réglages', () => {
     await waitFor(() => expect(screen.getByText(/105,6 mi/)).toBeTruthy())
   })
 
+  it('offre le code source depuis son interface, comme l’AGPL le demande', async () => {
+    const { user } = renderApp()
+    await user.click(screen.getByRole('button', { name: 'réglages' }))
+
+    const source = screen.getByRole('link', { name: /code source/ })
+    expect(source.getAttribute('href')).toBe('https://github.com/race-app/race')
+    expect(
+      screen
+        .getByRole('link', { name: /licence/ })
+        .getAttribute('href'),
+    ).toContain('agpl-3.0')
+  })
+
   it('efface tout après confirmation explicite', async () => {
     const { user } = renderApp()
 

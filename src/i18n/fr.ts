@@ -207,6 +207,8 @@ export const fr = {
   'app.settings.version': 'version',
   'app.settings.changelog': 'journal des changements',
   'app.settings.changelogValue': 'ce qui a changé',
+  'app.settings.source': 'code source',
+  'app.settings.sourceValue': 'dépôt GitHub',
   'app.settings.licence': 'licence',
   'app.settings.legal': 'conditions · confidentialité',
   'app.settings.read': 'lire',

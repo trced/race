@@ -5,7 +5,8 @@ import { Link } from 'react-router'
 import { useI18n } from '../i18n/index.tsx'
 import type { MessageKey } from '../i18n/index.tsx'
 import { formatDate } from '../lib/format.ts'
-import { CONTACT, REPO, useDocumentMeta } from './SiteLayout.tsx'
+import { CONTACT, CONTACT_EMAIL, LICENCE_URL, REPO } from '../lib/links.ts'
+import { useDocumentMeta } from './SiteLayout.tsx'
 
 /** Dernière révision des textes légaux, en ISO 8601. */
 const UPDATED = '2026-08-11'
@@ -68,7 +69,7 @@ function LegalLinks({ current }: { current: 'terms' | 'privacy' | 'notice' }) {
         <Link to="/legal/notice">{t('site.footer.notice')}</Link>
       )}
       <a
-        href="https://www.gnu.org/licenses/agpl-3.0.html"
+        href={LICENCE_URL}
         rel="noreferrer noopener license"
         target="_blank"
       >
@@ -155,7 +156,7 @@ export function NoticePage() {
                 {body ? (
                   t(body)
                 ) : (
-                  <a href={CONTACT}>contact@race.app</a>
+                  <a href={CONTACT}>{CONTACT_EMAIL}</a>
                 )}
               </dd>
             </div>
