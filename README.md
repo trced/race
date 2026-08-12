@@ -1,134 +1,232 @@
 # race.
 
-![version](https://img.shields.io/badge/version-v0.1.0-17181a)
-![licence](https://img.shields.io/badge/licence-AGPL--3.0-17181a)
-![PWA](https://img.shields.io/badge/PWA-hors%20ligne-17181a)
+![version](https://img.shields.io/badge/version-0.1.0-17181a)
+![licence](https://img.shields.io/badge/licence-AGPL--3.0--or--later-17181a)
+![PWA](https://img.shields.io/badge/PWA-offline-17181a)
+![tracking](https://img.shields.io/badge/tracking-none-17181a)
 
-**Toutes vos courses. Une ligne chacune.**
+**All your races. One line each.**
 
-race. répond à une seule question : *qu'est-ce que j'ai couru ?* Pas de plan
-d'entraînement, pas de graphique, pas de classement. Vous notez la course,
-elle reste lisible dans dix ans.
+race. answers a single question: *what have I run?* No training plan, no chart,
+no leaderboard. You write the race down, and it is still readable in ten years.
 
-Sans compte, sans réseau, sans version payante. Tout vit dans le stockage
-local de votre navigateur ; le seul format d'échange est un fichier
-`race.json` que vous exportez et importez vous-même.
+No account, no network, no paid tier. Everything lives in your browser's local
+storage, and the only exchange format is a `race.json` file that you export and
+import yourself.
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="docs/screenshots/app-desktop-dark.png">
+  <img
+    alt="race. on a wide screen: the list of races on the left, the selected race on the right"
+    src="docs/screenshots/app-desktop-light.png">
+</picture>
 
 ---
 
-## Ce que c'est
+## Contents
 
-| | |
+- [What it is](#what-it-is)
+- [What it is not](#what-it-is-not)
+- [Screens](#screens)
+- [Getting started](#getting-started)
+- [Your data](#your-data)
+- [Architecture](#architecture)
+- [Design system](#design-system)
+- [Browser support](#browser-support)
+- [Contributing](#contributing)
+- [Licence](#licence)
+
+## What it is
+
+|  |  |
 |---|---|
-| **Unité** | une course — nom, date, distance, durée ; lieu, D+ et notes facultatifs |
-| **Vues** | Liste (par défaut) · Année · Mois · Records |
-| **Vocabulaire** | ● une course a eu lieu · `·` rien ce mois-là · un trait vertical prolonge une course de plusieurs jours |
-| **Données** | `localStorage`, `schemaVersion` 1, export/import JSON |
-| **Langues** | français, anglais, ou celle du système |
+| **Unit** | one race — name, date, distance, duration; place, climb and notes optional |
+| **Views** | List (default) · Year · Month · Records |
+| **Vocabulary** | `●` a race took place · `·` nothing that month · a vertical line carries a race across several days |
+| **Data** | `localStorage`, `schemaVersion` 1, JSON export and import |
+| **Languages** | French, English, or the one your system asks for |
+| **Install** | progressive web app, works offline once loaded |
 | **Licence** | AGPL-3.0-or-later |
 
-## Ce que ce n'est pas
+Three layouts, one behaviour. On a phone the app is a single column with its
+actions in reach of the thumb. On a wide screen the list stays on the left and
+the current view — race card, year, month, records — occupies the right, so
+moving from one race to the next never hides the others.
 
-- aucun suivi GPS, aucune montre à connecter
-- aucun badge, aucune série à ne pas rompre
-- aucun partage, aucun classement
-- aucune notification, aucun cookie, aucune télémétrie
+## What it is not
 
-## Démarrer
+- no GPS tracking, no watch to connect
+- no badges, no streak to keep alive
+- no sharing, no leaderboard
+- no notifications, no cookies, no telemetry
+
+A feature that does not serve *what have I run?* is not added.
+
+## Screens
+
+| List | Month | New race |
+|---|---|---|
+| <img src="docs/screenshots/app-mobile-list.png" alt="The list view on a phone: one race per line, newest first" width="240"> | <img src="docs/screenshots/app-mobile-month.png" alt="The month view on a phone: one line per day, empty stretches folded" width="240"> | <img src="docs/screenshots/app-mobile-form.png" alt="The new race form on a phone: seven fields, no scrolling" width="240"> |
+
+Records — best time per official distance, the gap to the second, and the
+totals:
+
+![The records view: best time per distance in two columns, with the out-of-format extremes and the totals below](docs/screenshots/app-records.png)
+
+## Getting started
+
+Node 20.19+ or 22.12+ is required (Vite 8).
 
 ```bash
+git clone https://github.com/trced/race.git
+cd race
 npm install
 npm run dev        # http://localhost:5173
 ```
 
-| commande | effet |
+| command | effect |
 |---|---|
-| `npm run dev` | serveur de développement |
-| `npm run build` | typecheck puis build de production dans `dist/` |
-| `npm run preview` | sert le build de production |
+| `npm run dev` | development server |
+| `npm run build` | typecheck, then a production build in `dist/` |
+| `npm run preview` | serve the production build |
 | `npm run typecheck` | `tsc --noEmit` |
-| `npm test` | suite de tests (Vitest) |
-| `npm run test:watch` | tests en continu |
-| `npm run icons` | régénère les icônes PWA dans `public/` |
+| `npm test` | test suite (Vitest) |
+| `npm run test:watch` | tests in watch mode |
+| `npm run icons` | regenerate the PWA icons in `public/` |
+
+`/app?demo=1` opens the app filled with a sample logbook, writing nothing to
+the device.
+
+## Your data
+
+There is no server to send anything to. The service worker precaches the app on
+download; after that no network request is made in use. No cookies, so no
+consent banner.
+
+Everything sits under a single `localStorage` key, `race.v1`, in exactly the
+shape of the export file — what the app reads is what comes out of it, so there
+is no boundary where the two can drift apart:
+
+```json
+{
+  "schemaVersion": 1,
+  "data": {
+    "races": [
+      {
+        "id": "sample-1",
+        "type": "ultra",
+        "name": "UTMB",
+        "date": "2026-08-28",
+        "distance": 170,
+        "duration": "46:30:00",
+        "elevationGain": 10000,
+        "location": "Chamonix",
+        "notes": "Finisher."
+      }
+    ]
+  },
+  "settings": {
+    "theme": "system",
+    "lang": "system",
+    "unit": "km",
+    "pace": "shown",
+    "defaultView": "list"
+  }
+}
+```
+
+Distances are stored in kilometres and durations as `h:mm:ss` or `mm:ss`,
+whatever unit you display. A field you have not touched is never rewritten, so
+switching to miles and saving does not degrade the value.
+
+Importing offers a choice between merging and replacing, and a malformed race is
+dropped on its own rather than failing the whole file.
+
+**Clearing your browser storage erases everything, for good.** Settings →
+export, regularly.
 
 ## Architecture
 
 ```
 src/
-├── lib/                  noyau pur, sans React ni DOM
+├── lib/                  pure core, no React and no DOM
 │   ├── types.ts          Race, Settings, RaceFile, schemaVersion
-│   ├── format.ts         durées, distances, allures, dates (Intl)
-│   ├── validate.ts       validation du formulaire → clés i18n
-│   ├── calendar.ts       construction de la vue Mois, creux et continuations
-│   ├── records.ts        meilleurs temps, extrêmes, totaux
-│   ├── io.ts             race.json : lecture, écriture, fusion
-│   └── storage.ts        persistance locale
-├── i18n/                 fr.ts (référence) + en.ts (miroir typé) + runtime
-├── state/store.tsx       source unique : courses + réglages
-├── components/           design system « famille . » 1.1.0
-├── app/                  l'application — vues et panneaux
-├── site/                 pages web — présentation, à propos, légales
-├── data/changelog/       journal des changements, bilingue
+│   ├── format.ts         durations, distances, paces, dates (Intl)
+│   ├── validate.ts       form validation, returning i18n keys
+│   ├── calendar.ts       month building, gaps and continuations
+│   ├── records.ts        best times, extremes, totals
+│   ├── io.ts             race.json: read, write, merge
+│   └── storage.ts        local persistence
+├── i18n/                 fr.ts (reference) + en.ts (typed mirror) + runtime
+├── state/store.tsx       single source: races and settings
+├── components/           the "famille ." 1.1.0 design system
+├── app/                  the app itself — views, sheets, panes
+├── site/                 web pages — overview, about, legal
+├── data/changelog/       changelog, bilingual
 └── styles/               tokens.css, base.css, components.css, app.css, site.css
 ```
 
-Le noyau `lib/` ne connaît ni React ni le DOM : il se teste sans navigateur et
-porte toute la logique qui pourrait se tromper.
+`lib/` knows nothing of React or the DOM: it carries every piece of logic that
+could be wrong, and it is tested without a browser.
 
-### Décisions
+### Decisions
 
-- **Le stockage est le format d'export.** Ce qui est lu par l'application est
-  exactement ce qui en sort — pas de conversion à la frontière, donc pas
-  d'endroit où les deux formes divergent.
-- **La validation renvoie des clés, pas des phrases.** `app.edit.error.date`
-  se traduit à l'affichage ; le noyau reste indépendant de la langue.
-- **Les distances sont stockées en kilomètres**, saisies et affichées dans
-  l'unité choisie. Un champ que l'utilisateur n'a pas touché n'est jamais
-  réécrit : passer en miles puis enregistrer ne dégrade pas la valeur.
-- **Le mode exemple ne duplique pas les réglages.** Il remplace seulement la
-  liste des courses ; le thème réglé depuis la démonstration est un vrai
-  réglage, le journal personnel n'est jamais touché.
-- **Rien n'est écrit à la simple ouverture.** La première écriture attend le
-  premier changement d'état.
+- **Storage is the export format.** No conversion at the boundary, so no place
+  for the two shapes to diverge.
+- **Validation returns keys, not sentences.** `app.edit.error.date` is
+  translated at display time; the core stays language-independent.
+- **`fr.ts` is the reference, `en.ts` a typed mirror.** A missing or extra key
+  fails compilation, and tests catch what types cannot — an empty string, a
+  dropped placeholder, a missing plural form.
+- **Example mode does not duplicate settings.** It replaces the list of races
+  only; a theme set from the demo is a real setting, and the personal logbook is
+  never touched.
+- **Nothing is written on open.** The first write waits for the first change.
+- **No hover changes geometry.** State is read, never guessed, and never at the
+  cost of the layout moving under the pointer.
 
 ## Design system
 
-L'implémentation suit la famille « . » (*trced*) version 1.1.0, dont la
-référence est dans [`docs/Design System v1.1.dc.html`](docs/Design%20System%20v1.1.dc.html).
-Les maquettes de race. sont dans [`docs/race.dc.html`](docs/race.dc.html) et
-[`docs/RaceApp.dc.html`](docs/RaceApp.dc.html).
+The implementation follows the "famille ." (*trced*) family, version 1.1.0,
+whose reference lives in
+[`docs/Design System v1.1.dc.html`](docs/Design%20System%20v1.1.dc.html). The
+race. mockups are in [`docs/race.dc.html`](docs/race.dc.html) and
+[`docs/RaceApp.dc.html`](docs/RaceApp.dc.html). Where the code and those
+documents disagree, the documents are right and the code has a bug.
 
-Tokens dans `src/styles/tokens.css` : une valeur en dur dans un composant est
-un défaut de conformité. Contraintes tenues :
+Tokens live in `src/styles/tokens.css`; a hard-coded value in a component is a
+conformance defect. Constraints held:
 
-- CSS du système ≤ 8 ko compressé (actuellement ~5 ko)
-- zéro police distante, zéro image dans l'interface, zéro dépendance UI tierce
-- cible tactile 44 × 44, focus visible 2 px / offset 3, WCAG 2.2 AA
-- aucune ombre portée ; le trait de 1 px est la seule séparation
+- system CSS under 8 kB compressed (`tokens` + `base` + `components`, 6.2 kB today)
+- no remote fonts, no images in the interface, no third-party UI dependency
+- 44 × 44 touch targets, 2 px focus ring at 3 px offset, WCAG 2.2 AA
+- no drop shadows; the 1 px rule is the only separator
+- right angles throughout; state reads, it does not colour
 
-## Vie privée
+## Browser support
 
-Il n'existe aucun serveur à qui envoyer quoi que ce soit. Le service worker
-précache l'application au téléchargement, puis plus aucune requête réseau
-n'est émise à l'usage. Pas de cookie, donc pas de bannière de consentement.
+Any evergreen browser that supports `color-mix()`: Chrome and Edge 111,
+Firefox 113, Safari 16.4 and later. There is no build-time polyfill and no
+transpilation target below that.
 
-Vider le stockage du navigateur efface les données définitivement :
-Réglages → exporter, régulièrement.
+## Contributing
 
-## Contribuer
+Issues and pull requests are welcome. Start with
+[CONTRIBUTING.md](CONTRIBUTING.md) — it covers the setup, the conventions, and
+the two rules that get pull requests turned down.
 
-Le dépôt est ouvert, les issues aussi. Avant d'ajouter un composant :
-prouver que trois écrans en ont besoin, vérifier qu'aucune composition
-existante ne suffit, documenter anatomie, états, API et accessibilité.
-
-Une fonctionnalité qui ne sert pas la question *« qu'est-ce que j'ai
-couru ? »* n'est pas ajoutée.
+Everyone taking part is expected to follow the
+[Code of Conduct](CODE_OF_CONDUCT.md). Security reports go through
+[SECURITY.md](SECURITY.md), not the public tracker.
 
 ## Licence
 
-AGPL-3.0-or-later. Libre et copyleft : toute version modifiée et distribuée,
-y compris exposée en réseau, reste libre, code source inclus.
+[AGPL-3.0-or-later](LICENSE). Free and copyleft: any modified version that is
+distributed — including one merely exposed over a network — stays free, source
+code included.
 
 ---
 
-race. 0.1 — une chose. bien faite.
+race. 0.1 — one thing. done well.
