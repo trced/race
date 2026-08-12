@@ -1,0 +1,93 @@
+name: Bug report
+description: Something in the app behaves differently from what it says it does.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. Please do not paste your `race.json` or a
+        screenshot of your logbook — race names, places and notes are personal.
+        A trimmed-down file with one or two invented races is enough to
+        reproduce almost anything.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+      placeholder: |
+        I saved a race in miles and the distance came back changed by 0.1.
+        I expected the value I typed to survive the round trip.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered, starting from a fresh logbook where possible.
+      placeholder: |
+        1. Open /app?demo=1
+        2. Settings, set unit to miles
+        3. Open "10k de Lyon", edit, save without touching the distance
+        4. The distance now reads 6.2 mi instead of 6.21
+    validations:
+      required: true
+
+  - type: dropdown
+    id: view
+    attributes:
+      label: Where
+      description: Which part of the app. Pick more than one if it applies everywhere.
+      multiple: true
+      options:
+        - List view
+        - Year view
+        - Month view
+        - Records view
+        - Race card
+        - New or edit form
+        - Settings
+        - Import or export
+        - Presentation site
+        - Everywhere or not sure
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Firefox 141 on Linux, Safari 26 on iOS
+    validations:
+      required: true
+
+  - type: input
+    id: screen
+    attributes:
+      label: Window width
+      description: The layout changes at 640 px and at 1100 px, so this narrows it down fast.
+      placeholder: about 390 px, phone
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Settings, at the bottom.
+      placeholder: 0.1.0
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues.
+          required: true
+        - label: This is a defect, not a missing feature.
+          required: true
+        - label: I have not included personal logbook data.
+          required: true

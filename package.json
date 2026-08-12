@@ -2,9 +2,30 @@
   "name": "race",
   "version": "0.1.0",
   "private": true,
-  "description": "race. — journal de courses local, hors ligne, sans compte",
+  "description": "All your races. One line each. A local-first, offline race logbook with no account.",
+  "keywords": [
+    "running",
+    "race",
+    "logbook",
+    "local-first",
+    "offline",
+    "pwa",
+    "privacy",
+    "no-tracking"
+  ],
   "license": "AGPL-3.0-or-later",
+  "homepage": "https://github.com/trced/race#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trced/race.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trced/race/issues"
+  },
   "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

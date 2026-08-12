@@ -1,0 +1,64 @@
+name: Feature request
+description: Something race. should do and does not.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        race. answers a single question: **what have I run?** Features that do
+        not serve that question are refused on purpose, however good they are —
+        GPS import, charts, training plans, streaks, sharing and leaderboards
+        have all been considered and turned down.
+
+        That is not a reason to stay quiet. It is a reason to answer the third
+        field below carefully.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you were trying to do, and what got in the way. Not the solution yet.
+      placeholder: |
+        I ran the same race four years running and I cannot see the four times
+        side by side without scrolling the list and remembering them.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would like instead
+      description: Be concrete. A sentence describing the screen is worth more than a feature name.
+    validations:
+      required: true
+
+  - type: textarea
+    id: fit
+    attributes:
+      label: How does this serve "what have I run?"
+      description: >
+        The filter every feature goes through. If the answer is that it helps
+        you plan, compare against others, or stay motivated, this is probably
+        not the project for it — and that is fine.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you tried instead
+      description: Existing views, search, sorts, export to a spreadsheet. What was missing.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues.
+          required: true
+        - label: I read "What it is not" in the README.
+          required: true
+        - label: This works without an account, a server, or a network request.
+          required: true
