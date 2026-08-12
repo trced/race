@@ -46,6 +46,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // og.png n'est lu que par les robots d'aperçu de lien : la précacher
+        // coûterait 15 ko hors ligne à chaque visiteur, pour rien.
+        globIgnores: ['**/og.png'],
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
         // Aucune requête réseau à l'usage : tout est précaché, rien n'est
