@@ -1,0 +1,25 @@
+node_modules/
+dist/
+dev-dist/
+coverage/
+
+*.local
+.env
+.env.*
+!.env.example
+
+.DS_Store
+Thumbs.db
+
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+*.log
+npm-debug.log*
+
+# artefacts de capture (Playwright MCP)
+.playwright-mcp/
+
+# caches d'outillage local
+.claude/tsc-cache/

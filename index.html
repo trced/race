@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>race. — toutes vos courses, une ligne chacune</title>
+    <meta
+      name="description"
+      content="race. répond à une seule question : qu'est-ce que j'ai couru ? Journal de courses local, hors ligne, sans compte."
+    />
+    <meta name="theme-color" content="#f2f3f2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121311" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <script>
+      // Appliqué avant le premier rendu : évite le flash de thème clair.
+      // Aucune requête, aucune dépendance — lecture locale seule.
+      try {
+        var raw = localStorage.getItem('race.v1')
+        var theme = raw ? (JSON.parse(raw).settings || {}).theme : null
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', theme)
+        }
+      } catch (e) {
+        /* stockage indisponible : le thème suit le système */
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      race. a besoin de JavaScript pour fonctionner. Tout s'exécute sur votre
+      appareil : rien n'est envoyé nulle part.
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
