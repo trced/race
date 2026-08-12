@@ -59,7 +59,9 @@
   --text-display: 36px;
   --text-title: 24px;
   --text-brand: 20px;
-  --text-body: 15px;
+  /* Même corps que trced. : 14px sur un écran ordinaire, 15px seulement
+     quand la fenêtre est assez large pour le porter. */
+  --text-body: clamp(14px, 1.1vw, 15px);
   --text-data: 14px;
   --text-label: 13px;
   --text-meta: 12px;
