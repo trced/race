@@ -40,8 +40,10 @@
   --space-12: 48px;
   --space-16: 64px;
 
-  --radius-sm: 4px;
-  --radius-md: 6px;
+  /* La famille est à angles droits : aucune surface n'arrondit. Les tokens
+     restent nommés pour que les composants continuent de les déclarer. */
+  --radius-sm: 0;
+  --radius-md: 0;
 
   --touch-target: 44px;
   --rule-width: 1px;
@@ -87,7 +89,11 @@
 
   /* mise en page */
   --screen-margin: var(--space-6);
-  --container-max: 1120px;
+  --container-max: 1600px;
+  /* L'application est une coque, pas un document : elle occupe sa fenêtre.
+     Ce sont ses colonnes qui règlent les mesures, jamais un cadre. */
+  --app-list-width: 520px;
+  --panel-measure: 620px;
   --measure: 64ch;
 
   color-scheme: light dark;
@@ -124,6 +130,8 @@
 @media (min-width: 1024px) {
   :root {
     --screen-margin: var(--space-10);
+    /* Sur un écran large la promesse doit tenir le haut de page seule. */
+    --text-display: 44px;
   }
 }
 

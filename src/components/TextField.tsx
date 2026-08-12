@@ -3,7 +3,7 @@
  *  L'erreur remplace l'aide et est annoncée en role="alert". */
 
 import { useId } from 'react'
-import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'react'
+import type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from 'react'
 
 type BaseProps = {
   label: string
@@ -14,6 +14,40 @@ type BaseProps = {
   error?: string | undefined
   /** Masque visuellement le label — il reste lu. */
   hideLabel?: boolean
+  /** Marque le champ d'un astérisque et le déclare à l'assistance.
+   *  La validation, elle, reste celle du formulaire. */
+  required?: boolean | undefined
+}
+
+/** L'astérisque est hors du <label> : le nom accessible du champ reste le
+ *  libellé seul, et c'est aria-required qui porte l'obligation. */
+function FieldLabel({
+  id,
+  hidden,
+  required,
+  children,
+}: {
+  id: string
+  hidden: boolean
+  required: boolean
+  children: ReactNode
+}) {
+  const label = (
+    <label className={hidden ? 'visually-hidden' : 'field__label'} htmlFor={id}>
+      {children}
+    </label>
+  )
+
+  if (hidden || !required) return label
+
+  return (
+    <span className="field__labelrow">
+      {label}
+      <span className="field__required" aria-hidden="true">
+        *
+      </span>
+    </span>
+  )
 }
 
 export interface TextFieldProps
@@ -35,6 +69,7 @@ export function TextField({
   hint,
   error,
   hideLabel = false,
+  required = false,
   clearable = false,
   onClear,
   clearLabel = '×',
@@ -48,12 +83,9 @@ export function TextField({
 
   return (
     <div className={`field${error ? ' field--invalid' : ''}`}>
-      <label
-        className={hideLabel ? 'visually-hidden' : 'field__label'}
-        htmlFor={id}
-      >
+      <FieldLabel id={id} hidden={hideLabel} required={required}>
         {label}
-      </label>
+      </FieldLabel>
       <div className="field__wrap">
         <input
           id={id}
@@ -61,6 +93,7 @@ export function TextField({
           className={`field__input${showClear ? ' field__input--clearable' : ''}`}
           value={value}
           onChange={(e) => onValueChange(e.target.value)}
+          aria-required={required || undefined}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : hint ? hintId : undefined}
           {...rest}
@@ -106,6 +139,7 @@ export function TextAreaField({
   hint,
   error,
   hideLabel = false,
+  required = false,
   rows = 3,
   ...rest
 }: TextAreaFieldProps) {
@@ -114,12 +148,9 @@ export function TextAreaField({
 
   return (
     <div className={`field${error ? ' field--invalid' : ''}`}>
-      <label
-        className={hideLabel ? 'visually-hidden' : 'field__label'}
-        htmlFor={id}
-      >
+      <FieldLabel id={id} hidden={hideLabel} required={required}>
         {label}
-      </label>
+      </FieldLabel>
       <div className="field__wrap">
         <textarea
           id={id}
@@ -127,6 +158,7 @@ export function TextAreaField({
           rows={rows}
           value={value}
           onChange={(e) => onValueChange(e.target.value)}
+          aria-required={required || undefined}
           aria-describedby={hint ? hintId : undefined}
           {...rest}
         />

@@ -8,11 +8,14 @@ import { useFormat } from '../useFormat.ts'
 export function ListView({
   races,
   showYears,
+  selectedId,
   onOpen,
 }: {
   races: Race[]
   /** Le rappel d'année n'a de sens que sur un tri chronologique. */
   showYears: boolean
+  /** La course ouverte dans le volet de droite, quand il y en a un. */
+  selectedId?: string | undefined
   onOpen: (race: Race) => void
 }) {
   const { t } = useI18n()
@@ -36,6 +39,7 @@ export function ListView({
               marker={{ dot: true }}
               title={race.name}
               emphasis
+              selected={race.id === selectedId}
               onClick={() => onOpen(race)}
               extra={
                 <>

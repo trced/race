@@ -19,32 +19,17 @@
 .app--page {
   flex: none;
   height: 100dvh;
-  max-width: 640px;
   width: 100%;
-  margin: 0 auto;
 }
 
-@media (min-width: 641px) {
-  .app--page {
-    border-left: var(--rule-width) solid var(--color-rule);
-    border-right: var(--rule-width) solid var(--color-rule);
-  }
-}
-
-/* Encart de la page de présentation : le vrai composant, en 390 × 844. */
+/* Encart de la page de présentation : le vrai composant, en 390 × 844.
+   Il n'est monté qu'au-delà de 900 px — sur un téléphone, un téléphone
+   dans un téléphone ne dit rien de plus et mange tout l'écran. */
 .app--embedded {
   width: 390px;
   max-width: 100%;
   height: 844px;
   border: var(--rule-width) solid var(--color-ink);
-}
-
-/* Sur un téléphone, 844 px dépassent l'écran : le cadre se contente de
-   la hauteur disponible, le contenu défile comme dans l'application. */
-@media (max-width: 639px) {
-  .app--embedded {
-    height: min(844px, 80dvh);
-  }
 }
 
 .app__head {
@@ -85,10 +70,13 @@
   white-space: nowrap;
 }
 
+/* Un maillon cliquable du fil est un retour : il se lit à l'encre, souligné
+   d'un trait franc. Sans cela il se confond avec le maillon courant, et le
+   chemin ne dit plus qu'on peut le remonter. */
 .app__crumb-link {
-  font-size: var(--text-meta);
-  color: var(--color-muted-strong);
-  border-bottom: var(--rule-width) solid var(--color-rule);
+  font-size: var(--text-label);
+  color: var(--color-ink);
+  border-bottom: var(--rule-width) solid var(--color-ink);
   min-height: 32px;
 }
 
@@ -109,6 +97,44 @@
 
 .app__settings:hover {
   color: var(--color-ink);
+}
+
+/* — barre de destinations (tablette et au-delà) — */
+
+/* Trois vues voisines, en libellés texte. L'active porte un trait de 1 px :
+   l'état se lit, il ne se colore pas — jamais de pastille ni de fond. Le
+   trait existe déjà en transparent au repos, sinon l'activation décalerait. */
+.app__tabs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex: 0 0 auto;
+}
+
+.app__tab {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-label);
+  color: var(--color-muted-strong);
+  border-bottom: var(--rule-width) solid transparent;
+  transition: color var(--motion-micro) linear;
+}
+
+.app__tab:hover {
+  color: var(--color-ink);
+}
+
+.app__tab[aria-current] {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-ink);
+}
+
+/* Les réglages ne sont pas une vue du carnet : un filet les écarte. */
+.app__tabs-rule {
+  width: var(--rule-width);
+  height: var(--space-4);
+  background: var(--color-rule);
 }
 
 .app__listhead {
@@ -155,11 +181,125 @@
   color: var(--color-ink);
 }
 
+/* Corps : la colonne de gauche et, sur grand écran seulement, celle de
+   droite. En dessous, un simple passe-plat — la coque reste celle du
+   téléphone, à l'identique. */
+.app__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.app__main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .app__scroll {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+/* Dès que les destinations passent en barre haute, l'en-tête ne porte plus
+   que le fil d'Ariane : la tête de la vue descend dans sa colonne. */
+.app__subhead {
+  padding: var(--space-4) var(--screen-margin) var(--space-3);
+  border-bottom: var(--rule-width) solid var(--color-ink);
+}
+
+/* — deux colonnes — */
+
+/* Au-delà de 1100 px, la liste tient à gauche en permanence et la vue
+   courante — fiche, année, mois, records — occupe la droite. En dessous,
+   aucune de ces règles ne s'applique : une colonne, une feuille. */
+@media (min-width: 1100px) {
+  .app--wide .app__body {
+    display: grid;
+    grid-template-columns: minmax(320px, var(--app-list-width)) minmax(0, 1fr);
+  }
+
+  .app--wide .app__main {
+    border-right: var(--rule-width) solid var(--color-rule);
+  }
+}
+
+.app__pane {
+  min-width: 0;
+  /* Sans cela, un élément de grille se dimensionne sur son contenu et la
+     colonne pousse la coque au lieu de défiler. */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__pane:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+.app__pane-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-5) 0 var(--space-8);
+}
+
+/* La fiche et le formulaire tenaient leur rythme de la feuille : hors
+   feuille, ils le portent eux-mêmes. Ils vont jusqu'au bord de la colonne —
+   un trait qui s'arrête à mi-chemin donne une colonne coupée. */
+.app__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: 0 var(--screen-margin);
+}
+
+/* — la colonne de droite, quand elle est large — */
+
+/* Elle prend toute la place, mais ce qui s'y lit se répartit plutôt que de
+   s'étirer : une paire nom / valeur ne traverse jamais la colonne entière,
+   et une ligne de texte garde sa mesure. La colonne de gauche fait 520 px :
+   au-delà de 1400 px de fenêtre, celle de droite en fait 880. */
+@media (min-width: 1400px) {
+  .app--wide .app__pane .detail__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-10);
+  }
+
+  .app--wide .app__pane .form-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .app--wide .app__pane .year-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* Vue mois : la métadonnée passe à droite du nom au lieu de dessous. */
+  .app--wide .app__pane .row__body {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+
+  .app--wide .app__pane .records,
+  .app--wide .app__pane .records > .list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-10);
+    align-items: start;
+  }
+
+  .app--wide .app__pane .records > .list {
+    grid-column: 1 / -1;
+  }
 }
 
 .app__pad {
@@ -181,6 +321,12 @@
   gap: var(--space-5);
   align-items: center;
   min-width: 0;
+}
+
+/* Avec la barre haute, le pied ne porte plus que « + ajouter » : la seule
+   action qui compte reste à sa place, en bas à droite de la colonne. */
+.app__foot .btn--primary {
+  margin-left: auto;
 }
 
 /* Bandeau du mode exemple : dit ce qu'il est, offre la sortie. */
@@ -286,14 +432,16 @@
   line-height: var(--leading-body);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+  /* La colonne s'élargit, la ligne de texte non. */
+  max-width: var(--measure);
 }
 
 /* — formulaire — */
 
 .form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-3);
 }
 
 /* — panneau de réglages — */
@@ -323,4 +471,15 @@
   font-size: var(--text-meta);
   line-height: var(--leading-meta);
   color: var(--color-muted-strong);
+}
+
+/* Le panneau couvre toute la coque, ses lignes de réglage non : à 1600 px
+   un nom et sa valeur ne peuvent pas être séparés par un mètre de vide. */
+@media (min-width: 900px) {
+  .settings__head,
+  .settings__body {
+    width: 100%;
+    max-width: calc(var(--panel-measure) + var(--space-16));
+    margin-inline: auto;
+  }
 }

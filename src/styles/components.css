@@ -17,7 +17,8 @@
   cursor: pointer;
   text-decoration: none;
   transition: background var(--motion-micro) linear,
-    color var(--motion-micro) linear;
+    color var(--motion-micro) linear,
+    box-shadow var(--motion-micro) linear;
 }
 
 .btn--primary {
@@ -61,19 +62,32 @@
   background: color-mix(in srgb, var(--color-ink) 88%, #000);
 }
 
+/* Les boutons textuels n'ont pas de marge intérieure : l'inversion au survol
+   doit respirer de 8 px. Ce débord est peint par deux ombres portées et non
+   par du padding — la boîte garde sa taille, donc rien ne se décale autour.
+   C'est la règle : aucun état de survol ne change une géométrie. */
 .btn--text:hover,
 .btn--quiet:hover {
-  padding: 0 var(--space-2);
   background: var(--color-ink);
   color: var(--color-bg);
   border-bottom-color: transparent;
+  box-shadow: calc(var(--space-2) * -1) 0 0 var(--color-ink),
+    var(--space-2) 0 0 var(--color-ink);
 }
 
 .btn--destructive:hover {
-  padding: 0 var(--space-2);
   background: var(--color-danger);
   color: var(--color-bg);
   border-bottom-color: transparent;
+  box-shadow: calc(var(--space-2) * -1) 0 0 var(--color-danger),
+    var(--space-2) 0 0 var(--color-danger);
+}
+
+/* Un bouton qui occupe déjà toute la largeur ne peut pas déborder : il
+   sortirait de son conteneur. */
+.btn--block:hover,
+.btn--block:hover.btn--destructive {
+  box-shadow: none;
 }
 
 .btn:focus-visible {
@@ -107,6 +121,32 @@
 
 .field__label {
   display: block;
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+  color: var(--color-muted);
+}
+
+/* L'astérisque est hors du <label> : le nom accessible du champ reste « Nom »
+   et c'est aria-required qui porte l'obligation. */
+.field__labelrow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.field__required {
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+  color: var(--color-ink);
+}
+
+.field--invalid .field__required {
+  color: var(--color-danger);
+}
+
+/* Légende d'un formulaire : dit une fois ce que l'astérisque signifie. */
+.form-legend {
+  margin-top: 2px;
   font-size: var(--text-meta);
   line-height: var(--leading-meta);
   color: var(--color-muted);
@@ -570,17 +610,124 @@ button.stat:hover {
 }
 
 .sheet {
+  /* La poignée déborde de la marge intérieure et du premier intervalle :
+     les deux passent par une variable pour rester solidaires. */
+  --sheet-pad: var(--space-6);
+  --sheet-gap: var(--space-4);
+  /* Bande de fond laissée libre au-dessus de la feuille : on doit pouvoir
+     la viser pour refermer. */
+  --sheet-reach: var(--space-12);
+
   background: var(--color-bg);
   border-top: var(--rule-width) solid var(--color-ink);
-  padding: var(--space-6);
+  padding: var(--sheet-pad);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--sheet-gap);
   width: 100%;
-  max-height: 76%;
+  /* Elle monte aussi haut qu'il le faut, en laissant de quoi viser le fond
+     pour la refermer. Un formulaire de sept champs ne doit pas défiler. */
+  max-height: calc(100% - var(--sheet-reach));
   overflow-y: auto;
   overscroll-behavior: contain;
   animation: sheet-in var(--motion-panel) var(--ease-out);
+}
+
+/* Sur un téléphone, chaque intervalle compte : le rythme se resserre sans
+   qu'aucune cible ne descende sous 44 px. */
+@media (max-width: 639px) {
+  .sheet {
+    --sheet-pad: var(--space-5);
+    --sheet-gap: var(--space-3);
+    --sheet-reach: var(--space-6);
+    /* La marge du bas passe au dernier bloc : une barre collée au bord doit
+       porter son air elle-même, sinon elle recouvre ce qui la précède. */
+    padding-bottom: 0;
+  }
+
+  .sheet-scrim__dismiss {
+    min-height: var(--space-6);
+  }
+
+  .sheet .field__wrap {
+    margin-top: var(--space-1);
+  }
+
+  .sheet textarea.field__input {
+    min-height: 52px;
+  }
+
+  .sheet .form-grid {
+    gap: var(--space-3) var(--space-2);
+  }
+
+  /* Filet de sécurité : sur un écran trop court pour tout montrer, les
+     champs passent sous la barre d'actions au lieu de l'emporter avec eux.
+     « enregistrer » ne se cherche jamais. */
+  .sheet .sheet__actions {
+    position: sticky;
+    bottom: 0;
+    margin-top: 0;
+    padding: var(--space-3) 0 var(--sheet-pad);
+    background: var(--color-bg);
+  }
+
+  /* La confirmation remplace la barre d'actions : elle reprend sa marge. */
+  .sheet .confirm--boxed {
+    padding-bottom: var(--sheet-pad);
+  }
+}
+
+/* Au-delà du téléphone, une feuille pleine largeur n'est plus une feuille :
+   elle se recentre et se ferme de ses deux côtés. L'encart de la page de
+   présentation garde la sienne pleine — son cadre fait déjà 390 px. */
+@media (min-width: 640px) {
+  .app--page .sheet:not(.sheet--full) {
+    max-width: var(--sheet-max-width);
+    margin: 0 auto;
+    border-left: var(--rule-width) solid var(--color-ink);
+    border-right: var(--rule-width) solid var(--color-ink);
+  }
+}
+
+/* Poignée : la feuille se glisse vers le bas pour se fermer. La barre est
+   décorative, la zone tactile fait 44 px, le bouton « fermer » reste. */
+.sheet__grab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--touch-target);
+  margin: calc(var(--sheet-pad) * -1) calc(var(--sheet-pad) * -1)
+    calc(var(--sheet-gap) * -1);
+  touch-action: none;
+  cursor: grab;
+}
+
+.sheet__grab:active {
+  cursor: grabbing;
+}
+
+.sheet__grab::before {
+  content: '';
+  width: var(--space-8);
+  border-top: 2px solid var(--color-rule);
+}
+
+.sheet__grab:hover::before {
+  border-top-color: var(--color-ink);
+}
+
+/* Pendant le glissement la feuille suit le doigt sans transition ; au
+   relâchement elle revient à sa place. */
+.sheet--dragging {
+  animation: none;
+  transition: none;
+  user-select: none;
+}
+
+.sheet--settling {
+  animation: none;
+  transition: transform var(--motion-panel) var(--ease-out);
 }
 
 /* Panneau plein cadre : réglages, pas d'échelle de profondeur au-delà. */

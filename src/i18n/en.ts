@@ -17,6 +17,11 @@ export const en: Record<MessageKey, string> = {
   'app.nav.settings': 'settings',
   'app.nav.records': 'records',
   'app.nav.byYear': 'view by year',
+  'app.nav.back': '‹ {label}',
+  'app.nav.views': 'Views',
+  'app.nav.tab.races': 'races',
+  'app.nav.tab.year': 'year',
+  'app.nav.tab.records': 'records',
   'app.nav.add': '+ add',
   'app.nav.site': 'site',
 
@@ -75,7 +80,6 @@ export const en: Record<MessageKey, string> = {
   'app.month.continued': '{name} — continued',
   'app.month.gap.one': '{n} day without a race',
   'app.month.gap.other': '{n} days without a race',
-  'app.month.backToYear': 'back to the year',
 
   // ————— app · records —————
   'app.records.title': 'records',
@@ -120,6 +124,7 @@ export const en: Record<MessageKey, string> = {
   'app.edit.editTitle': 'edit race',
   'app.edit.saveNew': 'add',
   'app.edit.save': 'save',
+  'app.edit.requiredLegend': '* required field',
   'app.edit.name': 'Name',
   'app.edit.namePlaceholder': 'Paris Marathon',
   'app.edit.type': 'Type',
@@ -128,7 +133,7 @@ export const en: Record<MessageKey, string> = {
   'app.edit.duration': 'Duration',
   'app.edit.durationHint': 'h:mm:ss or mm:ss',
   'app.edit.durationPlaceholder': '3:45:00',
-  'app.edit.elevation': 'Climb ({unit}) — optional',
+  'app.edit.elevation': 'Climb ({unit})',
   'app.edit.location': 'Place',
   'app.edit.notes': 'Notes',
   'app.edit.notesPlaceholder': "what you'll remember in ten years",

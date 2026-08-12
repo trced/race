@@ -174,7 +174,15 @@ describe('vues', () => {
     // La vue Mois montre le départ et la continuation du lendemain.
     expect(screen.getByText('UTMB')).toBeTruthy()
     expect(screen.getByText('UTMB — suite')).toBeTruthy()
-    expect(screen.getByRole('button', { name: "retour à l'année" })).toBeTruthy()
+
+    // Le retour nomme l'année où il ramène, et il y ramène vraiment.
+    const back = screen.getByRole('button', { name: '‹ 2026' })
+    await user.click(back)
+    expect(screen.getByRole('button', { name: 'août : 1 course' })).toBeTruthy()
+
+    // Depuis l'année, un retour existe aussi vers la liste — il manquait.
+    await user.click(screen.getByRole('button', { name: '‹ courses' }))
+    expect(screen.getByLabelText('Rechercher une course')).toBeTruthy()
   })
 
   it('affiche le record et le total en vue Records', async () => {

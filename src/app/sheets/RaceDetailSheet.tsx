@@ -1,4 +1,6 @@
-/** Fiche d'une course : ce qu'on consulte avant de décider de la modifier. */
+/** Fiche d'une course : ce qu'on consulte avant de décider de la modifier.
+ *  Le contenu ne connaît pas sa surface — feuille par le bas sur téléphone,
+ *  volet de droite sur grand écran. */
 
 import { useState } from 'react'
 import { Button } from '../../components/Button.tsx'
@@ -8,17 +10,32 @@ import { useI18n } from '../../i18n/index.tsx'
 import type { Race } from '../../lib/types.ts'
 import { useFormat } from '../useFormat.ts'
 
-export function RaceDetailSheet({
+export interface RaceDetailProps {
+  race: Race
+  onEdit: () => void
+  onDelete: () => void
+  /** Absent : la fiche occupe sa colonne et ne se referme pas — il n'y a
+   *  rien derrière elle à révéler. */
+  onClose?: (() => void) | undefined
+}
+
+export function RaceDetailSheet(
+  props: RaceDetailProps & { onClose: () => void },
+) {
+  const { t } = useI18n()
+  return (
+    <Sheet label={t('app.detail.label')} onClose={props.onClose}>
+      <RaceDetail {...props} />
+    </Sheet>
+  )
+}
+
+export function RaceDetail({
   race,
   onClose,
   onEdit,
   onDelete,
-}: {
-  race: Race
-  onClose: () => void
-  onEdit: () => void
-  onDelete: () => void
-}) {
+}: RaceDetailProps) {
   const { t } = useI18n()
   const format = useFormat()
   const [askDelete, setAskDelete] = useState(false)
@@ -28,12 +45,14 @@ export function RaceDetailSheet({
     .join(' · ')
 
   return (
-    <Sheet label={t('app.detail.label')} onClose={onClose}>
+    <>
       <div className="sheet__head">
         <span className="t-brand">{race.name}</span>
-        <Button variant="quiet" onClick={onClose}>
-          {t('common.close')}
-        </Button>
+        {onClose ? (
+          <Button variant="quiet" onClick={onClose}>
+            {t('common.close')}
+          </Button>
+        ) : null}
       </div>
 
       <div className="detail__headline">
@@ -98,6 +117,6 @@ export function RaceDetailSheet({
           </Button>
         </div>
       )}
-    </Sheet>
+    </>
   )
 }

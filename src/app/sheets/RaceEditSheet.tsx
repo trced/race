@@ -83,14 +83,7 @@ export function emptyDraft(today: string, unit: UnitSetting): RaceDraft {
   }
 }
 
-export function RaceEditSheet({
-  draft: initial,
-  isNew,
-  original,
-  onClose,
-  onSave,
-  onDelete,
-}: {
+export interface RaceEditProps {
   draft: RaceDraft
   isNew: boolean
   /** La course avant modification — sert à ne pas réécrire une valeur
@@ -99,7 +92,28 @@ export function RaceEditSheet({
   onClose: () => void
   onSave: (race: Race) => void
   onDelete: () => void
-}) {
+}
+
+export function RaceEditSheet(props: RaceEditProps) {
+  const { t } = useI18n()
+  return (
+    <Sheet
+      label={props.isNew ? t('app.edit.newTitle') : t('app.edit.editTitle')}
+      onClose={props.onClose}
+    >
+      <RaceEditForm {...props} />
+    </Sheet>
+  )
+}
+
+export function RaceEditForm({
+  draft: initial,
+  isNew,
+  original,
+  onClose,
+  onSave,
+  onDelete,
+}: RaceEditProps) {
   const { t } = useI18n()
   const format = useFormat()
   const { settings } = useStore()
@@ -182,20 +196,23 @@ export function RaceEditSheet({
   }
 
   return (
-    <Sheet
-      label={isNew ? t('app.edit.newTitle') : t('app.edit.editTitle')}
-      onClose={onClose}
-    >
+    <>
+      {/* La légende tient sous le titre plutôt que sur sa propre ligne :
+          sur un téléphone, chaque intervalle gagné évite un défilement. */}
       <div className="sheet__head">
-        <span className="t-body">
-          {isNew ? t('app.edit.newTitle') : t('app.edit.editTitle')}
-        </span>
+        <div>
+          <span className="t-body">
+            {isNew ? t('app.edit.newTitle') : t('app.edit.editTitle')}
+          </span>
+          <p className="form-legend">{t('app.edit.requiredLegend')}</p>
+        </div>
         <Button variant="quiet" onClick={onClose}>
           {t('common.close')}
         </Button>
       </div>
 
       <TextField
+        required
         label={t('app.edit.name')}
         value={draft.name}
         onValueChange={(name) => update({ name })}
@@ -203,6 +220,8 @@ export function RaceEditSheet({
         error={error('name')}
       />
 
+      {/* Une seule grille pour les six champs courts : deux colonnes en
+          feuille, trois quand la colonne de droite en a la place. */}
       <div className="form-grid">
         <SelectField
           label={t('app.edit.type')}
@@ -214,16 +233,15 @@ export function RaceEditSheet({
           }))}
         />
         <TextField
+          required
           label={t('app.edit.date')}
           type="date"
           value={draft.date}
           onValueChange={(date) => update({ date })}
           error={error('date')}
         />
-      </div>
-
-      <div className="form-grid">
         <TextField
+          required
           label={t('app.edit.distance', { unit: format.distanceUnit })}
           inputMode="decimal"
           value={draft.distance}
@@ -232,6 +250,7 @@ export function RaceEditSheet({
           error={error('distance')}
         />
         <TextField
+          required
           label={t('app.edit.duration')}
           inputMode="numeric"
           value={draft.duration}
@@ -240,9 +259,6 @@ export function RaceEditSheet({
           hint={t('app.edit.durationHint')}
           error={error('duration')}
         />
-      </div>
-
-      <div className="form-grid">
         <TextField
           label={t('app.edit.elevation', { unit: format.elevationUnit })}
           inputMode="numeric"
@@ -293,6 +309,6 @@ export function RaceEditSheet({
           </div>
         </div>
       )}
-    </Sheet>
+    </>
   )
 }

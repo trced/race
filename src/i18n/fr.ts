@@ -16,6 +16,13 @@ export const fr = {
   'app.nav.settings': 'réglages',
   'app.nav.records': 'records',
   'app.nav.byYear': 'voir par année',
+  // Le retour nomme l'endroit où il ramène — « ‹ 2026 » plutôt que « retour ».
+  'app.nav.back': '‹ {label}',
+  // Destinations de la barre haute : des libellés, pas des titres de page.
+  'app.nav.views': 'Vues',
+  'app.nav.tab.races': 'courses',
+  'app.nav.tab.year': 'année',
+  'app.nav.tab.records': 'records',
   'app.nav.add': '+ ajouter',
   'app.nav.site': 'site',
 
@@ -76,7 +83,6 @@ export const fr = {
   'app.month.continued': '{name} — suite',
   'app.month.gap.one': '{n} jour sans course',
   'app.month.gap.other': '{n} jours sans course',
-  'app.month.backToYear': "retour à l'année",
 
   // ————— application · records —————
   'app.records.title': 'records',
@@ -121,6 +127,7 @@ export const fr = {
   'app.edit.editTitle': 'modifier la course',
   'app.edit.saveNew': 'ajouter',
   'app.edit.save': 'enregistrer',
+  'app.edit.requiredLegend': '* champ obligatoire',
   'app.edit.name': 'Nom',
   'app.edit.namePlaceholder': 'Marathon de Paris',
   'app.edit.type': 'Type',
@@ -129,7 +136,7 @@ export const fr = {
   'app.edit.duration': 'Durée',
   'app.edit.durationHint': 'h:mm:ss ou mm:ss',
   'app.edit.durationPlaceholder': '3:45:00',
-  'app.edit.elevation': 'D+ ({unit}) — facultatif',
+  'app.edit.elevation': 'D+ ({unit})',
   'app.edit.location': 'Lieu',
   'app.edit.notes': 'Notes',
   'app.edit.notesPlaceholder': 'ce dont vous vous souviendrez dans dix ans',
