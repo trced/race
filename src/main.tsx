@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * Contact : contact@race.app — code source : https://github.com/race-app/race
+ * Contact : contact@race.app — code source : https://github.com/trced/race
  *
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */

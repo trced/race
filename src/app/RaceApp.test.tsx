@@ -217,7 +217,7 @@ describe('réglages', () => {
     await user.click(screen.getByRole('button', { name: 'réglages' }))
 
     const source = screen.getByRole('link', { name: /code source/ })
-    expect(source.getAttribute('href')).toBe('https://github.com/race-app/race')
+    expect(source.getAttribute('href')).toBe('https://github.com/trced/race')
     expect(
       screen
         .getByRole('link', { name: /licence/ })
