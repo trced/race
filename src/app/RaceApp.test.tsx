@@ -218,11 +218,11 @@ describe('réglages', () => {
 
     const source = screen.getByRole('link', { name: /code source/ })
     expect(source.getAttribute('href')).toBe('https://github.com/trced/race')
+    // Le texte livré avec le programme, pas la page de la FSF : c'est la
+    // copie qui accompagne ce logiciel-là qui fait foi.
     expect(
-      screen
-        .getByRole('link', { name: /licence/ })
-        .getAttribute('href'),
-    ).toContain('agpl-3.0')
+      screen.getByRole('link', { name: /licence/ }).getAttribute('href'),
+    ).toBe('https://github.com/trced/race/blob/main/LICENSE')
   })
 
   it('efface tout après confirmation explicite', async () => {

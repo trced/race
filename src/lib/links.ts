@@ -5,4 +5,12 @@
 export const REPO = 'https://github.com/trced/race'
 export const CONTACT_EMAIL = 'contact@race.app'
 export const CONTACT = `mailto:${CONTACT_EMAIL}`
-export const LICENCE_URL = 'https://www.gnu.org/licenses/agpl-3.0.html'
+
+/** Le fichier livré avec le programme, pas le texte canonique de la FSF.
+ *
+ *  C'est celui-là qui fait foi : l'AGPL demande qu'une copie de la licence
+ *  accompagne le logiciel, et « or later » veut dire que le fichier du dépôt
+ *  peut dire une chose que la page d'une version précise ne dit pas. Le lien
+ *  atterrit dans le même dépôt que « code source » — l'utilisateur qui veut
+ *  vérifier ses droits trouve le texte et le code au même endroit. */
+export const LICENCE_URL = `${REPO}/blob/main/LICENSE`
