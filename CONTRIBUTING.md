@@ -11,9 +11,14 @@ Everyone taking part is expected to follow the
 Most pull requests that get turned down fail one of these, so they come first.
 
 **One question.** race. answers *what have I run?* A feature that does not serve
-that question is not added, however good it is. Charts, training plans,
-leaderboards, GPS import, social features and streaks have all been considered
-and refused on purpose — see "What it is not" in the [README](README.md).
+that question is not added, however good it is. Training plans, leaderboards,
+GPS import, social features and streaks have all been considered and refused on
+purpose — see "What it is not" in the [README](README.md).
+
+One chart was accepted in 0.1.1, and only because it asks the same question over
+time: Curves plots races already written down, and predicts nothing. The bar it
+had to clear is the bar every idea has to clear — not a precedent that a second
+chart inherits.
 
 **No new component without proof.** Before adding one to
 `src/components/`: show that three screens need it, show that no composition of

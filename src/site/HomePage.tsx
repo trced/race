@@ -34,6 +34,7 @@ const HINTS: MessageKey[] = [
   'site.home.appHint.detail',
   'site.home.appHint.year',
   'site.home.appHint.records',
+  'site.home.appHint.curves',
   'site.home.appHint.settings',
 ]
 
@@ -42,6 +43,7 @@ const REFUSALS: MessageKey[] = [
   'site.home.notdo.badges',
   'site.home.notdo.social',
   'site.home.notdo.notifications',
+  'site.home.notdo.advice',
 ]
 
 /** L'encart mesure 390 × 844 : en dessous de cette largeur, c'est un

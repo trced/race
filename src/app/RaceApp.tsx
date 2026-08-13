@@ -1,15 +1,23 @@
-/** race. — l'application. Trois vues, une fiche, un formulaire, un panneau.
- *  Rien d'autre : elle répond à « qu'est-ce que j'ai couru ? ».
+/** race. — l'application. Quatre destinations, une fiche, un formulaire, un
+ *  panneau. Rien d'autre : elle répond à « qu'est-ce que j'ai couru ? ».
  *
  *  Une logique, trois mises en page :
  *  — téléphone : une colonne, les destinations au pouce dans le pied, la
  *    profondeur par le fil d'Ariane, la fiche par une feuille ;
  *  — tablette  : une colonne, les destinations en barre haute ;
  *  — large     : deux colonnes — la liste à gauche en permanence, la vue
- *    courante à droite. Les trois vues deviennent voisines, pas des
+ *    courante à droite. Les destinations deviennent voisines, pas des
  *    sous-pages, et la fiche n'a plus à recouvrir la liste. */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  Suspense,
+  lazy,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { Link } from 'react-router'
 import { Button } from '../components/Button.tsx'
 import { EmptyState } from '../components/Feedback.tsx'
@@ -31,10 +39,41 @@ import { RaceDetail, RaceDetailSheet } from './sheets/RaceDetailSheet.tsx'
 import { RaceEditForm, RaceEditSheet, emptyDraft, toDraft } from './sheets/RaceEditSheet.tsx'
 import { SettingsSheet } from './sheets/SettingsSheet.tsx'
 
-type View = 'list' | 'year' | 'month' | 'records'
+type View = 'list' | 'year' | 'month' | 'records' | 'curves'
 type Sort = 'dateDesc' | 'dateAsc' | 'distanceDesc'
 
 const SORTS: Sort[] = ['dateDesc', 'dateAsc', 'distanceDesc']
+
+/** Les destinations autres que la liste, dans l'ordre où elles se présentent
+ *  partout — barre haute comme pied du téléphone. */
+const DESTINATIONS: [Exclude<View, 'list' | 'month'>, MessageKey][] = [
+  ['year', 'app.nav.tab.year'],
+  ['records', 'app.nav.tab.records'],
+  ['curves', 'app.nav.tab.curves'],
+]
+
+/** Le tracé embarque une bibliothèque : elle arrive à part, pour que la liste
+ *  et la page de présentation n'aient pas à la porter. Hors ligne elle est
+ *  déjà là — le worker précache tous les morceaux produits. */
+const CurvesView = lazy(() =>
+  import('./views/CurvesView.tsx')
+    .then((module) => ({ default: module.CurvesView }))
+    // Sans ce filet, un morceau qui n'arrive pas emporte l'arbre entier.
+    .catch(() => ({ default: CurvesUnavailable })),
+)
+
+function CurvesUnavailable() {
+  const { t } = useI18n()
+  return (
+    <div className="curves">
+      <EmptyState
+        title={t('app.curves.error.title')}
+        body={t('app.curves.error.body')}
+      />
+    </div>
+  )
+}
+
 const FLASH_MS = 3000
 
 /** Au-delà, les destinations quittent le pied pour une barre haute : à la
@@ -232,6 +271,7 @@ export function RaceApp({ embedded = false }: { embedded?: boolean }) {
   const isYear = view === 'year'
   const isMonth = view === 'month'
   const isRecords = view === 'records'
+  const isCurves = view === 'curves'
   const hasRaces = store.races.length > 0
 
   const atToday = isYear
@@ -316,7 +356,9 @@ export function RaceApp({ embedded = false }: { embedded?: boolean }) {
         ]
       : isRecords
         ? [{ label: t('app.records.title'), to: null }]
-        : []
+        : isCurves
+          ? [{ label: t('app.curves.title'), to: null }]
+          : []
 
   // — les morceaux, posés ensuite à leur place selon la mise en page —
 
@@ -419,6 +461,11 @@ export function RaceApp({ embedded = false }: { embedded?: boolean }) {
       <span className="app__title">{t('app.records.title')}</span>
       <span className="app__count t-nowrap">{t('app.records.subtitle')}</span>
     </div>
+  ) : isCurves ? (
+    <div className="app__titleline">
+      <span className="app__title">{t('app.curves.title')}</span>
+      <span className="app__count t-nowrap">{t('app.curves.subtitle')}</span>
+    </div>
   ) : null
 
   const listContent = (
@@ -474,6 +521,16 @@ export function RaceApp({ embedded = false }: { embedded?: boolean }) {
     />
   ) : isRecords ? (
     <RecordsView races={store.races} onOpen={openDetail} />
+  ) : isCurves ? (
+    <Suspense
+      fallback={
+        <div className="curves">
+          <p className="curves__note">{t('app.curves.loading')}</p>
+        </div>
+      }
+    >
+      <CurvesView races={store.races} onOpen={openDetail} />
+    </Suspense>
   ) : null
 
   const cardContent = edit ? (
@@ -513,7 +570,14 @@ export function RaceApp({ embedded = false }: { embedded?: boolean }) {
       ? `${monthName(month, locale)} ${year}`
       : isRecords
         ? t('app.records.title')
-        : t('app.detail.label')
+        : isCurves
+          ? t('app.curves.title')
+          : t('app.detail.label')
+
+  /** Les destinations où l'on n'est pas déjà. Le mois compte pour l'année. */
+  const elsewhere = DESTINATIONS.filter(
+    ([key]) => key !== (isMonth ? 'year' : view),
+  )
 
   return (
     <div
@@ -616,20 +680,16 @@ export function RaceApp({ embedded = false }: { embedded?: boolean }) {
                   <Button onClick={() => setView(back.view)}>
                     {t('app.nav.back', { label: back.label })}
                   </Button>
-                ) : (
-                  <Button onClick={() => setView('year')}>
-                    {t('app.nav.byYear')}
+                ) : null}
+                {elsewhere.map(([key, label]) => (
+                  <Button
+                    key={key}
+                    variant="quiet"
+                    onClick={() => setView(key)}
+                  >
+                    {t(label)}
                   </Button>
-                )}
-                {isRecords ? (
-                  <Button variant="quiet" onClick={() => setView('year')}>
-                    {t('app.nav.byYear')}
-                  </Button>
-                ) : (
-                  <Button variant="quiet" onClick={() => setView('records')}>
-                    {t('app.nav.records')}
-                  </Button>
-                )}
+                ))}
               </div>
             )}
             <Button variant="primary" onClick={openNew}>
@@ -692,7 +752,7 @@ export function RaceApp({ embedded = false }: { embedded?: boolean }) {
   )
 }
 
-/** Barre de destinations — tablette et au-delà. Trois vues en libellés texte,
+/** Barre de destinations — tablette et au-delà. Les vues en libellés texte,
  *  l'active soulignée d'un trait : l'état se lit, il ne se colore pas.
  *  « réglages » suit un filet vertical : ce n'est pas une vue du carnet. */
 function ViewTabs({
@@ -708,8 +768,7 @@ function ViewTabs({
 
   const TABS: [View, MessageKey][] = [
     ['list', 'app.nav.tab.races'],
-    ['year', 'app.nav.tab.year'],
-    ['records', 'app.nav.tab.records'],
+    ...DESTINATIONS,
   ]
 
   // Le mois est une profondeur de l'année, pas une destination : c'est

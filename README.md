@@ -1,14 +1,15 @@
 # race.
 
-![version](https://img.shields.io/badge/version-0.1.0-17181a)
+![version](https://img.shields.io/badge/version-0.1.1-17181a)
 ![licence](https://img.shields.io/badge/licence-AGPL--3.0--or--later-17181a)
 ![PWA](https://img.shields.io/badge/PWA-offline-17181a)
 ![tracking](https://img.shields.io/badge/tracking-none-17181a)
 
 **All your races. One line each.**
 
-race. answers a single question: *what have I run?* No training plan, no chart,
-no leaderboard. You write the race down, and it is still readable in ten years.
+race. answers a single question: *what have I run?* No training plan, no
+leaderboard, no advice. You write the race down, and it is still readable in ten
+years.
 
 No account, no network, no paid tier. Everything lives in your browser's local
 storage, and the only exchange format is a `race.json` file that you export and
@@ -43,7 +44,7 @@ import yourself.
 |  |  |
 |---|---|
 | **Unit** | one race — name, date, distance, duration; place, climb and notes optional |
-| **Views** | List (default) · Year · Month · Records |
+| **Views** | List (default) · Year · Month · Records · Curves |
 | **Vocabulary** | `●` a race took place · `·` nothing that month · a vertical line carries a race across several days |
 | **Data** | `localStorage`, `schemaVersion` 1, JSON export and import |
 | **Languages** | French, English, or the one your system asks for |
@@ -52,7 +53,8 @@ import yourself.
 
 Three layouts, one behaviour. On a phone the app is a single column with its
 actions in reach of the thumb. On a wide screen the list stays on the left and
-the current view — race card, year, month, records — occupies the right, so
+the current view — race card, year, month, records, curves — occupies the
+right, so
 moving from one race to the next never hides the others.
 
 ## What it is not
@@ -61,6 +63,7 @@ moving from one race to the next never hides the others.
 - no badges, no streak to keep alive
 - no sharing, no leaderboard
 - no notifications, no cookies, no telemetry
+- no prediction, no goal to hit: Curves shows what was run, it does not advise
 
 A feature that does not serve *what have I run?* is not added.
 
@@ -74,6 +77,12 @@ Records — best time per official distance, the gap to the second, and the
 totals:
 
 ![The records view: best time per distance in two columns, with the out-of-format extremes and the totals below](docs/screenshots/app-records.png)
+
+Curves — one race type over time. Official distances are plotted as finish time,
+formats with no fixed distance as pace. The axis is not flipped: a faster race
+sits lower, and the chart says so rather than miming it.
+
+![The curves view: one marathon time per year joined by a line, the axes named above it and every plotted race listed below](docs/screenshots/app-curves.png)
 
 ## Getting started
 
@@ -157,6 +166,7 @@ src/
 │   ├── validate.ts       form validation, returning i18n keys
 │   ├── calendar.ts       month building, gaps and continuations
 │   ├── records.ts        best times, extremes, totals
+│   ├── curves.ts         series per race type, axis scales and ticks
 │   ├── io.ts             race.json: read, write, merge
 │   └── storage.ts        local persistence
 ├── i18n/                 fr.ts (reference) + en.ts (typed mirror) + runtime
@@ -199,8 +209,11 @@ documents disagree, the documents are right and the code has a bug.
 Tokens live in `src/styles/tokens.css`; a hard-coded value in a component is a
 conformance defect. Constraints held:
 
-- system CSS under 8 kB compressed (`tokens` + `base` + `components`, 6.2 kB today)
-- no remote fonts, no images in the interface, no third-party UI dependency
+- system CSS under 8 kB compressed (`tokens` + `base` + `components`, 6.4 kB today)
+- no remote fonts, no images in the interface
+- one third-party UI dependency, and only one: Recharts draws the Curves view.
+  It is loaded on its own, when that view is opened, and it is styled entirely
+  from the tokens — no colour, font or radius of its own survives
 - 44 × 44 touch targets, 2 px focus ring at 3 px offset, WCAG 2.2 AA
 - no drop shadows; the 1 px rule is the only separator
 - right angles throughout; state reads, it does not colour

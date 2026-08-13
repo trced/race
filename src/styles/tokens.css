@@ -65,6 +65,9 @@
   --text-data: 14px;
   --text-label: 13px;
   --text-meta: 12px;
+  /* Plancher du texte d'un champ, nul par défaut : relevé au doigt seulement,
+     plus bas. 16 px n'est pas un cran de l'échelle, c'est un seuil. */
+  --text-field-min: 0px;
   --leading-display: 1.1;
   --leading-title: 1.25;
   --leading-brand: 1.2;
@@ -121,6 +124,15 @@
   --color-muted-strong: #8e9089;
   --color-rule: var(--grey-800);
   --color-danger: var(--red-400);
+}
+
+/* Sous 16 px, Safari mobile zoome au focus d'un champ et ne redescend jamais.
+   On relève le plancher plutôt que de verrouiller le viewport : `maximum-scale`
+   interdirait aussi le zoom voulu, et iOS l'ignore. */
+@media (pointer: coarse) {
+  :root {
+    --text-field-min: 16px;
+  }
 }
 
 @media (min-width: 640px) {

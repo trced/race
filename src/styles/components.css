@@ -166,7 +166,7 @@
   color: var(--color-ink);
   border: var(--rule-width) solid var(--color-rule);
   border-radius: var(--radius-sm);
-  font-size: var(--text-data);
+  font-size: max(var(--text-data), var(--text-field-min));
 }
 
 .field__input--clearable {
@@ -525,16 +525,18 @@ button.row:hover {
   margin-top: 0;
 }
 
+/* Borne en `ch` : au doigt le texte passe à 16 px, une largeur en pixels
+   rognerait « tous les types ». La recherche garde la moitié de la barre. */
 .searchbar__select {
-  flex: 0 0 auto;
-  max-width: 150px;
+  flex: 0 1 auto;
+  max-width: min(19ch, 50%);
   min-height: var(--field-height);
   padding: 0 var(--space-2) 0 var(--field-padding-x);
   background: var(--color-bg);
   color: var(--color-ink);
   border: var(--rule-width) solid var(--color-rule);
   border-radius: var(--radius-sm);
-  font-size: var(--text-label);
+  font-size: max(var(--text-label), var(--text-field-min));
 }
 
 /* ————— StatRow ————— */
@@ -653,8 +655,9 @@ button.stat:hover {
     margin-top: var(--space-1);
   }
 
+  /* Deux lignes pleines : à 16 px, 52 px n'en laissaient plus qu'une. */
   .sheet textarea.field__input {
-    min-height: 52px;
+    min-height: 64px;
   }
 
   .sheet .form-grid {

@@ -1,6 +1,6 @@
 {
   "name": "race",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "All your races. One line each. A local-first, offline race logbook with no account.",
   "keywords": [
@@ -38,7 +38,8 @@
   "dependencies": {
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router": "^8.3.0"
+    "react-router": "^8.3.0",
+    "recharts": "^3.10.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^7.0.1",

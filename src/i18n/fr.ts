@@ -14,15 +14,15 @@ export const fr = {
   'app.nav.breadcrumb': "Fil d'Ariane",
   'app.nav.home': "revenir à l'accueil de l'application",
   'app.nav.settings': 'réglages',
-  'app.nav.records': 'records',
-  'app.nav.byYear': 'voir par année',
   // Le retour nomme l'endroit où il ramène — « ‹ 2026 » plutôt que « retour ».
   'app.nav.back': '‹ {label}',
-  // Destinations de la barre haute : des libellés, pas des titres de page.
+  // Destinations : mêmes libellés en barre haute et au pied du téléphone.
+  // Une destination ne change pas de nom selon la taille de l'écran.
   'app.nav.views': 'Vues',
   'app.nav.tab.races': 'courses',
   'app.nav.tab.year': 'année',
   'app.nav.tab.records': 'records',
+  'app.nav.tab.curves': 'courbes',
   'app.nav.add': '+ ajouter',
   'app.nav.site': 'site',
 
@@ -103,6 +103,35 @@ export const fr = {
   'app.records.totalDistance': 'distance',
   'app.records.totalElevation': 'dénivelé',
   'app.records.empty': '—',
+
+  // ————— application · vue courbes —————
+  'app.curves.title': 'courbes',
+  'app.curves.subtitle': 'un type de course dans le temps',
+  'app.curves.selectLabel': 'Type de course',
+  'app.curves.axis.time': 'temps de course',
+  'app.curves.axis.pace': 'allure (min/{unit})',
+  'app.curves.legend.series': 'série',
+  'app.curves.legend.vertical': 'axe vertical',
+  'app.curves.legend.horizontal': 'axe horizontal',
+  'app.curves.legend.date': 'date de la course',
+  'app.curves.count.one': '{n} course',
+  'app.curves.count.other': '{n} courses',
+  'app.curves.span': 'de {first} à {last}',
+  // L'axe n'est pas retourné : on dit le sens de lecture au lieu de le mimer.
+  'app.curves.reading.time': 'plus la courbe descend, plus la course a été rapide',
+  'app.curves.reading.pace':
+    'plus la courbe descend, plus les kilomètres ont été rapides',
+  'app.curves.chartAria':
+    '{type} : {n} courses, {axis} en ordonnée, date en abscisse. Le détail de chaque course suit sous le graphique.',
+  'app.curves.loading': 'chargement du tracé…',
+  'app.curves.error.title': 'Le tracé n’a pas pu être chargé.',
+  'app.curves.error.body':
+    'Le reste du journal est intact. Rechargez la page pour réessayer.',
+  'app.curves.noPoints':
+    'Aucune course de ce type ne peut être placée : il y faut une date et une durée lisibles.',
+  'app.curves.empty.title': 'Rien à tracer pour le moment.',
+  'app.curves.empty.body':
+    'Une courbe demande au moins une course. Notez-en une, et son type apparaîtra ici.',
 
   // ————— application · fiche de course —————
   'app.detail.label': 'Détail de la course',
@@ -257,7 +286,7 @@ export const fr = {
     "race. répond à une seule question : qu'est-ce que j'ai couru ? Journal de courses local, hors ligne, sans compte.",
   'site.home.title': 'Toutes vos courses. Une ligne chacune.',
   'site.home.lede':
-    "race. répond à une seule question : qu'est-ce que j'ai couru ? Pas de plan d'entraînement, pas de graphique, pas de classement. Vous notez la course, elle reste lisible dans dix ans.",
+    "race. répond à une seule question : qu'est-ce que j'ai couru ? Pas de plan d'entraînement, pas de classement, aucun conseil. Vous notez la course, elle reste lisible dans dix ans.",
   'site.home.cta': 'ajouter ma première course',
   'site.home.demo': 'voir un exemple',
 
@@ -291,10 +320,11 @@ export const fr = {
     "L'application, en état de marche. Une course par ligne, l'année en rappel, la recherche au-dessus, une seule action en bas.",
   'site.home.appHint.detail':
     'cliquez une course pour ouvrir sa fiche, puis « modifier »',
-  'site.home.appHint.year':
-    '« voir par année » puis un mois pour la vue calendrier',
+  'site.home.appHint.year': '« année » puis un mois pour la vue calendrier',
   'site.home.appHint.records':
     '« records » pour les meilleurs temps par distance',
+  'site.home.appHint.curves':
+    '« courbes » pour suivre un même type de course dans le temps',
   'site.home.appHint.settings':
     '« réglages » pour le thème sombre, les miles, l’export',
 
@@ -311,6 +341,10 @@ export const fr = {
   'site.home.notdo.badges': 'aucun badge, aucune série à ne pas rompre',
   'site.home.notdo.social': 'aucun partage, aucun classement',
   'site.home.notdo.notifications': 'aucune notification',
+  // Depuis 0.1.1 il y a une courbe. Ce qu'une courbe traîne d'habitude
+  // derrière elle, lui, est toujours refusé — et il faut le dire.
+  'site.home.notdo.advice':
+    'aucune prédiction, aucun objectif à tenir : la courbe montre ce qui a été couru, elle ne dit pas quoi faire',
 
   'site.home.ready': 'Prêt ? La première course prend trente secondes.',
   'site.home.readyNote':

@@ -15,13 +15,12 @@ export const en: Record<MessageKey, string> = {
   'app.nav.breadcrumb': 'Breadcrumb',
   'app.nav.home': 'back to the app home',
   'app.nav.settings': 'settings',
-  'app.nav.records': 'records',
-  'app.nav.byYear': 'view by year',
   'app.nav.back': '‹ {label}',
   'app.nav.views': 'Views',
   'app.nav.tab.races': 'races',
   'app.nav.tab.year': 'year',
   'app.nav.tab.records': 'records',
+  'app.nav.tab.curves': 'curves',
   'app.nav.add': '+ add',
   'app.nav.site': 'site',
 
@@ -100,6 +99,33 @@ export const en: Record<MessageKey, string> = {
   'app.records.totalDistance': 'distance',
   'app.records.totalElevation': 'climb',
   'app.records.empty': '—',
+
+  // ————— app · curves view —————
+  'app.curves.title': 'curves',
+  'app.curves.subtitle': 'one race type over time',
+  'app.curves.selectLabel': 'Race type',
+  'app.curves.axis.time': 'finish time',
+  'app.curves.axis.pace': 'pace (min/{unit})',
+  'app.curves.legend.series': 'series',
+  'app.curves.legend.vertical': 'vertical axis',
+  'app.curves.legend.horizontal': 'horizontal axis',
+  'app.curves.legend.date': 'race date',
+  'app.curves.count.one': '{n} race',
+  'app.curves.count.other': '{n} races',
+  'app.curves.span': 'from {first} to {last}',
+  'app.curves.reading.time': 'the lower the curve, the faster the race',
+  'app.curves.reading.pace': 'the lower the curve, the faster the kilometres',
+  'app.curves.chartAria':
+    '{type}: {n} races, {axis} on the vertical axis, date on the horizontal one. Each race is listed under the chart.',
+  'app.curves.loading': 'loading the chart…',
+  'app.curves.error.title': 'The chart could not be loaded.',
+  'app.curves.error.body':
+    'The rest of the logbook is untouched. Reload the page to try again.',
+  'app.curves.noPoints':
+    'No race of this type can be placed: it takes a readable date and duration.',
+  'app.curves.empty.title': 'Nothing to plot yet.',
+  'app.curves.empty.body':
+    'A curve needs at least one race. Write one down and its type will show up here.',
 
   // ————— app · race detail —————
   'app.detail.label': 'Race detail',
@@ -254,7 +280,7 @@ export const en: Record<MessageKey, string> = {
     'race. answers a single question: what have I run? A race logbook that is local, offline and account-free.',
   'site.home.title': 'All your races. One line each.',
   'site.home.lede':
-    'race. answers a single question: what have I run? No training plan, no chart, no leaderboard. You write the race down, and it is still readable in ten years.',
+    'race. answers a single question: what have I run? No training plan, no leaderboard, no advice. You write the race down, and it is still readable in ten years.',
   'site.home.cta': 'add my first race',
   'site.home.demo': 'see an example',
 
@@ -288,9 +314,10 @@ export const en: Record<MessageKey, string> = {
     'The app, in working order. One race per line, the year as a marker, search above, a single action below.',
   'site.home.appHint.detail':
     'click a race to open its card, then “edit”',
-  'site.home.appHint.year':
-    '“view by year”, then a month for the calendar view',
+  'site.home.appHint.year': '“year”, then a month for the calendar view',
   'site.home.appHint.records': '“records” for the best times per distance',
+  'site.home.appHint.curves':
+    '“curves” to follow one race type over time',
   'site.home.appHint.settings':
     '“settings” for the dark theme, miles, and export',
 
@@ -307,6 +334,8 @@ export const en: Record<MessageKey, string> = {
   'site.home.notdo.badges': 'no badges, no streak to keep alive',
   'site.home.notdo.social': 'no sharing, no leaderboard',
   'site.home.notdo.notifications': 'no notifications',
+  'site.home.notdo.advice':
+    'no prediction, no goal to hit: the curve shows what was run, it does not tell you what to do',
 
   'site.home.ready': 'Ready? The first race takes thirty seconds.',
   'site.home.readyNote': 'Light, dark or system theme · kilometres or miles',

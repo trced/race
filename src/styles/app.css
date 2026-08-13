@@ -306,19 +306,24 @@
   padding: 0 var(--screen-margin);
 }
 
+/* Les destinations passent à la ligne plutôt que de comprimer « + ajouter ».
+   Sans requête média : ce pied existe aussi dans le cadre incrusté de la page
+   de présentation, posé au milieu d'une fenêtre large. */
 .app__foot {
   padding: var(--space-4) var(--screen-margin) var(--space-6);
   padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom));
   border-top: var(--rule-width) solid var(--color-ink);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3) var(--space-4);
 }
 
 .app__foot-group {
   display: flex;
-  gap: var(--space-5);
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
   align-items: center;
   min-width: 0;
 }
@@ -394,6 +399,120 @@
 
 .records__section:last-child {
   padding-bottom: var(--space-2);
+}
+
+/* — vue courbes — */
+
+.curves {
+  padding: var(--space-2) var(--screen-margin) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Une liste de définitions plutôt qu'un cartouche de couleurs. */
+.curves__legend {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+}
+
+.curves__legend-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.curves__legend dt {
+  color: var(--color-muted);
+}
+
+.curves__legend dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink);
+}
+
+.curves__swatch {
+  flex: 0 0 auto;
+  width: var(--space-4);
+  height: var(--rule-width);
+  background: var(--color-ink);
+}
+
+.curves__note {
+  margin: 0;
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+  color: var(--color-muted-strong);
+}
+
+/* Le conteneur de la bibliothèque mesure son parent. */
+.curves__chart {
+  width: 100%;
+}
+
+/* Les couleurs de la bibliothèque sont des attributs de présentation : une
+   règle de feuille de style l'emporte, et le thème sombre suit tout seul. */
+.curves__chart text {
+  font-family: var(--font-family);
+  font-size: var(--text-meta);
+  fill: var(--color-muted-strong);
+}
+
+.curves__chart .recharts-cartesian-grid line,
+.curves__chart .recharts-cartesian-axis-line,
+.curves__chart .recharts-cartesian-axis-tick-line {
+  stroke: var(--color-rule);
+}
+
+.curves__chart .recharts-line .recharts-curve {
+  stroke: var(--color-ink);
+  fill: none;
+}
+
+.curves__chart .recharts-line-dots circle {
+  fill: var(--color-bg);
+  stroke: var(--color-ink);
+}
+
+.curves__chart .recharts-active-dot circle {
+  fill: var(--color-ink);
+  stroke: var(--color-bg);
+}
+
+.curves__chart .recharts-tooltip-cursor {
+  stroke: var(--color-muted);
+}
+
+.curves__chart .recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.curves__tip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg);
+  border: var(--rule-width) solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+}
+
+.curves__tip-name {
+  color: var(--color-ink);
+}
+
+.curves__tip-line {
+  color: var(--color-muted-strong);
 }
 
 /* — fiche de course — */

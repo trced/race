@@ -95,13 +95,23 @@ export function formatElevation(
   return `${new Intl.NumberFormat(locale).format(value)} ${u.elevation}`
 }
 
+/** Une allure déjà calculée, en secondes par kilomètre — l'unité du stockage —
+ *  rendue dans celle qui est réglée : « 4:30/km » ou « 7:14/mi ». */
+export function formatPaceSeconds(
+  secondsPerKm: number,
+  unit: UnitSetting,
+): string {
+  if (!Number.isFinite(secondsPerKm) || secondsPerKm <= 0) return ''
+  const u = unitSystem(unit)
+  const perUnit = Math.round(secondsPerKm / u.factor)
+  return `${Math.floor(perUnit / 60)}:${pad(perUnit % 60)}/${u.distance}`
+}
+
 /** Allure par unité de distance : « 4:30/km ». Vide si la distance est nulle. */
 export function formatPace(race: Race, unit: UnitSetting): string {
-  const u = unitSystem(unit)
-  const distance = Number(race.distance) * u.factor
-  if (!distance) return ''
-  const perUnit = Math.round(toSeconds(race.duration) / distance)
-  return `${Math.floor(perUnit / 60)}:${pad(perUnit % 60)}/${u.distance}`
+  const km = Number(race.distance)
+  if (!km) return ''
+  return formatPaceSeconds(toSeconds(race.duration) / km, unit)
 }
 
 /** Parse une date ISO en date locale — sans décalage de fuseau. */

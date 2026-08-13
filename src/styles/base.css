@@ -64,10 +64,12 @@ button {
   cursor: pointer;
 }
 
+/* `1em` : le corps hérité. La règle n'impose rien, elle pose un plancher. */
 input,
 select,
 textarea {
   font: inherit;
+  font-size: max(1em, var(--text-field-min));
   color: inherit;
 }
 
