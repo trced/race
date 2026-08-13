@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-08-13
+
+### Added
+
+- Curves view: one race type plotted over time, one point per race. Official distances (5k, 10k, half, marathon) are plotted as finish time; formats with no fixed distance — trail, ultra, other — are plotted as pace, the only figure that stays comparable when every race has its own length. A single control: the type, listing only the types actually in the logbook
+- The axis is not flipped. A faster race sits lower, and the chart says so in words rather than miming it. Every plotted race is listed under the chart, which is also how the series is read by keyboard and screen reader, and how a race is opened
+- Curves is a fourth destination, always within reach: in the tab bar from tablet width up, in the phone footer below it
+
+### Changed
+
+- The phone footer names its destinations exactly as the tab bar does — `année`, `records`, `courbes` — instead of `voir par année`. A destination no longer changes name with the width of the screen
+- The chart library is fetched only when the Curves view is opened, so the list, the year, the records and the presentation page carry none of its weight. It is precached like the rest: offline is unaffected
+
+### Fixed
+
+- Focusing a field on a phone no longer zooms the page. Field text now has a floor of 16 px under a coarse pointer — below that, mobile Safari zooms in and never zooms back out. Nothing changes with a mouse, and pinch-to-zoom stays available: the viewport is not locked
+
 ## [0.1.0] - 2026-08-11
 
 ### Added

@@ -9,6 +9,7 @@ import {
   formatDuration,
   formatElevation,
   formatPace,
+  formatPaceSeconds,
   unitSystem,
 } from '../lib/format.ts'
 import type { Race } from '../lib/types.ts'
@@ -19,6 +20,8 @@ export interface Formatter {
   elevation: (metres: number) => string
   duration: (value: string) => string
   pace: (race: Race) => string
+  /** Une allure déjà calculée, en secondes par kilomètre. */
+  paceFrom: (secondsPerKm: number) => string
   date: (iso: string) => string
   /** « 10 km – 45:00 (4:30/km) – D+ 120 m », précédé du type si demandé. */
   meta: (race: Race, withType?: boolean) => string
@@ -57,6 +60,7 @@ export function useFormat(): Formatter {
       elevation: (metres) => formatElevation(metres, unit, locale),
       duration: formatDuration,
       pace: (race) => formatPace(race, unit),
+      paceFrom: (secondsPerKm) => formatPaceSeconds(secondsPerKm, unit),
       date: (iso) => formatDate(iso, locale),
       meta,
       typeLabel,

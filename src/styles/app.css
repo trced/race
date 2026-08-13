@@ -306,19 +306,27 @@
   padding: 0 var(--screen-margin);
 }
 
+/* Le retour et les destinations d'un côté, l'action de l'autre. Quand les
+   trois destinations ne tiennent plus sur la ligne, elles passent au-dessus
+   plutôt que de comprimer « + ajouter ». Aucune requête média ici : le pied
+   ne porte ce groupe que là où la barre haute n'existe pas — un téléphone,
+   ou le cadre de 390 px incrusté dans la page de présentation, qui lui est
+   posé au milieu d'une fenêtre large. */
 .app__foot {
   padding: var(--space-4) var(--screen-margin) var(--space-6);
   padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom));
   border-top: var(--rule-width) solid var(--color-ink);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3) var(--space-4);
 }
 
 .app__foot-group {
   display: flex;
-  gap: var(--space-5);
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
   align-items: center;
   min-width: 0;
 }
@@ -394,6 +402,127 @@
 
 .records__section:last-child {
   padding-bottom: var(--space-2);
+}
+
+/* — vue courbes — */
+
+.curves {
+  padding: var(--space-2) var(--screen-margin) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Une liste de définitions plutôt qu'un cartouche de couleurs : il n'y a
+   qu'une série, et ce qu'il faut dire c'est ce que porte chaque axe. */
+.curves__legend {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+}
+
+.curves__legend-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.curves__legend dt {
+  color: var(--color-muted);
+}
+
+.curves__legend dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink);
+}
+
+/* Le trait de la série, à l'échelle de la légende. */
+.curves__swatch {
+  flex: 0 0 auto;
+  width: var(--space-4);
+  height: var(--rule-width);
+  background: var(--color-ink);
+}
+
+.curves__note {
+  margin: 0;
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+  color: var(--color-muted-strong);
+}
+
+/* Le conteneur de la bibliothèque mesure son parent : il lui faut une
+   largeur, et pas de débord — un libellé d'axe rogné ne se devine pas. */
+.curves__chart {
+  width: 100%;
+}
+
+/* La bibliothèque pose ses couleurs en attributs de présentation : la
+   moindre règle CSS l'emporte. Rien n'est donc écrit en dur dans le
+   composant, et le thème sombre suit sans qu'on ait à le lui dire. */
+.curves__chart text {
+  font-family: var(--font-family);
+  font-size: var(--text-meta);
+  fill: var(--color-muted-strong);
+}
+
+.curves__chart .recharts-cartesian-grid line,
+.curves__chart .recharts-cartesian-axis-line,
+.curves__chart .recharts-cartesian-axis-tick-line {
+  stroke: var(--color-rule);
+}
+
+.curves__chart .recharts-line .recharts-curve {
+  stroke: var(--color-ink);
+  fill: none;
+}
+
+/* Le point est un cercle évidé posé sur la ligne : plein, il l'épaissirait. */
+.curves__chart .recharts-line-dots circle {
+  fill: var(--color-bg);
+  stroke: var(--color-ink);
+}
+
+.curves__chart .recharts-active-dot circle {
+  fill: var(--color-ink);
+  stroke: var(--color-bg);
+}
+
+.curves__chart .recharts-tooltip-cursor {
+  stroke: var(--color-muted);
+}
+
+/* L'infobulle de la bibliothèque arrive en cadre blanc avec une ombre
+   portée : ni l'un ni l'autre n'existent dans la famille. */
+.curves__chart .recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.curves__tip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg);
+  border: var(--rule-width) solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+}
+
+.curves__tip-name {
+  color: var(--color-ink);
+}
+
+.curves__tip-line {
+  color: var(--color-muted-strong);
 }
 
 /* — fiche de course — */

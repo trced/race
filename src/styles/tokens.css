@@ -65,6 +65,11 @@
   --text-data: 14px;
   --text-label: 13px;
   --text-meta: 12px;
+  /* Plancher du texte d'un champ. Zéro par défaut : au clavier et à la
+     souris, l'échelle ci-dessus décide seule. Voir le relèvement au doigt,
+     plus bas — 16 px n'est pas un cran de l'échelle, c'est un seuil de
+     plateforme, et il ne vaut que pour ce qui prend le focus en saisie. */
+  --text-field-min: 0px;
   --leading-display: 1.1;
   --leading-title: 1.25;
   --leading-brand: 1.2;
@@ -121,6 +126,17 @@
   --color-muted-strong: #8e9089;
   --color-rule: var(--grey-800);
   --color-danger: var(--red-400);
+}
+
+/* Au doigt, un champ dont le texte descend sous 16 px fait zoomer Safari
+   mobile au moment du focus — et la page ne redescend jamais toute seule.
+   On relève le plancher plutôt que de verrouiller l'échelle du viewport :
+   `maximum-scale` interdirait aussi le zoom voulu, et iOS l'ignore depuis
+   longtemps. Le reste de la typographie ne bouge pas. */
+@media (pointer: coarse) {
+  :root {
+    --text-field-min: 16px;
+  }
 }
 
 @media (min-width: 640px) {

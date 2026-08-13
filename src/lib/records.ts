@@ -1,5 +1,6 @@
 /** Records : meilleur temps par distance, extrêmes, totaux.
- *  Aucun graphique — le chiffre est le graphique. */
+ *  Ici le chiffre suffit : un record est une valeur, pas une tendance. Ce qui
+ *  bouge dans le temps se lit dans les Courbes — voir lib/curves.ts. */
 
 import { toSeconds } from './format.ts'
 import type { Race } from './types.ts'

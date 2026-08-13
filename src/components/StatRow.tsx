@@ -1,6 +1,6 @@
 /** StatRow — famille « . » 03.8
- *  Une valeur remarquable et ce qui la qualifie. Aucun graphique :
- *  le chiffre est le graphique. */
+ *  Une valeur remarquable et ce qui la qualifie. Le composant ne dessine
+ *  rien : ici le chiffre est le graphique. */
 
 import type { ReactNode } from 'react'
 

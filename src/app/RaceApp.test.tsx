@@ -189,7 +189,7 @@ describe('vues', () => {
   it('passe de la liste à l’année puis au mois', async () => {
     const { user } = renderApp()
 
-    await user.click(screen.getByRole('button', { name: 'voir par année' }))
+    await user.click(screen.getByRole('button', { name: 'année' }))
     const august = screen.getByRole('button', { name: 'août : 1 course' })
     await user.click(august)
 
@@ -216,6 +216,93 @@ describe('vues', () => {
     expect(screen.getAllByText('aucune course à cette distance')).toHaveLength(4)
     expect(screen.getByText('UTMB — 170 km')).toBeTruthy()
     expect(screen.getByText('UTMB — D+ 10 000 m')).toBeTruthy()
+  })
+
+  it('trace un type de course et le dit en toutes lettres', async () => {
+    const { user } = renderApp()
+    await user.click(screen.getByRole('button', { name: 'courbes' }))
+
+    // Un ultra n'a pas de distance imposée : c'est l'allure qui se compare.
+    // Le tracé arrive dans son propre morceau : il se laisse attendre.
+    expect(await screen.findByLabelText('Type de course')).toBeTruthy()
+    expect(screen.getByText('axe vertical')).toBeTruthy()
+    expect(screen.getByText('allure (min/km)')).toBeTruthy()
+    expect(
+      screen.getByText(/1 course · 2026 · plus la courbe descend/),
+    ).toBeTruthy()
+
+    // La liste sous le tracé porte la série : c'est elle qui ouvre la fiche,
+    // et c'est elle que lit une synthèse vocale.
+    await user.click(screen.getByRole('button', { name: /UTMB/ }))
+    expect(screen.getByRole('dialog', { name: 'Détail de la course' })).toBeTruthy()
+  })
+
+  it('garde les quatre destinations atteignables depuis le pied', async () => {
+    const { user } = renderApp()
+    for (const label of ['année', 'records', 'courbes']) {
+      expect(screen.getByRole('button', { name: label })).toBeTruthy()
+    }
+
+    // Une destination ne se propose pas elle-même, et « courses » revient.
+    await user.click(screen.getByRole('button', { name: 'courbes' }))
+    expect(screen.queryByRole('button', { name: 'courbes' })).toBeNull()
+    await user.click(screen.getByRole('button', { name: '‹ courses' }))
+    expect(screen.getByRole('button', { name: 'courbes' })).toBeTruthy()
+  })
+})
+
+describe('courbes', () => {
+  beforeEach(() =>
+    seed([
+      utmb,
+      {
+        ...utmb,
+        id: 'r2',
+        name: '10k de Lyon',
+        type: '10k',
+        date: '2026-08-02',
+        distance: 10,
+        duration: '45:00',
+        elevationGain: null,
+        location: 'Lyon',
+        notes: '',
+      },
+      {
+        ...utmb,
+        id: 'r3',
+        name: '10k hivernal',
+        type: '10k',
+        date: '2022-02-15',
+        distance: 10,
+        duration: '48:00',
+        elevationGain: null,
+        location: 'Annecy',
+        notes: '',
+      },
+    ]),
+  )
+
+  it('change d’axe selon que la distance est imposée ou libre', async () => {
+    const { user } = renderApp()
+    await user.click(screen.getByRole('button', { name: 'courbes' }))
+
+    // Le type le plus couru d'abord : deux 10k contre un ultra.
+    const select = (await screen.findByLabelText(
+      'Type de course',
+    )) as HTMLSelectElement
+    expect(select.value).toBe('10k')
+    expect(screen.getByText('temps de course')).toBeTruthy()
+    expect(screen.getByText(/2 courses · de 2022 à 2026/)).toBeTruthy()
+
+    // Un ultra n'a pas de distance imposée : l'axe passe à l'allure.
+    await user.selectOptions(select, 'ultra')
+    expect(screen.getByText('allure (min/km)')).toBeTruthy()
+    expect(screen.getByText(/1 course · 2026/)).toBeTruthy()
+
+    // Le sélecteur ne propose que les types réellement présents.
+    expect(
+      [...select.options].map((option) => option.value),
+    ).toEqual(['10k', 'ultra'])
   })
 })
 
