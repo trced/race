@@ -1,12 +1,12 @@
-/** race. — l'application. Trois vues, une fiche, un formulaire, un panneau.
- *  Rien d'autre : elle répond à « qu'est-ce que j'ai couru ? ».
+/** race. — l'application. Quatre destinations, une fiche, un formulaire, un
+ *  panneau. Rien d'autre : elle répond à « qu'est-ce que j'ai couru ? ».
  *
  *  Une logique, trois mises en page :
  *  — téléphone : une colonne, les destinations au pouce dans le pied, la
  *    profondeur par le fil d'Ariane, la fiche par une feuille ;
  *  — tablette  : une colonne, les destinations en barre haute ;
  *  — large     : deux colonnes — la liste à gauche en permanence, la vue
- *    courante à droite. Les trois vues deviennent voisines, pas des
+ *    courante à droite. Les destinations deviennent voisines, pas des
  *    sous-pages, et la fiche n'a plus à recouvrir la liste. */
 
 import {
@@ -45,23 +45,20 @@ type Sort = 'dateDesc' | 'dateAsc' | 'distanceDesc'
 const SORTS: Sort[] = ['dateDesc', 'dateAsc', 'distanceDesc']
 
 /** Les destinations autres que la liste, dans l'ordre où elles se présentent
- *  partout : barre haute, pied du téléphone, et rien d'autre à tenir à jour.
- *  Le mois est une profondeur de l'année, pas une destination. */
+ *  partout — barre haute comme pied du téléphone. */
 const DESTINATIONS: [Exclude<View, 'list' | 'month'>, MessageKey][] = [
   ['year', 'app.nav.tab.year'],
   ['records', 'app.nav.tab.records'],
   ['curves', 'app.nav.tab.curves'],
 ]
 
-/** Le tracé embarque une bibliothèque de graphiques — la seule dépendance
- *  lourde du dépôt. Elle arrive à part : la liste, l'année et les records
- *  n'ont pas à la porter, et la page de présentation encore moins. Hors
- *  ligne, elle est déjà là — le worker précache tous les morceaux produits. */
+/** Le tracé embarque une bibliothèque : elle arrive à part, pour que la liste
+ *  et la page de présentation n'aient pas à la porter. Hors ligne elle est
+ *  déjà là — le worker précache tous les morceaux produits. */
 const CurvesView = lazy(() =>
   import('./views/CurvesView.tsx')
     .then((module) => ({ default: module.CurvesView }))
-    // Sans ce filet, un morceau qui n'arrive pas fait tomber l'arbre entier —
-    // le journal avec. Une vue qui manque n'a pas à emporter les autres.
+    // Sans ce filet, un morceau qui n'arrive pas emporte l'arbre entier.
     .catch(() => ({ default: CurvesUnavailable })),
 )
 
@@ -76,6 +73,7 @@ function CurvesUnavailable() {
     </div>
   )
 }
+
 const FLASH_MS = 3000
 
 /** Au-delà, les destinations quittent le pied pour une barre haute : à la
@@ -576,8 +574,7 @@ export function RaceApp({ embedded = false }: { embedded?: boolean }) {
           ? t('app.curves.title')
           : t('app.detail.label')
 
-  /** Au pied du téléphone : les destinations où l'on n'est pas déjà. Le mois
-   *  compte pour l'année. Toujours les mêmes mots que la barre haute. */
+  /** Les destinations où l'on n'est pas déjà. Le mois compte pour l'année. */
   const elsewhere = DESTINATIONS.filter(
     ([key]) => key !== (isMonth ? 'year' : view),
   )

@@ -306,12 +306,9 @@
   padding: 0 var(--screen-margin);
 }
 
-/* Le retour et les destinations d'un côté, l'action de l'autre. Quand les
-   trois destinations ne tiennent plus sur la ligne, elles passent au-dessus
-   plutôt que de comprimer « + ajouter ». Aucune requête média ici : le pied
-   ne porte ce groupe que là où la barre haute n'existe pas — un téléphone,
-   ou le cadre de 390 px incrusté dans la page de présentation, qui lui est
-   posé au milieu d'une fenêtre large. */
+/* Les destinations passent à la ligne plutôt que de comprimer « + ajouter ».
+   Sans requête média : ce pied existe aussi dans le cadre incrusté de la page
+   de présentation, posé au milieu d'une fenêtre large. */
 .app__foot {
   padding: var(--space-4) var(--screen-margin) var(--space-6);
   padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom));
@@ -413,8 +410,7 @@
   gap: var(--space-4);
 }
 
-/* Une liste de définitions plutôt qu'un cartouche de couleurs : il n'y a
-   qu'une série, et ce qu'il faut dire c'est ce que porte chaque axe. */
+/* Une liste de définitions plutôt qu'un cartouche de couleurs. */
 .curves__legend {
   margin: 0;
   display: flex;
@@ -443,7 +439,6 @@
   color: var(--color-ink);
 }
 
-/* Le trait de la série, à l'échelle de la légende. */
 .curves__swatch {
   flex: 0 0 auto;
   width: var(--space-4);
@@ -458,15 +453,13 @@
   color: var(--color-muted-strong);
 }
 
-/* Le conteneur de la bibliothèque mesure son parent : il lui faut une
-   largeur, et pas de débord — un libellé d'axe rogné ne se devine pas. */
+/* Le conteneur de la bibliothèque mesure son parent. */
 .curves__chart {
   width: 100%;
 }
 
-/* La bibliothèque pose ses couleurs en attributs de présentation : la
-   moindre règle CSS l'emporte. Rien n'est donc écrit en dur dans le
-   composant, et le thème sombre suit sans qu'on ait à le lui dire. */
+/* Les couleurs de la bibliothèque sont des attributs de présentation : une
+   règle de feuille de style l'emporte, et le thème sombre suit tout seul. */
 .curves__chart text {
   font-family: var(--font-family);
   font-size: var(--text-meta);
@@ -484,7 +477,6 @@
   fill: none;
 }
 
-/* Le point est un cercle évidé posé sur la ligne : plein, il l'épaissirait. */
 .curves__chart .recharts-line-dots circle {
   fill: var(--color-bg);
   stroke: var(--color-ink);
@@ -499,8 +491,6 @@
   stroke: var(--color-muted);
 }
 
-/* L'infobulle de la bibliothèque arrive en cadre blanc avec une ombre
-   portée : ni l'un ni l'autre n'existent dans la famille. */
 .curves__chart .recharts-tooltip-wrapper {
   outline: none;
 }

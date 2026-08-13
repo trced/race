@@ -1,15 +1,5 @@
-/** Vue Courbes — l'évolution d'un type de course dans le temps.
- *
- *  Un seul réglage : le type. Un point par course, une ligne droite entre
- *  deux points — rien n'est lissé, car rien n'a été couru entre les deux.
- *  L'axe horizontal est un temps réel : trois ans sans course se voient.
- *  L'axe vertical porte le temps là où la distance est officielle, l'allure
- *  là où chaque course a la sienne. Il n'est pas retourné : une durée qui
- *  baisse descend, et la légende le dit plutôt que de le mimer.
- *
- *  Le tableau des courses sous le graphique n'est pas un doublon : c'est lui
- *  qui rend la série lisible au clavier et à la synthèse vocale, et c'est par
- *  lui qu'on ouvre une course. Le tracé ne prétend pas être une commande. */
+/** Vue Courbes — un type de course dans le temps. L'axe n'est pas retourné :
+ *  une durée qui baisse descend, et la légende le dit. */
 
 import { useMemo, useState } from 'react'
 import {
@@ -38,14 +28,9 @@ import type { Race, RaceType } from '../../lib/types.ts'
 import { useFormat } from '../useFormat.ts'
 import { ListView } from './ListView.tsx'
 
-/** Le graphique garde une hauteur fixe : elle tient dans un téléphone sans
- *  pousser la liste hors de l'écran, et ne dépend pas de ce qu'il y a dedans. */
+/** La bibliothèque prend des nombres, pas des longueurs CSS : les deux seules
+ *  mesures du projet qui ne peuvent pas être des jetons. */
 const CHART_HEIGHT = 260
-
-/** De quoi loger « 46h30:00 » — huit signes à --text-meta — sans que le
- *  libellé sorte du cadre. La bibliothèque prend des nombres, pas des
- *  longueurs CSS : c'est la seule mesure du projet qui ne peut pas être un
- *  jeton, et elle est écrite ici plutôt que dispersée. */
 const AXIS_WIDTH = 78
 
 export function CurvesView({
@@ -61,7 +46,6 @@ export function CurvesView({
   const types = useMemo(() => curveTypes(races), [races])
 
   // Le type le plus couru d'abord : c'est celui qui a une courbe à montrer.
-  // À égalité, l'ordre déclaré tranche — jamais celui de la saisie.
   const suggested = useMemo(() => {
     let best: RaceType | null = null
     let count = 0
@@ -127,8 +111,8 @@ export function CurvesView({
           <p className="curves__note">{t('app.curves.noPoints')}</p>
         ) : (
           <>
-            {/* La légende est du texte, pas une pastille de couleur : elle dit
-                ce que porte chaque axe et dans quel sens la lire. */}
+            {/* La légende est du texte : elle nomme les axes, elle ne code
+                rien par la couleur. */}
             <dl className="curves__legend">
               <div className="curves__legend-item">
                 <dt>{t('app.curves.legend.series')}</dt>
@@ -160,10 +144,8 @@ export function CurvesView({
                 <LineChart
                   data={points}
                   margin={{ top: 8, right: 12, bottom: 4, left: 0 }}
-                  /* Le tracé est décrit par son libellé et détaillé par la
-                     liste dessous : la couche clavier de la bibliothèque
-                     poserait un élément focalisable dans une image, que
-                     l'assistance ne lirait pas. */
+                  // La couche clavier de la bibliothèque poserait un élément
+                  // focalisable dans une image : c'est la liste qui sert.
                   accessibilityLayer={false}
                 >
                   <CartesianGrid vertical={false} />
@@ -201,8 +183,8 @@ export function CurvesView({
                       />
                     }
                   />
-                  {/* `linear` et non une spline : une courbe arrondie
-                      inventerait des valeurs entre deux courses. */}
+                  {/* `linear` : une spline inventerait des valeurs entre
+                      deux courses. */}
                   <Line
                     type="linear"
                     dataKey="value"
@@ -234,8 +216,8 @@ export function CurvesView({
         )}
       </div>
 
-      {/* Du plus récent au plus ancien, comme partout ailleurs : le graphique
-          se lit vers la droite, la liste se lit du haut. */}
+      {/* La liste porte la série au clavier et à la synthèse vocale, et c'est
+          par elle qu'on ouvre une course. Du plus récent, comme ailleurs. */}
       <ListView
         races={points.map((point) => point.race).reverse()}
         showYears={false}
@@ -245,9 +227,7 @@ export function CurvesView({
   )
 }
 
-/** Infobulle — fond de page, un filet, aucun relief. Celle de la
- *  bibliothèque arrive avec un cadre blanc et une ombre portée : ni l'un ni
- *  l'autre n'existent dans la famille. */
+/** Celle de la bibliothèque arrive en cadre blanc avec une ombre portée. */
 function CurveTooltip({
   active,
   payload,

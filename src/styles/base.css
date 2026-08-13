@@ -64,8 +64,7 @@ button {
   cursor: pointer;
 }
 
-/* `1em` est ici le corps hérité : la règle n'impose rien, elle pose un
-   plancher. Il ne vaut qu'au doigt — voir --text-field-min dans tokens.css. */
+/* `1em` : le corps hérité. La règle n'impose rien, elle pose un plancher. */
 input,
 select,
 textarea {

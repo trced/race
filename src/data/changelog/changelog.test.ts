@@ -1,7 +1,5 @@
-/** L'erreur de publication la plus facile à commettre : bumper package.json
- *  et oublier le journal des versions — ou l'inverse. Les deux se lisent à
- *  deux endroits différents de l'interface, et rien jusqu'ici ne les
- *  confrontait. */
+/** Bumper package.json et oublier le journal des versions, ou l'inverse :
+ *  les deux se lisent dans l'interface, rien ne les confrontait. */
 
 import { describe, expect, it } from 'vitest'
 import { changelogVersions, getLatestVersionString } from './index.ts'
