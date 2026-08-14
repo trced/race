@@ -1,6 +1,8 @@
 /* tokens.css — source unique de valeurs.
-   Famille « . » (trced) 1.1.0 — voir docs/Design System v1.1.dc.html.
-   Une valeur en dur dans un composant est un défaut de conformité. */
+   Famille « . » (trced) 1.2.0 — voir docs/Design System v1.2.dc.html.
+   Une valeur en dur dans un composant est un défaut de conformité.
+   Toute modification de la famille — un token, un composant, une feuille —
+   change cette version. Le journal est dans le document de référence. */
 
 :root {
   /* 1 · primitifs — jamais utilisés directement dans un composant */
@@ -44,6 +46,9 @@
      restent nommés pour que les composants continuent de les déclarer. */
   --radius-sm: 0;
   --radius-md: 0;
+  /* Sauf ce qui n'est pas une surface : un point est un disque, et le reste
+     du temps ce token ne sert pas. */
+  --radius-full: 50%;
 
   --touch-target: 44px;
   --rule-width: 1px;
@@ -54,7 +59,11 @@
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
 
   /* typographie */
-  --font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', 'IBM Plex Mono',
+  /* La face de la famille est embarquée (fonts.css) : elle vient donc en
+     tête, pour que le rendu soit le même sur toute machine. La pile système
+     reste derrière, pour le temps du chargement et pour les caractères que
+     les deux sous-ensembles latins ne couvrent pas. */
+  --font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', 'IBM Plex Mono',
     Menlo, Consolas, monospace;
   --text-display: 36px;
   --text-title: 24px;

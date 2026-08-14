@@ -374,7 +374,9 @@ button.row:hover {
 
 .row__gap {
   display: grid;
-  grid-template-columns: 56px 16px 1fr;
+  /* La même colonne de clé que .row : recopier la valeur en dur désalignait
+     le creux dès qu'une liste redéfinissait --row-key. */
+  grid-template-columns: var(--row-key, 56px) 16px 1fr;
   gap: var(--space-3);
   padding: var(--row-padding-y) var(--space-1);
   font-size: var(--text-meta);
@@ -395,7 +397,7 @@ button.row:hover {
   display: block;
   width: var(--dot-size);
   height: var(--dot-size);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: currentColor;
 }
 
@@ -415,7 +417,7 @@ button.row:hover {
   top: 7px;
   width: var(--dot-size);
   height: var(--dot-size);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: currentColor;
 }
 
