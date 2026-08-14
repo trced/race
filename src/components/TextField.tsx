@@ -145,6 +145,7 @@ export function TextAreaField({
 }: TextAreaFieldProps) {
   const id = useId()
   const hintId = `${id}-hint`
+  const errorId = `${id}-error`
 
   return (
     <div className={`field${error ? ' field--invalid' : ''}`}>
@@ -159,11 +160,16 @@ export function TextAreaField({
           value={value}
           onChange={(e) => onValueChange(e.target.value)}
           aria-required={required || undefined}
-          aria-describedby={hint ? hintId : undefined}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? errorId : hint ? hintId : undefined}
           {...rest}
         />
       </div>
-      {hint ? (
+      {error ? (
+        <span id={errorId} role="alert" className="field__error">
+          {error}
+        </span>
+      ) : hint ? (
         <span id={hintId} className="field__hint">
           {hint}
         </span>
