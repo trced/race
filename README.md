@@ -171,7 +171,7 @@ src/
 │   └── storage.ts        local persistence
 ├── i18n/                 fr.ts (reference) + en.ts (typed mirror) + runtime
 ├── state/store.tsx       single source: races and settings
-├── components/           the "famille ." 1.1.0 design system
+├── components/           the "famille ." 1.2.0 design system
 ├── app/                  the app itself — views, sheets, panes
 ├── site/                 web pages — overview, about, legal
 ├── data/changelog/       changelog, bilingual
@@ -199,9 +199,9 @@ could be wrong, and it is tested without a browser.
 
 ## Design system
 
-The implementation follows the "famille ." (*trced*) family, version 1.1.0,
+The implementation follows the "famille ." (*trced*) family, version 1.2.0,
 whose reference lives in
-[`docs/Design System v1.1.dc.html`](docs/Design%20System%20v1.1.dc.html). The
+[`docs/Design System v1.2.dc.html`](docs/Design%20System%20v1.2.dc.html). The
 race. mockups are in [`docs/race.dc.html`](docs/race.dc.html) and
 [`docs/RaceApp.dc.html`](docs/RaceApp.dc.html). Where the code and those
 documents disagree, the documents are right and the code has a bug.
@@ -209,7 +209,7 @@ documents disagree, the documents are right and the code has a bug.
 Tokens live in `src/styles/tokens.css`; a hard-coded value in a component is a
 conformance defect. Constraints held:
 
-- system CSS under 8 kB compressed (`tokens` + `base` + `components`, 6.4 kB today)
+- system CSS under 8 kB compressed (`tokens` + `base` + `components`, 6.7 kB today)
 - no remote fonts, no images in the interface
 - one third-party UI dependency, and only one: Recharts draws the Curves view.
   It is loaded on its own, when that view is opened, and it is styled entirely

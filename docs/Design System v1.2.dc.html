@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Famille « . » — Design System 1.0</title>
+<title>Famille « . » — Design System 1.2</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -47,10 +47,10 @@
       <p style="margin-top:12px;font-size:13px;color:#8b8d8c;max-width:58ch">Référence unique pour la conception et l'implémentation de month., habit. et des micro-applications suivantes. Ce document fait foi : toute divergence entre une maquette, du code et cette page est un bug.</p>
     </div>
     <dl style="display:grid;grid-template-columns:auto auto;gap:2px 16px;font-size:12px;color:#8b8d8c">
-      <dt>version</dt><dd style="color:#17181a">1.1.0</dd>
+      <dt>version</dt><dd style="color:#17181a">1.2.0</dd>
       <dt>statut</dt><dd style="color:#17181a">stable</dd>
       <dt>plateformes</dt><dd style="color:#17181a">web / PWA</dd>
-      <dt>dernière révision</dt><dd style="color:#17181a">2026-08-11</dd>
+      <dt>dernière révision</dt><dd style="color:#17181a">2026-08-14</dd>
     </dl>
   </header>
 
@@ -94,7 +94,7 @@
           <li><a href="#c-search" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">SearchFilterBar</a></li>
           <li><a href="#c-stat" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">StatRow</a></li>
           <li><a href="#c-sheet" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">Sheet</a></li>
-          <li><a href="#c-feedback" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">EmptyState / Message</a></li>
+          <li><a href="#c-feedback" style="display:block;padding:4px 0;text-decoration:none" style-hover="background:#17181a;color:#f2f3f2">EmptyState / Message / Confirm</a></li>
         </ul>
       </div>
       <div>
@@ -239,14 +239,14 @@
           <span style="font-size:12px;color:#8b8d8c">01.2</span>
           <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Typographie</h2>
         </div>
-        <p style="margin-top:20px;font-size:13px;color:#8b8d8c;max-width:64ch">Une seule famille, monospace système. Deux graisses : 400 et 500. Aucune italique, aucune police distante.</p>
+        <p style="margin-top:20px;font-size:13px;color:#8b8d8c;max-width:64ch">Une seule famille monospace. La face de la famille — JetBrains Mono, deux graisses, deux sous-ensembles latins — est embarquée dans <code>fonts.css</code> et vient en tête de <code>--font-family</code> ; la pile système reste derrière, pour le temps du chargement et pour les caractères non couverts. Deux graisses : 400 (<code>--weight-regular</code>) et 500 (<code>--weight-medium</code>). Aucune italique, aucune police distante.</p>
         <div style="margin-top:24px;overflow-x:auto">
           <div style="min-width:620px">
             <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c">
               <span>token</span><span>taille</span><span>interligne</span><span>tracking</span><span>usage</span>
             </div>
             <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
-              <span>text-display</span><span style="color:#8b8d8c">36 px</span><span style="color:#8b8d8c">1.1</span><span style="color:#8b8d8c">-0.03em</span><span style="font-size:12px;color:#8b8d8c">titre de période, une occurrence par écran</span>
+              <span>text-display</span><span style="color:#8b8d8c">36 px → 44 px</span><span style="color:#8b8d8c">1.1</span><span style="color:#8b8d8c">-0.03em</span><span style="font-size:12px;color:#8b8d8c">titre de période, une occurrence par écran — 44 px au-delà de 1024 px, où la promesse tient le haut de page seule</span>
             </div>
             <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
               <span>text-title</span><span style="color:#8b8d8c">24 px</span><span style="color:#8b8d8c">1.25</span><span style="color:#8b8d8c">-0.02em</span><span style="font-size:12px;color:#8b8d8c">titre de page ou de panneau</span>
@@ -255,7 +255,7 @@
               <span>text-brand</span><span style="color:#8b8d8c">20 px</span><span style="color:#8b8d8c">1.2</span><span style="color:#8b8d8c">-0.02em</span><span style="font-size:12px;color:#8b8d8c">nom de l'application</span>
             </div>
             <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
-              <span>text-body</span><span style="color:#8b8d8c">15 px</span><span style="color:#8b8d8c">1.6</span><span style="color:#8b8d8c">0</span><span style="font-size:12px;color:#8b8d8c">texte courant, max 64ch</span>
+              <span>text-body</span><span style="color:#8b8d8c">clamp(14, 1.1vw, 15)</span><span style="color:#8b8d8c">1.6</span><span style="color:#8b8d8c">0</span><span style="font-size:12px;color:#8b8d8c">texte courant, max 64ch — 14 px sur un écran ordinaire, 15 px quand la fenêtre est assez large pour le porter</span>
             </div>
             <div style="display:grid;grid-template-columns:1.1fr 0.7fr 0.7fr 0.8fr 1.6fr;gap:16px;padding:12px 0;border-bottom:1px solid #c8cac8;align-items:baseline">
               <span>text-data</span><span style="color:#8b8d8c">14 px</span><span style="color:#8b8d8c">1.45</span><span style="color:#8b8d8c">0</span><span style="font-size:12px;color:#8b8d8c">lignes, matrices, valeurs, contrôles</span>
@@ -304,7 +304,7 @@
               <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>gouttière</span><span style="color:#8b8d8c">16 px</span></li>
               <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>largeur texte</span><span style="color:#8b8d8c">max 64ch</span></li>
               <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>largeur donnée</span><span style="color:#8b8d8c">libre, scroll horizontal permis</span></li>
-              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>conteneur max</span><span style="color:#8b8d8c">1120 px</span></li>
+              <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>conteneur max</span><span style="color:#8b8d8c">1600 px</span></li>
             </ul>
             <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">breakpoints</div>
             <ul style="margin-top:12px;display:flex;flex-direction:column;gap:0">
@@ -312,6 +312,14 @@
               <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>md</span><span style="color:#8b8d8c">640 – 1024</span></li>
               <li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #c8cac8"><span>lg</span><span style="color:#8b8d8c">&gt; 1024</span></li>
             </ul>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">seuils complémentaires — livrés</div>
+            <ul style="margin-top:12px;display:flex;flex-direction:column;gap:0">
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8"><span>max-width: 479</span><span style="color:#8b8d8c;text-align:right">PeriodNav — les libellés latéraux tombent, il ne reste que les chevrons</span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8"><span>max-width: 639</span><span style="color:#8b8d8c;text-align:right">Sheet — padding 20, gap 12, barre d'actions collante</span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8"><span>min-width: 1280</span><span style="color:#8b8d8c;text-align:right">padding de page — 64 / 64 / 48</span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8"><span>min-width: 1440</span><span style="color:#8b8d8c;text-align:right">haut de page — le rail passe sur deux colonnes</span></li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">sm / md / lg règlent la mise en page ; les quatre seuils ci-dessus ne règlent que des paddings de page et deux ajustements de composant. Aucun autre seuil n'est autorisé.</p>
           </div>
         </div>
       </section>
@@ -325,11 +333,11 @@
           <div>
             <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">rayon</div>
             <ul style="margin-top:12px">
-              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>radius-sm</span><span style="color:#8b8d8c">4 px — champs, puces</span></li>
-              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>radius-md</span><span style="color:#8b8d8c">6 px — boutons pleins</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>radius-sm</span><span style="color:#8b8d8c">0 — champs, puces</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>radius-md</span><span style="color:#8b8d8c">0 — boutons pleins</span></li>
               <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>radius-full</span><span style="color:#8b8d8c">50% — point uniquement</span></li>
             </ul>
-            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Conteneurs structurels : angle vif.</p>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">La famille est à angles droits : aucune surface n'arrondit. <code>radius-sm</code> et <code>radius-md</code> valent <code>0</code> et restent nommés pour que les composants continuent de les déclarer — un jour d'assouplissement se décide ici, pas dans un composant. Seul ce qui n'est pas une surface fait exception : <code>radius-full</code> est le disque du point, et rien d'autre.</p>
           </div>
           <div>
             <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">ligne</div>
@@ -345,9 +353,9 @@
             <ul style="margin-top:12px">
               <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>niveau 0</span><span style="color:#8b8d8c">tout le contenu</span></li>
               <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>niveau 1</span><span style="color:#8b8d8c">sheet — trait 1 px, pas d'ombre</span></li>
-              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>overlay</span><span style="color:#8b8d8c">bg à 88 % d'opacité</span></li>
+              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>overlay</span><span style="color:#8b8d8c">bg à 88 % d'opacité (<code>--color-scrim</code>)</span></li>
             </ul>
-            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Aucune ombre portée dans le système.</p>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Aucune ombre portée : rien ne flotte au-dessus de rien. Les <code>box-shadow</code> du système existent mais sont toutes sans flou — ce sont des aplats, pas des ombres : <code>inset 2px 0 0</code> pour le trait gauche d'une ligne sélectionnée (en <code>border</code>, la ligne se décalerait d'un pixel) et <code>calc(var(--space-2) * -1) 0 0</code> pour le débord de 8 px du survol d'un bouton textuel (en padding, la boîte changerait de taille). Un <code>box-shadow</code> avec un rayon de flou est un défaut de conformité.</p>
           </div>
         </div>
       </section>
@@ -409,9 +417,12 @@
           <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Tokens — référence</h2>
         </div>
         <sc-if value="{{ showCode }}" hint-placeholder-val="{{ true }}">
-          <pre style="margin-top:20px;font-size:12px;line-height:1.75;white-space:pre-wrap;border-left:1px solid #c8cac8;padding-left:16px">/* tokens.css — source unique */
+          <pre style="margin-top:20px;font-size:12px;line-height:1.75;white-space:pre-wrap;border-left:1px solid #c8cac8;padding-left:16px">/* tokens.css — source unique de valeurs.
+   Le tronc commun de la famille : ce que habit., race. et trced. partagent,
+   et rien de plus. Une teinte propre à une application, une géométrie propre
+   à un écran, restent dans l'application. */
 :root {
-  /* 1 · primitifs */
+  /* 1 · primitifs — jamais utilisés directement dans un composant */
   --grey-50:  #f2f3f2;  --grey-300: #c8cac8;  --grey-500: #8b8d8c;
   --grey-600: #6a6c6a;  --grey-850: #17181a;  --grey-900: #121311;
   --grey-800: #34362f;  --grey-550: #74766f;  --paper-100:#ecebe6;
@@ -427,16 +438,39 @@
   --color-focus: var(--color-ink);
   --color-danger: var(--red-600);
   --color-selection: color-mix(in srgb, var(--color-ink) 8%, var(--color-bg));
+  --color-scrim: color-mix(in srgb, var(--color-bg) 88%, transparent);
 
   /* 3 · échelles */
   --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px;
   --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
   --space-12:48px;--space-16:64px;
-  --radius-sm:4px; --radius-md:6px;
+
+  /* La famille est à angles droits : aucune surface n'arrondit. Les tokens
+     restent nommés pour que les composants continuent de les déclarer. */
+  --radius-sm:0; --radius-md:0;
+  /* Sauf ce qui n'est pas une surface : un point est un disque, et le reste
+     du temps ce token ne sert pas. */
+  --radius-full:50%;
+
   --touch-target:44px;
   --rule-width:1px;
   --motion-micro:120ms; --motion-panel:200ms; --motion-view:260ms;
   --ease-out:cubic-bezier(.2,0,0,1);
+
+  /* typographie — la face de la famille est embarquée (fonts.css) : elle
+     vient en tête, la pile système reste derrière. */
+  --font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', 'IBM Plex Mono',
+    Menlo, Consolas, monospace;
+  --text-display:36px;  --text-title:24px;   --text-brand:20px;
+  /* 14 px sur un écran ordinaire, 15 px quand la fenêtre le porte. */
+  --text-body:clamp(14px, 1.1vw, 15px);
+  --text-data:14px;     --text-label:13px;   --text-meta:12px;
+  --leading-display:1.1;   --leading-title:1.25;  --leading-brand:1.2;
+  --leading-body:1.6;      --leading-data:1.45;   --leading-label:1.4;
+  --leading-meta:1.4;
+  --tracking-display:-0.03em; --tracking-title:-0.02em;
+  --tracking-brand:-0.02em;
+  --weight-regular:400;    --weight-medium:500;
 
   /* 4 · composants */
   --button-height:44px;      --button-padding-x:var(--space-5);
@@ -444,9 +478,47 @@
   --row-min-height:44px;     --row-padding-y:10px;
   --dot-size:6px;            --dot-size-lg:8px;
   --sheet-max-width:480px;
+
+  /* 5 · mise en page — l'application est une coque, pas un document : elle
+     occupe sa fenêtre. Ce sont ses colonnes qui règlent les mesures. */
+  --screen-margin:var(--space-6);
+  --container-max:1600px;
+  --app-list-width:520px;
+  --panel-measure:620px;
+  --measure:64ch;
+
+  /* 6 · document — la part de trced. Une application occupe sa fenêtre ;
+     un document, lui, se tient à une mesure. Ces tokens ne servent qu'aux
+     pages qui se lisent : notes de version, mentions légales, la page de
+     famille elle-même. */
+  --text-lead:clamp(15px, 3.2vw, 17px);
+  --leading-lead:1.35;
+  --tracking-lead:-0.01em;
+  --measure-text:68ch;
+  --measure-doc:720px;
+  --sidebar:clamp(180px, 15vw, 240px);
+  --page-padding-x:clamp(20px, 5vw, 32px);
+  --page-padding-top:clamp(32px, 8vw, 96px);
+  --page-padding-bottom:clamp(64px, 12vw, 120px);
+  --page-gap:clamp(40px, 7vw, 64px);
+
+  color-scheme: light dark;
 }
 
-[data-theme="dark"] {
+/* Le thème suit prefers-color-scheme par défaut ; data-theme sur &lt;html&gt;
+   force le choix utilisateur, dans les deux directions. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: var(--grey-900);
+    --color-ink: var(--paper-100);
+    --color-muted: var(--grey-550);
+    --color-muted-strong: #8e9089;
+    --color-rule: var(--grey-800);
+    --color-danger: var(--red-400);
+  }
+}
+
+:root[data-theme='dark'] {
   --color-bg: var(--grey-900);
   --color-ink: var(--paper-100);
   --color-muted: var(--grey-550);
@@ -455,10 +527,20 @@
   --color-danger: var(--red-400);
 }
 
+@media (min-width: 640px) {
+  :root { --screen-margin:var(--space-8); }
+}
+
+@media (min-width: 1024px) {
+  /* Sur un écran large la promesse doit tenir le haut de page seule. */
+  :root { --screen-margin:var(--space-10); --text-display:44px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root { --motion-micro:0ms; --motion-panel:0ms; --motion-view:0ms; }
 }</pre>
-          <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Le thème suit <code>prefers-color-scheme</code> par défaut ; <code>data-theme</code> sur <code>&lt;html&gt;</code> force le choix utilisateur. Export JSON équivalent disponible pour Figma / Style Dictionary.</p>
+          <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Le thème se règle dans les deux directions : <code>prefers-color-scheme: dark</code> s'applique à tout ce qui n'est pas explicitement <code>[data-theme="light"]</code>, et <code>:root[data-theme="dark"]</code> force le sombre quel que soit le système. <code>color-scheme: light dark</code> prévient le navigateur, pour que ses propres surfaces — barres de défilement, contrôles natifs — suivent. Export JSON équivalent disponible pour Figma / Style Dictionary.</p>
+          <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Les groupes 1 à 4 sont ceux d'une application ; le groupe 5 pose sa mise en page et le groupe 6, venu de trced., celle d'un document. Un token de document ne contredit jamais un token d'application : il complète.</p>
         </sc-if>
       </section>
 
@@ -468,24 +550,24 @@
           <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Button</h2>
           <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
         </div>
-        <p style="margin-top:16px;font-size:13px;max-width:64ch">Déclenche une action immédiate. Par défaut textuel : la surface n'apparaît que pour l'action principale d'un écran ou d'un panneau.</p>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Déclenche une action immédiate. Par défaut textuel : la surface n'apparaît que pour l'action principale d'un écran ou d'un panneau, tout le reste reste un libellé souligné.</p>
 
         <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">anatomie</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:16px;align-items:start">
           <div style="padding:24px 0;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
-            <span style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:14px">enregistrer</span>
-            <span style="display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid #17181a;font-size:14px">+ ajouter</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:0;background:#17181a;color:#f2f3f2;font-size:13px">enregistrer</span>
+            <span style="display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid #17181a;font-size:13px">+ ajouter</span>
           </div>
           <ol style="font-size:12px;display:flex;flex-direction:column;gap:6px">
-            <li><span style="color:#8b8d8c">1</span> conteneur — hauteur 44, radius 6, sans bordure</li>
+            <li><span style="color:#8b8d8c">1</span> conteneur — hauteur 44, radius 0, sans bordure</li>
             <li><span style="color:#8b8d8c">2</span> zone tactile — 44 × 44 minimum, padding-x 20</li>
-            <li><span style="color:#8b8d8c">3</span> libellé — text-data, verbe à l'infinitif, minuscule</li>
-            <li><span style="color:#8b8d8c">4</span> variante textuelle — pas de conteneur, trait 1 px sous le libellé</li>
+            <li><span style="color:#8b8d8c">3</span> libellé — text-label (13 px), verbe à l'infinitif, minuscule</li>
+            <li><span style="color:#8b8d8c">4</span> variantes sans surface — pas de conteneur, largeur ajustée au libellé (<code>width: fit-content</code>) ; seule <code>text</code> porte le trait 1 px sous le libellé</li>
           </ol>
         </div>
         <sc-if value="{{ showRedlines }}" hint-placeholder-val="{{ true }}">
           <div style="display:flex;flex-wrap:wrap;gap:24px;font-size:12px;color:#8b8d8c;border-top:1px dashed #c8cac8;padding-top:8px">
-            <span>↕ height 44</span><span>↔ padding-x 20</span><span>↔ gap icône/libellé 8</span><span>⌐ radius 6</span><span>↔ bouton ↔ bouton 24</span>
+            <span>↕ height 44</span><span>↔ padding-x 20</span><span>↔ gap icône/libellé 8</span><span>⌐ radius 0</span><span>↔ bouton ↔ bouton 24</span><span>↔ débord de survol 8</span>
           </div>
         </sc-if>
 
@@ -495,10 +577,10 @@
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c"><span>variante</span><span>default</span><span>hover</span><span>focus</span><span>disabled</span></div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c8cac8;align-items:center">
               <span style="font-size:13px">primary</span>
-              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:13px">action</span>
-              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:6px;background:#000;color:#f2f3f2;font-size:13px">action</span>
-              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:13px;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px">action</span>
-              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:6px;background:#c8cac8;color:#8b8d8c;font-size:13px">action</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:0;background:#17181a;color:#f2f3f2;font-size:13px">action</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:0;background:#000;color:#f2f3f2;font-size:13px">action</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:0;background:#17181a;color:#f2f3f2;font-size:13px;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px">action</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:0;background:#c8cac8;color:#8b8d8c;font-size:13px">action</span>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c8cac8;align-items:center">
               <span style="font-size:13px">text</span>
@@ -506,6 +588,13 @@
               <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 8px;font-size:13px;background:#17181a;color:#f2f3f2;width:fit-content">action</span>
               <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;border-bottom:1px solid #17181a;width:fit-content;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px">action</span>
               <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:#8b8d8c;width:fit-content">action</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c8cac8;align-items:center">
+              <span style="font-size:13px">quiet</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:#6a6c6a;width:fit-content">annuler</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 8px;font-size:13px;background:#17181a;color:#f2f3f2;width:fit-content">annuler</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:#6a6c6a;width:fit-content;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px">annuler</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;font-size:13px;color:#8b8d8c;width:fit-content">annuler</span>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #c8cac8;align-items:center">
               <span style="font-size:13px">destructive</span>
@@ -521,13 +610,17 @@
         <div style="margin-top:12px;overflow-x:auto">
           <div style="min-width:560px">
             <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #c8cac8;font-size:12px;color:#8b8d8c"><span>prop</span><span>type</span><span>valeurs</span><span>défaut</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>variant</span><span style="color:#8b8d8c">enum</span><span style="color:#8b8d8c">primary · text · destructive</span><span style="color:#8b8d8c">text</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>type</span><span style="color:#8b8d8c">enum</span><span style="color:#8b8d8c">button · submit</span><span style="color:#8b8d8c">button</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>disabled</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">—</span><span style="color:#8b8d8c">false</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>onClick</span><span style="color:#8b8d8c">function</span><span style="color:#8b8d8c">requis</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>variant</span><span style="color:#8b8d8c">enum</span><span style="color:#8b8d8c">primary · text · quiet · destructive</span><span style="color:#8b8d8c">text</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>strong</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">souligne l'action destructive quand elle confirme ; sans effet ailleurs</span><span style="color:#8b8d8c">false</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>block</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">largeur 100 % — supprime aussi le débord de survol</span><span style="color:#8b8d8c">false</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>type</span><span style="color:#8b8d8c">enum</span><span style="color:#8b8d8c">button · submit · reset — jamais laissé implicite</span><span style="color:#8b8d8c">button</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>children</span><span style="color:#8b8d8c">node</span><span style="color:#8b8d8c">requis — le libellé</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>disabled</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">attribut natif, transmis</span><span style="color:#8b8d8c">false</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>onClick</span><span style="color:#8b8d8c">function</span><span style="color:#8b8d8c">optionnel — un bouton <code>submit</code> n'en a pas besoin</span><span style="color:#8b8d8c">—</span></div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>aria-label</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">requis si libellé non textuel</span><span style="color:#8b8d8c">—</span></div>
           </div>
         </div>
+        <p style="margin-top:16px;font-size:12px;color:#8b8d8c;max-width:64ch">Tout le reste des attributs de <code>&lt;button&gt;</code> passe tel quel — <code>form</code>, <code>title</code>, <code>autoFocus</code>. Seul <code>className</code> est retiré volontairement : la variante est le seul levier d'apparence. Le survol des variantes sans surface inverse le bouton et déborde de 8 px de chaque côté ; ce débord est peint par deux <code>box-shadow</code> sans flou, jamais par du padding — la boîte garde sa taille, rien ne se décale autour. <code>block</code> le neutralise : un bouton qui occupe déjà toute la largeur sortirait de son conteneur.</p>
 
         <sc-if value="{{ showCode }}" hint-placeholder-val="{{ true }}">
           <pre style="margin-top:24px;font-size:12px;line-height:1.75;white-space:pre-wrap;border-left:1px solid #c8cac8;padding-left:16px">&lt;button class="btn btn--primary" type="button"&gt;enregistrer&lt;/button&gt;
@@ -542,11 +635,27 @@
   cursor: pointer;
   transition: background var(--motion-micro) linear;
 }
-.btn--primary { background: var(--color-accent); color: var(--color-bg); border-radius: var(--radius-md); }
-.btn--text { padding: 0; border-bottom: var(--rule-width) solid currentColor; }
-.btn--destructive { color: var(--color-danger); }
+/* radius-md vaut 0 : le token reste déclaré, la valeur est décidée là-bas. */
+.btn--primary { justify-content: center; background: var(--color-accent); color: var(--color-bg); border-radius: var(--radius-md); font-size: var(--text-label); }
+.btn--text { padding: 0; font-size: var(--text-label); border-bottom: var(--rule-width) solid currentColor; width: fit-content; }
+.btn--quiet { padding: 0; font-size: var(--text-label); color: var(--color-muted-strong); width: fit-content; }
+.btn--destructive { padding: 0; font-size: var(--text-label); color: var(--color-danger); width: fit-content; }
+.btn--destructive-strong { border-bottom: var(--rule-width) solid currentColor; }
+.btn--block { width: 100%; }
+
+/* Le débord de 8 px du survol est peint, pas paddé : la boîte ne bouge pas. */
+.btn--text:hover, .btn--quiet:hover {
+  background: var(--color-ink); color: var(--color-bg);
+  border-bottom-color: transparent;
+  box-shadow: calc(var(--space-2) * -1) 0 0 var(--color-ink),
+              var(--space-2) 0 0 var(--color-ink);
+}
+.btn--block:hover, .btn--block:hover.btn--destructive { box-shadow: none; }
+
 .btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
-.btn[disabled] { color: var(--color-muted); cursor: not-allowed; }</pre>
+.btn--destructive:focus-visible { outline-color: var(--color-danger); }
+.btn[disabled] { color: var(--color-muted); cursor: not-allowed; }
+.btn--primary[disabled] { background: var(--color-rule); color: var(--color-muted); }</pre>
         </sc-if>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:28px">
@@ -560,7 +669,7 @@
           </div>
           <div style="border-top:1px solid #c8cac8;padding-top:12px">
             <div style="font-size:12px;color:#8b8d8c">accessibilité</div>
-            <ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:6px"><li>élément <code>&lt;button&gt;</code> natif</li><li>activation Entrée et Espace</li><li>action destructive : confirmation explicite</li></ul>
+            <ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:6px"><li>élément <code>&lt;button&gt;</code> natif</li><li>activation Entrée et Espace</li><li>action destructive : confirmation explicite — voir <code>Confirm</code>, jamais <code>window.confirm</code></li><li>le contour de focus n'est jamais masqué par un <code>overflow</code> parent</li></ul>
           </div>
         </div>
       </section>
@@ -571,19 +680,19 @@
           <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">TextField</h2>
           <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.1</span>
         </div>
-        <p style="margin-top:16px;font-size:13px;max-width:64ch">Saisie d'une valeur courte sur une ligne. Le label est toujours visible ; le placeholder ne remplace jamais le label.</p>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Saisie d'une valeur courte sur une ligne. Le label est toujours présent — visible, ou lu seul via <code>hideLabel</code> ; le placeholder ne le remplace jamais. La même anatomie sert à <code>TextAreaField</code> (saisie longue) et à <code>SelectField</code> (choix fermé), documentés plus bas.</p>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px;align-items:start">
           <div>
             <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">anatomie</div>
             <label style="display:block;margin-top:16px;max-width:320px">
               <span style="display:block;font-size:12px;color:#8b8d8c">Nom</span>
-              <input type="text" value="Golf trip" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:4px">
+              <input type="text" value="Golf trip" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:0">
               <span style="display:block;margin-top:6px;font-size:12px;color:#6a6c6a">64 caractères maximum</span>
             </label>
             <ol style="margin-top:16px;font-size:12px;display:flex;flex-direction:column;gap:6px">
-              <li><span style="color:#8b8d8c">1</span> label — text-meta, muted, obligatoire</li>
-              <li><span style="color:#8b8d8c">2</span> champ — hauteur 44, padding-x 12, radius 4, trait 1 px rule</li>
+              <li><span style="color:#8b8d8c">1</span> label — text-meta, muted, obligatoire ; <code>required</code> ajoute un astérisque hors du label</li>
+              <li><span style="color:#8b8d8c">2</span> champ — hauteur 44, padding-x 12, radius 0, trait 1 px rule</li>
               <li><span style="color:#8b8d8c">3</span> aide — text-meta, muted-strong, sous le champ</li>
               <li><span style="color:#8b8d8c">4</span> erreur — remplace l'aide, --color-danger + texte</li>
               <li><span style="color:#8b8d8c">5</span> effacement — bouton 42 × 42 dans le champ, à droite, visible quand la valeur n'est pas vide</li>
@@ -592,9 +701,9 @@
           <div>
             <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">états</div>
             <div style="display:flex;flex-direction:column;gap:16px;margin-top:16px;max-width:320px">
-              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">focus</span><input type="text" value="14 août" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #17181a;border-radius:4px;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px"></label>
-              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">erreur</span><input type="text" value="32/08/2026" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #a33;border-radius:4px"><span style="display:block;margin-top:6px;font-size:12px;color:#a33">Date invalide. Format attendu : AAAA-MM-JJ.</span></label>
-              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">désactivé</span><input type="text" value="—" disabled="disabled" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#8b8d8c;border:1px dashed #c8cac8;border-radius:4px"></label>
+              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">focus</span><input type="text" value="14 août" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #17181a;border-radius:0;outline-width:2px;outline-style:solid;outline-color:#17181a;outline-offset:3px"></label>
+              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">erreur</span><input type="text" value="32/08/2026" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #a33;border-radius:0"><span style="display:block;margin-top:6px;font-size:12px;color:#a33">Date invalide. Format attendu : AAAA-MM-JJ.</span></label>
+              <label style="display:block"><span style="display:block;font-size:12px;color:#8b8d8c">désactivé</span><input type="text" value="—" disabled="disabled" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;color:#8b8d8c;border:1px dashed #c8cac8;border-radius:0"></label>
             </div>
           </div>
         </div>
@@ -604,14 +713,37 @@
           <div style="min-width:560px">
             <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #c8cac8;font-size:12px;color:#8b8d8c"><span>prop</span><span>type</span><span>valeurs</span><span>défaut</span></div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>label</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">requis</span><span style="color:#8b8d8c">—</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>value / onChange</span><span style="color:#8b8d8c">string / fn</span><span style="color:#8b8d8c">contrôlé</span><span style="color:#8b8d8c">—</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>hint</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">—</span><span style="color:#8b8d8c">null</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>error</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">message complet, pas un code</span><span style="color:#8b8d8c">null</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>value</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">requis — champ contrôlé</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>onValueChange</span><span style="color:#8b8d8c">function</span><span style="color:#8b8d8c">requis — reçoit la valeur, pas l'événement</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>hint</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">aide sous le champ, liée par <code>aria-describedby</code></span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>error</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">message complet, pas un code — remplace l'aide</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>hideLabel</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">label en <code>.visually-hidden</code> — il reste lu</span><span style="color:#8b8d8c">false</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>required</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">astérisque + <code>aria-required</code> ; ne valide rien par lui-même</span><span style="color:#8b8d8c">false</span></div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>clearable</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">bouton × dessiné, jamais le rendu natif</span><span style="color:#8b8d8c">false</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>inputMode</span><span style="color:#8b8d8c">enum</span><span style="color:#8b8d8c">text · numeric · none</span><span style="color:#8b8d8c">text</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>onClear</span><span style="color:#8b8d8c">function</span><span style="color:#8b8d8c">appelé par le × ; sans lui, le bouton ne vide rien</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>clearLabel</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c"><code>aria-label</code> du bouton d'effacement — à traduire</span><span style="color:#8b8d8c">×</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>type</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">date · time · number… transmis à l'<code>&lt;input&gt;</code></span><span style="color:#8b8d8c">text</span></div>
           </div>
         </div>
-        <p style="margin-top:16px;font-size:12px;color:#8b8d8c;max-width:64ch">Accessibilité — <code>&lt;label for&gt;</code> lié à l'<code>id</code>, <code>aria-describedby</code> vers l'aide, <code>aria-invalid</code> et message annoncé en <code>role="alert"</code> à la validation. Erreur affichée après soumission ou perte de focus, jamais à chaque frappe. Le bouton d'effacement porte <code>aria-label</code> et rend le focus au champ ; il est positionné en absolu dans le champ pour que son apparition ne décale rien.</p>
+        <p style="margin-top:16px;font-size:12px;color:#8b8d8c;max-width:64ch">Tout le reste des attributs de <code>&lt;input&gt;</code> passe tel quel — <code>placeholder</code>, <code>inputMode</code>, <code>disabled</code>, <code>maxLength</code>, <code>autoFocus</code>. <code>inputMode</code> n'est donc pas une prop du composant : c'est l'attribut natif, transmis. Sont retirés <code>value</code>, <code>onChange</code>, <code>className</code> et <code>id</code> : l'<code>id</code> est généré par <code>useId</code> et relie déjà label, aide et erreur — ne pas en fournir.</p>
+        <p style="margin-top:12px;font-size:12px;color:#8b8d8c;max-width:64ch">Accessibilité — <code>&lt;label for&gt;</code> lié à l'<code>id</code> ; <code>hideLabel</code> masque visuellement sans retirer du nom accessible. L'astérisque de <code>required</code> est hors du <code>&lt;label&gt;</code> et <code>aria-hidden</code> : le nom accessible reste le libellé seul, c'est <code>aria-required</code> qui porte l'obligation. <code>aria-describedby</code> pointe l'erreur si elle existe, sinon l'aide ; <code>aria-invalid</code> est posé dès qu'il y a une erreur et le message est annoncé en <code>role="alert"</code>. Erreur affichée après soumission ou perte de focus, jamais à chaque frappe. Le bouton d'effacement porte <code>aria-label</code> et rend le focus au champ ; il est positionné en absolu dans le champ pour que son apparition ne décale rien.</p>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">TextAreaField — saisie longue</div>
+        <p style="margin-top:12px;font-size:13px;max-width:64ch">Une note, un commentaire. Mêmes props que <code>TextField</code> moins l'effacement — effacer un texte long se fait à la main — plus <code>rows</code> (défaut 3). Le comportement d'erreur est <strong style="font-weight:500">exactement</strong> celui de <code>TextField</code> : message rendu, <code>aria-invalid</code>, <code>role="alert"</code>, et l'erreur remplace l'aide. Un seul texte sous le champ, jamais deux.</p>
+        <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+          <li>hauteur minimale 76 px, ramenée à 52 px dans une <code>Sheet</code> sous 640 px</li>
+          <li>padding 10 / 12, interligne 1.5, <code>resize: vertical</code> seulement</li>
+          <li>à placer en fin de formulaire : c'est le seul champ qui grandit</li>
+        </ul>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">SelectField — choix fermé</div>
+        <p style="margin-top:12px;font-size:13px;max-width:64ch"><code>&lt;select&gt;</code> natif : il tient sur une ligne quel que soit le nombre d'options et hérite du sélecteur de la plateforme. Props : <code>label</code>, <code>value</code>, <code>onValueChange</code>, <code>options</code> (<code>{ value, label }[]</code>, rendues dans l'ordre fourni), <code>bare</code> et <code>selectClassName</code>. Pas de <code>hint</code>, pas d'<code>error</code>, pas de <code>required</code> : un choix fermé pré-rempli n'a rien à valider.</p>
+        <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+          <li>mode normal — conteneur <code>.field</code>, label 12 px muted, champ 44 px, padding-x 12, trait 1 px rule</li>
+          <li>mode <code>bare</code> — le <code>&lt;select&gt;</code> sort seul, sans conteneur, le label passe en <code>.visually-hidden</code> : c'est au parent de le poser</li>
+          <li><code>selectClassName</code> vaut <code>field__input</code> par défaut, <code>searchbar__select</code> dans la barre de recherche</li>
+          <li>la remise à zéro passe par une option « tous » en tête de liste, jamais par un bouton ajouté à côté</li>
+        </ul>
       </section>
 
       <section id="c-toggle">
@@ -627,9 +759,20 @@
           <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:44px;padding:0 4px;border-bottom:1px solid #c8cac8;color:#8b8d8c"><span>notifications</span><span style="font-size:13px">indisponible hors ligne</span></div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
-          <div><div style="font-size:12px;color:#8b8d8c">spécification</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>ligne de 44 px minimum, cible = toute la ligne</li><li>valeur alignée à droite, text-data</li><li>cycle des valeurs au clic, Entrée et Espace</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">spécification</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>ligne de 44 px minimum, cible = toute la ligne (<code>width: 100%</code>)</li><li>nom à gauche en text-data (14 px)</li><li>valeur alignée à droite en text-label (13 px) à 0.72 d'opacité</li><li>séparateur porté par la ligne elle-même : les lignes s'empilent sans conteneur</li><li>cycle des valeurs au clic, Entrée et Espace</li></ul></div>
           <div><div style="font-size:12px;color:#8b8d8c">accessibilité</div><ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:4px"><li><code>&lt;button&gt;</code> simple dont le nom accessible porte la valeur : « thème : système, changer »</li><li>ni <code>role="switch"</code> ni <code>radiogroup</code> — un bouton qui fait défiler n'est ni l'un ni l'autre</li><li>l'état est lu comme texte, pas comme couleur</li></ul></div>
         </div>
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">quatre lignes, une seule géométrie</div>
+        <div style="margin-top:12px;overflow-x:auto">
+          <div style="min-width:560px">
+            <div style="display:grid;grid-template-columns:0.8fr 0.7fr 1.6fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #c8cac8;font-size:12px;color:#8b8d8c"><span>composant</span><span>élément</span><span>rôle de la colonne de droite</span></div>
+            <div style="display:grid;grid-template-columns:0.8fr 0.7fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>ToggleRow</span><span style="color:#8b8d8c">button</span><span style="color:#8b8d8c">l'état courant, qui défile au clic — <code>name</code>, <code>value</code>, <code>ariaLabel</code>, <code>onCycle</code>, <code>danger</code></span></div>
+            <div style="display:grid;grid-template-columns:0.8fr 0.7fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>ActionRow</span><span style="color:#8b8d8c">button</span><span style="color:#8b8d8c">ce sur quoi porte l'action — « fichier JSON », « 12 courses ». <code>onClick</code>, jamais une suppression directe</span></div>
+            <div style="display:grid;grid-template-columns:0.8fr 0.7fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>LinkRow</span><span style="color:#8b8d8c">a / Link</span><span style="color:#8b8d8c">ce qu'on trouve à destination — <code>to</code>, <code>external</code> ouvre en <code>rel="noreferrer noopener"</code></span></div>
+            <div style="display:grid;grid-template-columns:0.8fr 0.7fr 1.6fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>StaticRow</span><span style="color:#8b8d8c">div</span><span style="color:#8b8d8c">une valeur qu'on lit — hors de l'ordre de tabulation, valeur en muted-strong à pleine opacité</span></div>
+          </div>
+        </div>
+        <p style="margin-top:12px;font-size:12px;color:#8b8d8c;max-width:64ch">Les quatre partagent <code>.toggle-row</code> : même hauteur, même séparateur, même alignement. Ce qui change est l'élément rendu et le sens de la colonne de droite. Un réglage n'est pas une action : une action ponctuelle est un <code>ActionRow</code>, une navigation un <code>LinkRow</code>.</p>
       </section>
 
       <section id="c-row">
@@ -638,19 +781,29 @@
           <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">ListRow</h2>
           <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.1</span>
         </div>
-        <p style="margin-top:16px;font-size:13px;max-width:64ch">Unité de liste : une clé, un marqueur, un contenu. Base de <code>DayRow</code> (month.) et des lignes de réglages. C'est le composant le plus utilisé de la famille.</p>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Unité de liste : une clé, un marqueur, un contenu. Base de <code>DayRow</code> (month.), des listes d'éléments et des lignes de réglages composées. C'est le composant le plus utilisé de la famille.</p>
         <div style="margin-top:24px;max-width:560px">
-          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c"><span>clé 56</span><span>◦ 16</span><span>contenu</span><span>méta</span></div>
-          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8" style-hover="background:#17181a;color:#f2f3f2"><span style="font-size:14px">13 jeu</span><span style="width:6px;height:6px;border-radius:50%;background:currentColor"></span><span>dentiste</span><span style="font-size:12px;color:inherit;opacity:0.6">09:30</span></div>
-          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8;background:#e6e7e5;box-shadow:inset 2px 0 0 #17181a"><span style="font-size:14px">14 ven</span><span style="width:6px;height:6px;border-radius:50%;background:#17181a"></span><span>Golf trip</span><span style="font-size:12px;color:#8b8d8c">sélectionné</span></div>
-          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px;color:#8b8d8c">15 sam</span><span style="height:16px;border-left:1px solid #17181a;margin-left:2px"></span><span style="color:#8b8d8c">Golf trip</span><span style="font-size:12px;color:#8b8d8c">suite</span></div>
-          <div style="display:grid;grid-template-columns:56px 16px 1fr auto;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px">16 dim</span><span></span><span style="color:#8b8d8c">—</span><span></span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:center;padding-bottom:8px;border-bottom:1px solid #17181a;font-size:12px;color:#8b8d8c"><span>clé 56</span><span>◦ 16</span><span>contenu — titre, méta, extra empilés</span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:stretch;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8" style-hover="background:#17181a;color:#f2f3f2"><span style="font-size:14px">13 jeu</span><span style="width:6px;height:6px;border-radius:50%;background:currentColor;align-self:start;margin-top:7px"></span><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px">dentiste</span><span style="font-size:12px;opacity:0.72">09:30</span></span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:stretch;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8;background:#e6e7e5;box-shadow:inset 2px 0 0 #17181a"><span style="font-size:14px">14 ven</span><span style="width:6px;height:6px;border-radius:50%;background:#17181a;align-self:start;margin-top:7px"></span><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px">Golf trip</span><span style="font-size:12px;color:#8b8d8c">sélectionné</span></span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:stretch;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px;color:#8b8d8c">15 sam</span><span style="height:16px;border-left:1px solid #17181a;margin-left:2px"></span><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;color:#8b8d8c">Golf trip</span><span style="font-size:12px;color:#8b8d8c">suite</span></span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:stretch;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8"><span style="font-size:14px">16 dim</span><span></span><span style="font-size:14px;color:#8b8d8c">—</span></div>
+          <div style="display:grid;grid-template-columns:56px 16px 1fr;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-bottom:1px solid #c8cac8;font-size:12px;color:#8b8d8c"><span aria-hidden="true">—</span><span></span><span>12 jours sans événement</span></div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
-          <div><div style="font-size:12px;color:#8b8d8c">mesures</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>hauteur min 44, padding 10 / 4</li><li>colonnes 56 · 16 · 1fr · auto, gap 12</li><li>séparateur : border-bottom 1 px rule</li></ul></div>
-          <div><div style="font-size:12px;color:#8b8d8c">états</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>hover : inversion complète de la ligne</li><li>selected : fond discret + trait gauche 2 px en <code>inset</code>, jamais en <code>border</code> — sinon la ligne se décale</li><li>continuation : trait vertical à la place du point</li></ul></div>
-          <div><div style="font-size:12px;color:#8b8d8c">accessibilité</div><ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:4px"><li>liste = <code>&lt;ul&gt;</code>, ligne interactive = <code>&lt;button&gt;</code> pleine largeur</li><li>navigation ↑ ↓ dans la liste, Entrée pour ouvrir</li><li>date lue en entier par le lecteur d'écran</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">mesures</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>hauteur min 44, padding 10 / 4</li><li>trois colonnes 56 · 16 · 1fr, gap 12 — pas de quatrième : <code>meta</code> et <code>extra</code> s'empilent sous le titre dans la colonne de contenu, séparés de 2 px</li><li>la largeur de la clé se surcharge par la variable <code>--row-key</code> posée sur un ancêtre ; 56 px par défaut</li><li>sans <code>rowKey</code>, la grille devient 16 · 1fr : la colonne de marqueur reste, les points restent alignés</li><li>séparateur : <code>border-bottom</code> 1 px rule, porté par <code>.list__item</code></li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">états</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>hover : inversion complète de la ligne</li><li>selected : fond discret + trait gauche 2 px en <code>inset</code>, jamais en <code>border</code> — sinon la ligne se décale</li><li>continuation : trait vertical à la place du point</li><li><code>emphasis</code> : titre en text-body au lieu de text-data</li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">accessibilité</div><ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:4px"><li>liste = <code>&lt;ul&gt;</code>, ligne interactive = <code>&lt;button&gt;</code> pleine largeur, Entrée et Espace pour ouvrir</li><li>sans <code>onClick</code>, la ligne est un <code>&lt;div&gt;</code> — hors de l'ordre de tabulation, ce qui est correct pour une ligne non actionnable</li><li>navigation ↑ ↓ dans la liste : <strong style="font-weight:500;color:#17181a">non implémentée</strong>. Le composant ne pose aucun écouteur ; elle se câble au niveau de la liste</li><li>date lue en entier par le lecteur d'écran via <code>ariaLabel</code>, pas la clé abrégée</li></ul></div>
         </div>
+        <p style="margin-top:20px;font-size:12px;color:#8b8d8c;max-width:64ch">Le composant ne rend que la ligne. <code>.list</code> et <code>.list__item</code> sont à poser par l'appelant : <code>&lt;ul class="list"&gt;</code> / <code>&lt;li class="list__item"&gt;</code>, sinon les séparateurs disparaissent.</p>
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">GapRow — le creux replié</div>
+        <p style="margin-top:12px;font-size:13px;max-width:64ch">Dernière ligne de l'exemple ci-dessus. Remplace une suite de lignes vides par une seule qui dit combien il en manque : « 12 jours sans course ». Une seule prop, <code>label</code>, décompte compris et pluriel issu d'<code>Intl.PluralRules</code> — l'absence reste visible sans occuper l'écran.</p>
+        <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+          <li>même grille que <code>ListRow</code> — le libellé s'aligne exactement sur les titres voisins</li>
+          <li>tiret cadratin décoratif en colonne de clé (<code>aria-hidden</code>), colonne de marqueur vide : la continuité verticale est volontairement interrompue</li>
+          <li>texte 12 px muted, non interactif, rendu en <code>&lt;div&gt;</code> — un repère, pas une cible</li>
+          <li>sa grille est fixe : elle ne bascule pas en deux colonnes comme <code>.row--nokey</code></li>
+        </ul>
       </section>
 
       <section id="c-dot">
@@ -661,9 +814,9 @@
         </div>
         <p style="margin-top:16px;font-size:13px;max-width:64ch">Marqueur atomique de la famille : présence d'un événement, d'une action réalisée, d'une identité. Jamais un badge, jamais un compteur.</p>
         <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:24px;align-items:flex-start">
-          <div><div style="height:32px;display:flex;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">filled / 6 px<br>fait, présent</div></div>
-          <div><div style="height:32px;display:flex;align-items:center"><span style="width:6px;height:6px;border-radius:50%;border:1px solid #8b8d8c;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">outline / 6 px<br>prévu, à venir</div></div>
-          <div><div style="height:32px;display:flex;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">large / 8 px<br>identité, marque</div></div>
+          <div><div style="height:32px;display:flex;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">filled / 6 px<br>fait, présent<br><span style="color:#17181a">rendu par <code>Marker</code></span></div></div>
+          <div><div style="height:32px;display:flex;align-items:center"><span style="width:6px;height:6px;border-radius:50%;border:1px solid #8b8d8c;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">outline / 6 px<br>prévu, à venir<br><span style="color:#17181a">classe <code>.dot--outline</code> seule</span></div></div>
+          <div><div style="height:32px;display:flex;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">large / 8 px<br>identité, marque<br><span style="color:#17181a">classe <code>.dot--lg</code> seule</span></div></div>
           <div><div style="height:32px;display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span><span style="width:6px;height:6px;border-radius:50%;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">série / gap 4<br>3 maximum, puis « +n »</div></div>
           <div><div style="height:32px;display:flex;align-items:center"><span style="width:16px;height:1px;background:#17181a;display:block"></span></div><div style="font-size:12px;color:#8b8d8c">trait<br>continuation multi-jours</div></div>
         </div>
@@ -681,7 +834,8 @@
             <li>dernier jour d'une série : le trait s'arrête à la hauteur où serait le point</li>
           </ul>
         </div>
-        <p style="margin-top:20px;font-size:12px;color:#8b8d8c;max-width:64ch">Le point n'est jamais seul porteur d'information : il est doublé d'un texte, d'un <code>aria-label</code> ou d'un décompte lisible. Zone tactile parente de 44 px minimum.</p>
+        <p style="margin-top:20px;font-size:12px;color:#8b8d8c;max-width:64ch">Le point n'est jamais seul porteur d'information : il est doublé d'un texte, d'un <code>aria-label</code> ou d'un décompte lisible. Zone tactile parente de 44 px minimum. Le <code>&lt;span&gt;</code> racine porte <code>aria-hidden="true"</code> : le marqueur est décoratif par construction. Les traits sont peints à 0.72 d'opacité en <code>currentColor</code> — ils s'inversent avec la ligne au survol, sans règle supplémentaire.</p>
+        <p style="margin-top:12px;font-size:12px;color:#8b8d8c;max-width:64ch">Des quatre formes ci-dessus, le composant <code>Marker</code> n'en émet qu'une : le point plein (<code>.marker__dot</code>), avec ou sans trait. Les classes <code>.dot</code>, <code>.dot--outline</code> et <code>.dot--lg</code> existent dans <code>components.css</code> et prennent leur disque de <code>--radius-full</code>, mais aucun composant ne les rend — il faut les poser à la main. La série de trois points relève de la même règle : elle se compose, elle n'est pas fournie.</p>
       </section>
 
       <section id="c-nav">
@@ -711,7 +865,7 @@
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
           <div><div style="font-size:12px;color:#8b8d8c">comportement</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>libellés adjacents nommés, pas « précédent »</li><li>sous 480 px : libellés réduits aux chevrons (44 × 44, <code>aria-label</code> nommé), titre en <code>nowrap</code></li><li>le titre EST le retour à la période courante : bloc titre + légende, une seule cible</li><li>légende permanente de 12 px sous le titre — « aujourd'hui » sur la période courante, « revenir à aujourd'hui » ailleurs. Elle ne disparaît jamais : rien à deviner, aucun décalage de mise en page</li></ul></div>
-          <div><div style="font-size:12px;color:#8b8d8c">clavier</div><ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:4px"><li>← / → changent de période</li><li><code>T</code> revient à aujourd'hui</li><li>changement annoncé via <code>aria-live="polite"</code></li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">clavier</div><ul style="margin-top:8px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:4px"><li>trois <code>&lt;button type="button"&gt;</code> natifs : Entrée et Espace, focus visible, ordre gauche → centre → droite</li><li>libellés latéraux et chevrons en <code>aria-hidden</code> ; le nom accessible vient de <code>prevAria</code> / <code>nextAria</code></li><li>changement annoncé via <code>aria-live="polite"</code> porté par le titre — présent</li><li>← / → pour changer de période et <code>T</code> pour revenir à aujourd'hui : <strong style="font-weight:500;color:#17181a">non implémentés</strong>. Le composant ne pose aucun écouteur clavier ; ces raccourcis se câblent au niveau de l'écran</li></ul></div>
         </div>
       </section>
 
@@ -722,6 +876,7 @@
           <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
         </div>
         <p style="margin-top:16px;font-size:13px;max-width:64ch">Réduire une liste longue : un champ de recherche libre et un filtre à choix fermé, sur une seule rangée de 44 px, directement sous le titre de la vue.</p>
+        <p style="margin-top:12px;font-size:13px;max-width:64ch;border-left:2px solid #a33;padding-left:12px"><strong style="font-weight:500">Aucun composant n'implémente cette barre.</strong> <code>SearchFilterBar</code> est un motif spécifié, pas un export : <code>@trced/ds</code> n'en publie rien. Seules existent les classes <code>.searchbar</code>, <code>.searchbar__field</code> et <code>.searchbar__select</code> ; la barre se compose à la main à partir des deux champs livrés.</p>
         <div style="margin-top:24px;max-width:480px">
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;min-height:30px">
             <span style="font-size:24px;letter-spacing:-0.02em;white-space:nowrap">éléments</span>
@@ -729,16 +884,47 @@
           </div>
           <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
             <div style="flex:1;min-width:0;position:relative;display:flex">
-              <input type="text" value="chamonix" style="font:inherit;width:100%;min-height:44px;padding:0 44px 0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:4px">
+              <input type="text" value="chamonix" style="font:inherit;width:100%;min-height:44px;padding:0 44px 0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:0">
               <span style="position:absolute;right:1px;top:1px;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;color:#6a6c6a">×</span>
             </div>
-            <span style="flex:0 0 auto;max-width:150px;min-height:44px;display:inline-flex;align-items:center;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:4px;font-size:13px">tous les types ⌄</span>
+            <span style="flex:0 0 auto;max-width:150px;min-height:44px;display:inline-flex;align-items:center;padding:0 12px;background:#f2f3f2;color:#17181a;border:1px solid #c8cac8;border-radius:0;font-size:13px">tous les types ⌄</span>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:24px">
           <div><div style="font-size:12px;color:#8b8d8c">spécification</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>recherche = TextField <code>clearable</code>, placeholder listant les champs couverts, sans le mot « rechercher »</li><li>filtre à choix fermé = <code>&lt;select&gt;</code> natif dès 4 valeurs ou plus : tient sur une ligne quel qu'en soit le nombre</li><li>en dessous de 4 valeurs courtes : libellés texte, actif souligné 1 px</li><li>décompte « N sur M » dans la ligne de titre, jamais sur une ligne à part</li></ul></div>
-          <div><div style="font-size:12px;color:#8b8d8c">règles</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>aucun contrôle conditionnel dans la barre : un élément qui apparaît décale la liste</li><li>remise à zéro par les affordances existantes — le × du champ, l'option « tous » du select</li><li>« effacer les filtres » n'existe que dans l'EmptyState « aucun résultat », où rien ne se décale</li><li>filtrage immédiat à la frappe, décompte en <code>aria-live="polite"</code></li></ul></div>
+          <div><div style="font-size:12px;color:#8b8d8c">règles</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>aucun contrôle conditionnel dans la barre : un élément qui apparaît décale la liste</li><li>remise à zéro par les affordances existantes — le × du champ, l'option « tous » du select</li><li>« effacer les filtres » n'existe que dans l'EmptyState « aucun résultat », où rien ne se décale</li><li>filtrage immédiat à la frappe, décompte en <code>aria-live="polite"</code> depuis la ligne de titre, jamais depuis la barre</li></ul></div>
         </div>
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">composition de référence</div>
+        <sc-if value="{{ showCode }}" hint-placeholder-val="{{ true }}">
+          <pre style="margin-top:16px;font-size:12px;line-height:1.75;white-space:pre-wrap;border-left:1px solid #c8cac8;padding-left:16px">&lt;div className="searchbar"&gt;
+  {/* TextField ne prend pas de className : l'enveloppe porte la classe. */}
+  &lt;div className="searchbar__field"&gt;
+    &lt;TextField
+      hideLabel
+      clearable
+      label="Rechercher"
+      value={query}
+      onValueChange={setQuery}
+      onClear={() =&gt; setQuery('')}
+      placeholder="nom, lieu, dossard"
+    /&gt;
+  &lt;/div&gt;
+  &lt;SelectField
+    bare
+    selectClassName="searchbar__select"
+    label="Filtrer par type"
+    value={typeFilter}
+    onValueChange={setTypeFilter}
+    options={[{ value: 'all', label: 'tous les types' }, ...types]}
+  /&gt;
+&lt;/div&gt;</pre>
+        </sc-if>
+        <ul style="margin-top:16px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+          <li><code>.searchbar</code> — la rangée : flex, gap 8, alignement centré</li>
+          <li><code>.searchbar__field</code> — le champ prend la place restante (<code>flex: 1</code>) et annule la marge haute de <code>.field__wrap</code>, puisqu'il n'y a pas de label visible au-dessus</li>
+          <li><code>.searchbar__select</code> — plafonné à 150 px, hauteur 44, libellé 13 px</li>
+        </ul>
+        <p style="margin-top:12px;font-size:12px;color:#8b8d8c;max-width:64ch">Tant qu'aucun composant n'existe, chaque écran refait cette composition : c'est le prix à payer, et la raison pour laquelle la barre est spécifiée ici. Trois écrans qui la reprennent mot pour mot justifieraient de la publier — la règle d'ajout d'un composant s'applique telle quelle.</p>
       </section>
 
       <section id="c-stat">
@@ -762,6 +948,30 @@
           <div><div style="font-size:12px;color:#8b8d8c">spécification</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>valeur en 24 px à droite, libellé en 14 px muted à gauche</li><li>deux lignes de contexte maximum, 12 px</li><li>catégorie sans donnée : « — », jamais masquée — l'absence est une information</li><li>comparaison exprimée en écart signé, jamais en pourcentage inventé</li></ul></div>
           <div><div style="font-size:12px;color:#8b8d8c">regroupement</div><ul style="margin-top:8px;font-size:13px;display:flex;flex-direction:column;gap:4px"><li>sections titrées en 12 px muted : catégories comparables, hors format, totaux</li><li>ce qui n'est pas comparable ne se compare pas : section distincte</li><li>tri fixe et prévisible, jamais par valeur</li></ul></div>
         </div>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">API</div>
+        <div style="margin-top:12px;overflow-x:auto">
+          <div style="min-width:560px">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding-bottom:8px;border-bottom:1px solid #c8cac8;font-size:12px;color:#8b8d8c"><span>prop</span><span>type</span><span>valeurs</span><span>défaut</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>label</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">requis — la catégorie, à gauche</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>value</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">requis — la valeur, à droite, en 24 px</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>empty</span><span style="color:#8b8d8c">boolean</span><span style="color:#8b8d8c">catégorie sans donnée : la valeur passe en muted</span><span style="color:#8b8d8c">false</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>context</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">ce qui a produit la valeur, à gauche de la 2<sup>e</sup> ligne</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>aside</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">complément à droite de la même ligne, jamais coupé</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>note</span><span style="color:#8b8d8c">string</span><span style="color:#8b8d8c">troisième ligne — comparaison, décompte</span><span style="color:#8b8d8c">—</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr 0.8fr;gap:16px;padding:10px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span>onClick</span><span style="color:#8b8d8c">function</span><span style="color:#8b8d8c">absent : la ligne se lit mais ne s'ouvre pas — rendue en <code>&lt;div&gt;</code></span><span style="color:#8b8d8c">—</span></div>
+          </div>
+        </div>
+        <p style="margin-top:16px;font-size:12px;color:#8b8d8c;max-width:64ch"><code>context</code> et <code>aside</code> partagent la même ligne ; il suffit de l'un des deux pour qu'elle apparaisse. La ligne ne porte pas de séparateur : l'englober dans <code>&lt;li class="list__item"&gt;</code>, ou utiliser <code>SummaryRow</code> pour un bloc autonome. Avec <code>onClick</code>, la ligne devient un <code>&lt;button type="button"&gt;</code> pleine largeur ; sans lui, elle sort de l'ordre de tabulation.</p>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">SummaryRow — la ligne de synthèse</div>
+        <p style="margin-top:12px;font-size:13px;max-width:64ch">Un libellé, une valeur, rien d'autre. Pour les totaux et les extrêmes en bas d'une page de synthèse, là où <code>StatRow</code> serait trop lourd : il n'y a ni contexte à donner, ni chiffre à mettre en valeur. Deux props, <code>label</code> et <code>value</code> — pas d'<code>onClick</code>, pas d'<code>empty</code>. Une ligne de synthèse ne s'ouvre pas.</p>
+        <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+          <li>libellé en 14 px à 0.72 d'opacité, valeur en 13 px — l'inverse du rapport de <code>StatRow</code>, où la valeur domine</li>
+          <li>porte son propre séparateur bas (<code>.stat--ruled</code>) : elle s'utilise directement dans un bloc, jamais dans <code>&lt;li class="list__item"&gt;</code> — elle porterait deux traits</li>
+          <li>non interactive, rendue en <code>&lt;div&gt;</code> ; à regrouper sous une section titrée en 12 px muted</li>
+          <li>afficher la ligne même sans donnée, avec un « — » en valeur</li>
+        </ul>
       </section>
 
       <section id="c-sheet">
@@ -770,35 +980,70 @@
           <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">Sheet</h2>
           <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
         </div>
-        <p style="margin-top:16px;font-size:13px;max-width:64ch">Surface temporaire pour créer ou éditer. Bottom sheet en mobile, panneau latéral en desktop. Jamais utilisée pour afficher du contenu consultable.</p>
+        <p style="margin-top:16px;font-size:13px;max-width:64ch">Surface temporaire pour créer, éditer ou régler. Feuille par le bas dans le cas courant ; panneau plein cadre avec <code>full</code>. Jamais utilisée pour afficher du contenu qu'on se contente de consulter.</p>
+        <p style="margin-top:12px;font-size:13px;max-width:64ch">Quatre props : <code>label</code> (requis — nom accessible du dialogue et du bouton de fermeture par clic hors zone), <code>onClose</code> (requis — Échap, clic hors zone, glissement), <code>full</code> et <code>children</code>. Le composant ne rend ni en-tête ni barre d'actions : <code>.sheet__head</code>, <code>.sheet__actions</code> et <code>.sheet__actions-group</code> sont à poser dans les enfants.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px;align-items:start">
           <div style="border-top:1px solid #17181a;padding:16px 0 0">
             <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:16px">nouvel événement</span><span style="font-size:13px;color:#8b8d8c">fermer</span></div>
-            <label style="display:block;margin-top:20px"><span style="display:block;font-size:12px;color:#8b8d8c">Titre</span><input type="text" value="Golf trip" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;border:1px solid #c8cac8;border-radius:4px;color:#17181a"></label>
-            <label style="display:block;margin-top:16px"><span style="display:block;font-size:12px;color:#8b8d8c">Date</span><input type="text" value="2026-08-14" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;border:1px solid #c8cac8;border-radius:4px;color:#17181a"></label>
+            <label style="display:block;margin-top:20px"><span style="display:block;font-size:12px;color:#8b8d8c">Titre</span><input type="text" value="Golf trip" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;border:1px solid #c8cac8;border-radius:0;color:#17181a"></label>
+            <label style="display:block;margin-top:16px"><span style="display:block;font-size:12px;color:#8b8d8c">Date</span><input type="text" value="2026-08-14" style="font:inherit;width:100%;margin-top:6px;min-height:44px;padding:0 12px;background:#f2f3f2;border:1px solid #c8cac8;border-radius:0;color:#17181a"></label>
             <div style="display:flex;justify-content:flex-end;gap:24px;align-items:center;margin-top:24px;padding-top:16px;border-top:1px solid #c8cac8">
               <span style="font-size:13px;color:#8b8d8c;min-height:44px;display:inline-flex;align-items:center">annuler</span>
-              <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:6px;background:#17181a;color:#f2f3f2;font-size:13px">ajouter</span>
+              <span style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:0;background:#17181a;color:#f2f3f2;font-size:13px">ajouter</span>
             </div>
           </div>
           <div>
             <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">spécification</div>
             <ul style="margin-top:12px">
-              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>largeur</span><span style="color:#8b8d8c">100% / 480 px max</span></li>
-              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>padding</span><span style="color:#8b8d8c">24 px</span></li>
-              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>séparation</span><span style="color:#8b8d8c">trait 1 px ink, pas d'ombre</span></li>
-              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>entrée</span><span style="color:#8b8d8c">translateY 200 ms ease-out</span></li>
-              <li style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #c8cac8"><span>fermeture</span><span style="color:#8b8d8c">Échap, clic hors zone, « fermer »</span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8"><span>largeur</span><span style="color:#8b8d8c;text-align:right">100 % ; 480 px recentrés uniquement au-delà de 640 px et sous <code>.app--page</code></span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8"><span>padding</span><span style="color:#8b8d8c;text-align:right">24 px ; 20 px sous 640 px, le bas reporté sur la barre d'actions</span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8"><span>gap interne</span><span style="color:#8b8d8c;text-align:right">16 px ; 12 px sous 640 px</span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8"><span>hauteur</span><span style="color:#8b8d8c;text-align:right">plafonnée à 100 % − 48 px (24 px sous 640 px) : une bande de fond reste visée</span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8"><span>séparation</span><span style="color:#8b8d8c;text-align:right">trait 1 px ink en haut, pas d'ombre ; voile <code>--color-scrim</code></span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8"><span>entrée</span><span style="color:#8b8d8c;text-align:right">translateY 8 % + opacité, 200 ms ease-out</span></li>
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8"><span>fermeture</span><span style="color:#8b8d8c;text-align:right">Échap, clic hors zone, « fermer », glissement</span></li>
             </ul>
-            <p style="margin-top:12px;font-size:12px;color:#8b8d8c"><code>role="dialog"</code>, <code>aria-modal="true"</code>, focus déplacé sur le premier champ, focus piégé, restitué à l'élément déclencheur à la fermeture.</p>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Le voile est en <code>position: absolute</code> : le parent doit être positionné et occuper le cadre de l'application. Sous 640 px, <code>.sheet__actions</code> devient collante en bas — sur un écran court, les champs passent dessous plutôt que d'emporter « enregistrer » avec eux.</p>
           </div>
         </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:32px">
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">mode <code>full</code> — panneau plein cadre</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li>pour les réglages : <code>position: absolute; inset: 0</code></li>
+              <li>ni padding, ni gap, ni trait, ni voile — le contenu gère sa propre mise en page</li>
+              <li>c'est le dernier niveau de profondeur du système : ne jamais empiler deux feuilles</li>
+              <li>le plafond de 480 px ne s'y applique pas</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">geste de glissement</div>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li>poignée de 44 px en haut de la feuille, <code>touch-action: none</code>, barre décorative</li>
+              <li>ferme au-delà de 96 px ou de 30 % de la hauteur de la feuille — le plus petit des deux</li>
+              <li>ferme aussi sur un geste vif : plus de 24 px parcourus à plus de 0,5 px/ms</li>
+              <li>en deçà, la feuille revient à sa place en 200 ms ; pendant le geste elle suit le doigt sans transition</li>
+              <li>la poignée porte <code>aria-hidden="true"</code> : le geste est un raccourci, jamais le seul moyen</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">accessibilité</div>
+        <ul style="margin-top:12px;font-size:13px;color:#8b8d8c;display:flex;flex-direction:column;gap:6px;max-width:64ch">
+          <li><code>role="dialog"</code>, <code>aria-modal="true"</code>, <code>aria-label</code> issu de <code>label</code></li>
+          <li>le focus part sur le premier élément focusable du panneau au montage</li>
+          <li>Tab et Maj+Tab sont piégés dans le panneau, y compris quand le focus s'en est échappé</li>
+          <li>Échap est capté en phase de capture, propagation stoppée — la feuille du dessous ne se ferme pas avec</li>
+          <li>le focus est restitué à l'élément déclencheur au démontage, s'il est toujours dans le document</li>
+          <li>le bouton « fermer » et Échap restent les chemins garantis</li>
+        </ul>
       </section>
 
       <section id="c-feedback">
         <div style="display:flex;gap:16px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #17181a">
           <span style="font-size:12px;color:#8b8d8c">03.10</span>
-          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">EmptyState / Message</h2>
+          <h2 style="font-size:20px;font-weight:500;letter-spacing:-0.01em">EmptyState / Message / Confirm</h2>
           <span style="font-size:12px;color:#8b8d8c;margin-left:auto">stable · 1.0</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:24px">
@@ -807,14 +1052,39 @@
             <p style="margin-top:20px">Aucun événement prévu.</p>
             <p style="margin-top:6px;color:#6a6c6a">Ajoutez ce qui compte ce mois-ci.</p>
             <p style="margin-top:20px;display:inline-block;border-bottom:1px solid #17181a;padding-bottom:2px">+ ajouter</p>
-            <p style="margin-top:20px;font-size:12px;color:#8b8d8c">Structure : constat · invitation · action. Trois lignes maximum, aucune illustration.</p>
+            <p style="margin-top:24px;font-size:12px;color:#8b8d8c">Vos données restent sur cet appareil.</p>
+            <p style="margin-top:20px;font-size:12px;color:#8b8d8c">Props : <code>title</code>, <code>body</code>, <code>action</code>, <code>note</code>. Structure : constat · invitation · action, trois lignes maximum, aucune illustration. <code>note</code> est un <strong style="font-weight:500;color:#17181a">quatrième bloc</strong>, 24 px sous l'action, en 12 px muted : une précision détachée qui n'appelle aucune action. Elle ne compte pas dans les trois lignes, et ne les remplace pas. Aucun rôle ARIA : un état vide attendu ne doit pas interrompre un lecteur d'écran.</p>
           </div>
           <div style="border-top:1px solid #c8cac8;padding-top:16px">
             <div style="font-size:12px;color:#8b8d8c">Message — erreur</div>
             <p style="margin-top:20px;color:#a33">Impossible d'importer ce fichier.</p>
             <p style="margin-top:6px;color:#6a6c6a">Le format ou la version des données n'est pas compatible.</p>
             <p style="margin-top:20px;display:inline-block;border-bottom:1px solid #17181a;padding-bottom:2px">choisir un autre fichier</p>
-            <p style="margin-top:20px;font-size:12px;color:#8b8d8c">Structure : ce qui s'est passé · pourquoi · quoi faire. Jamais de code technique. <code>role="alert"</code> pour les erreurs bloquantes.</p>
+            <p style="margin-top:20px;font-size:12px;color:#8b8d8c">Props : <code>title</code>, <code>body</code>, <code>action</code>, <code>tone</code>. Structure : ce qui s'est passé · pourquoi · quoi faire. Jamais de code technique, jamais de trace d'erreur. Pas de <code>note</code> : ce qui reste à dire tient dans <code>body</code>.</p>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c"><code>tone</code> vaut <code>error</code> (défaut) ou <code>neutral</code>. En <code>error</code>, le titre passe en <code>--color-danger</code> et le bloc porte <code>role="alert"</code> : il doit donc être monté au moment de l'erreur, pas rendu en permanence puis affiché — un <code>role="alert"</code> déjà présent n'annonce rien. En <code>neutral</code>, aucun rôle : une information non bloquante n'interrompt pas. La couleur est un renfort : l'information est portée par le titre.</p>
+          </div>
+        </div>
+
+        <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8;margin-top:32px">Confirm — confirmation en ligne</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:16px;align-items:start">
+          <div style="padding:12px 4px;border-bottom:1px solid #c8cac8">
+            <p style="font-size:14px;color:#a33">Supprimer «&nbsp;Golf trip&nbsp;» ?</p>
+            <p style="margin-top:4px;font-size:12px;color:#6a6c6a">L'événement et ses notes seront effacés de cet appareil.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;margin-top:8px">
+              <span style="font-size:13px;color:#6a6c6a;min-height:44px;display:inline-flex;align-items:center">annuler</span>
+              <span style="font-size:13px;color:#a33;min-height:44px;display:inline-flex;align-items:center;border-bottom:1px solid #a33;width:fit-content">supprimer</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:13px">Confirmation d'une action destructive, à l'endroit où l'action a été demandée. <code>window.confirm</code> n'existe pas dans la famille, et une <code>Sheet</code> ne s'ouvre jamais par-dessus une <code>Sheet</code> pour poser une question.</p>
+            <ul style="margin-top:12px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+              <li>props : <code>title</code> (la question, l'objet nommé, toujours en rouge), <code>body</code> (ce qui disparaît exactement), <code>children</code> (les boutons), <code>boxed</code></li>
+              <li>ordre imposé : l'échappatoire à gauche, la destruction à droite en <code>variant="destructive" strong</code></li>
+              <li>en ligne dans le flux : padding 12 / 4, séparateur bas 1 px rule — le bloc se substitue à la ligne qui a déclenché la demande</li>
+              <li><code>boxed</code> : trait en haut au lieu du bas, marge haute 8 px, padding haut 16 px — il remplace la barre d'actions d'une <code>Sheet</code>, et en reprend la marge basse sous 640 px</li>
+              <li>titre 14 px danger, corps 12 px muted-strong à 4 px, actions 8 px plus bas, écart 24 px, retour à la ligne autorisé</li>
+            </ul>
+            <p style="margin-top:12px;font-size:12px;color:#8b8d8c">Ni <code>role</code>, ni <code>aria-modal</code>, et le focus n'est pas déplacé : c'est un bloc en ligne, pas un dialogue — il apparaît là où le regard est déjà. Les deux issues sont des <code>&lt;button&gt;</code> natifs, l'annulation d'abord dans l'ordre de tabulation. Rien n'est piégé : Échap reste celle de la <code>Sheet</code> qui contient le bloc, s'il y en a une. Le rouge est un renfort — la question doit rester explicite en monochrome.</p>
           </div>
         </div>
       </section>
@@ -975,7 +1245,8 @@
         <div style="margin-top:32px">
           <div style="font-size:12px;color:#8b8d8c;padding-bottom:8px;border-bottom:1px solid #c8cac8">journal</div>
           <ul style="margin-top:12px">
-            <li style="display:grid;grid-template-columns:88px 64px 1fr;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">2026-08-11</span><span>1.1.0</span><span>PeriodNav 1.1 (titre = retour à la période courante, légende permanente) · Dot 1.1 (liaison point ↔ trait) · Toggle 1.1 (bouton simple, nom accessible porteur de la valeur) · TextField 1.1 (effacement dessiné) · ListRow 1.1 (sélection en inset) · SearchFilterBar et StatRow ajoutés</span></li>
+            <li style="display:grid;grid-template-columns:88px 64px 1fr;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">2026-08-14</span><span>1.2.0</span><span>alignement du document sur le code livré. Angles droits (<code>radius-sm</code> et <code>radius-md</code> à <code>0</code>, <code>radius-full</code> réellement posé) · <code>text-body</code> fluide et <code>text-display</code> à 44 px au-delà de 1024 · <code>container-max</code> à 1600 · thème dans les deux directions et <code>color-scheme</code> · tokens de mise en page et de document (groupes 5 et 6) · Button <code>quiet</code> / <code>strong</code> / <code>block</code> · TextField <code>onValueChange</code>, TextAreaField et SelectField documentés · ListRow à trois colonnes et GapRow · StatRow doté d'une API, SummaryRow ajouté · Sheet <code>full</code> et geste de glissement · Confirm ajouté · SearchFilterBar déclarée non implémentée, comme les raccourcis clavier de ListRow et PeriodNav</span></li>
+            <li style="display:grid;grid-template-columns:88px 64px 1fr;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">2026-08-11</span><span>1.1.0</span><span style="color:#8b8d8c">PeriodNav 1.1 (titre = retour à la période courante, légende permanente) · Dot 1.1 (liaison point ↔ trait) · Toggle 1.1 (bouton simple, nom accessible porteur de la valeur) · TextField 1.1 (effacement dessiné) · ListRow 1.1 (sélection en inset) · SearchFilterBar et StatRow ajoutés</span></li>
             <li style="display:grid;grid-template-columns:88px 64px 1fr;gap:16px;padding:8px 0;border-bottom:1px solid #c8cac8;font-size:13px"><span style="color:#8b8d8c">2026-08-11</span><span>1.0.0</span><span style="color:#8b8d8c">première version stable — fondations, 8 composants, gouvernance</span></li>
           </ul>
         </div>
@@ -1015,7 +1286,7 @@
       </section>
 
       <footer style="border-top:1px solid #17181a;padding-top:16px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:12px;color:#8b8d8c">
-        <span>famille «&nbsp;.&nbsp;» — design system 1.0.0</span>
+        <span>famille «&nbsp;.&nbsp;» — design system 1.2.0</span>
         <span>une chose. bien faite.</span>
       </footer>
 
