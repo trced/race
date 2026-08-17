@@ -1,6 +1,6 @@
 {
   "name": "race",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "All your races. One line each. A local-first, offline race logbook with no account.",
   "keywords": [

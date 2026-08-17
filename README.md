@@ -1,6 +1,6 @@
 # race.
 
-![version](https://img.shields.io/badge/version-0.1.1-17181a)
+![version](https://img.shields.io/badge/version-0.1.2-17181a)
 ![licence](https://img.shields.io/badge/licence-AGPL--3.0--or--later-17181a)
 ![PWA](https://img.shields.io/badge/PWA-offline-17181a)
 ![tracking](https://img.shields.io/badge/tracking-none-17181a)

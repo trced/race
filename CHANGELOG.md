@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2026-08-17
+
+### Changed
+
+- JetBrains Mono now ships with the app: two weights, two Latin subsets. The typeface no longer depends on what the machine happens to have installed, and the system stack stays behind it, for the loading window and for what those subsets do not cover
+- The "famille ." reference is published as 1.2.0 and describes what is actually shipped: right angles, fluid scales, layout tokens, the component variants, and whatever is not implemented declared as such. What was still hard-coded in the stylesheets goes through the tokens
+
+### Fixed
+
+- A multi-line field announces its error the way a single-line one does. The notes on a race carried the error in the field's outline but never in its text: `aria-invalid`, the message in `role="alert"`, and the field pointing at its error when there is one and at its hint otherwise
+
 ## [0.1.1] - 2026-08-13
 
 ### Added
@@ -37,3 +48,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - The "famille ." 1.1.0 design system implemented as CSS tokens: colour, typography, space, shape, motion, and ten documented components
 - Keyboard navigation throughout: arrows change period, `T` returns to today, `Escape` closes any sheet, and focus is trapped in dialogs and restored on close
 - Unit tests over the pure layer — formatting, validation, calendar building, records, file import/merge — and end-to-end tests of the real user paths
+
+[0.1.2]: https://github.com/trced/race/releases/tag/v0.1.2
+[0.1.1]: https://github.com/trced/race/releases/tag/v0.1.1
+[0.1.0]: https://github.com/trced/race/releases/tag/v0.1.0

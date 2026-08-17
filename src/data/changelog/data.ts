@@ -4,6 +4,37 @@ import type { ChangelogVersion } from './types.ts'
  *  historique déjà publié — voir le skill /release. */
 export const changelogVersions: ChangelogVersion[] = [
   {
+    version: '0.1.2',
+    date: '2026-08-17',
+    changes: {
+      changed: [
+        {
+          text: "JetBrains Mono est désormais livrée avec l'application : deux graisses, deux sous-ensembles latins. La face ne dépend plus de ce que la machine a sous la main, et la pile système reste derrière elle, pour le temps du chargement et pour ce que ces sous-ensembles ne couvrent pas",
+          textEn:
+            'JetBrains Mono now ships with the app: two weights, two Latin subsets. The typeface no longer depends on what the machine happens to have installed, and the system stack stays behind it, for the loading window and for what those subsets do not cover',
+          category: 'Design',
+          categoryEn: 'Design',
+        },
+        {
+          text: "La référence de la famille « . » paraît en 1.2.0 et décrit ce qui est réellement livré : angles droits, échelles fluides, tokens de mise en page, variantes des composants, et ce qui n'est pas implémenté déclaré comme tel. Ce qui restait en dur dans les feuilles de style passe par les tokens",
+          textEn:
+            'The "famille ." reference is published as 1.2.0 and describes what is actually shipped: right angles, fluid scales, layout tokens, the component variants, and whatever is not implemented declared as such. What was still hard-coded in the stylesheets goes through the tokens',
+          category: 'Design',
+          categoryEn: 'Design',
+        },
+      ],
+      fixed: [
+        {
+          text: "Un champ multiligne annonce son erreur comme un champ simple. Les notes d'une course portaient l'erreur dans le trait du champ mais jamais dans son texte : aria-invalid, le message en role=\"alert\", et le champ qui pointe son erreur quand elle existe, son indication sinon",
+          textEn:
+            'A multi-line field announces its error the way a single-line one does. The notes on a race carried the error in the field\'s outline but never in its text: aria-invalid, the message in role="alert", and the field pointing at its error when there is one and at its hint otherwise',
+          category: 'Application',
+          categoryEn: 'App',
+        },
+      ],
+    },
+  },
+  {
     version: '0.1.1',
     date: '2026-08-13',
     changes: {
