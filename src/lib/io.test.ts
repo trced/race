@@ -1,7 +1,13 @@
-import { describe, expect, it } from 'vitest'
-import { mergeRaces, parseFile, serializeFile } from './io.ts'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import {
+  EXPORT_FILENAME,
+  mergeRaces,
+  parseFile,
+  serializeFile,
+  shareFile,
+} from './io.ts'
 import { SCHEMA_VERSION } from './types.ts'
-import type { Race } from './types.ts'
+import type { Race, RaceFile } from './types.ts'
 
 const race = (patch: Partial<Race> & { name: string; date: string }): Race => ({
   id: patch.name,
@@ -130,5 +136,102 @@ describe('mergeRaces', () => {
       race({ name: 'Corrida', date: '2025-12-20' }),
     ]
     expect(mergeRaces([], twice).races).toHaveLength(1)
+  })
+})
+
+describe('shareFile', () => {
+  const raceFile: RaceFile = {
+    schemaVersion: SCHEMA_VERSION,
+    data: { races: [race({ name: 'UTMB', date: '2026-08-28' })] },
+    settings: {},
+  }
+
+  /** jsdom n'implémente pas les URL d'objet : le chemin téléchargement en a
+   *  besoin, on le remplace par un compteur. */
+  const stubDownload = (): { clicks: () => number } => {
+    let clicks = 0
+    vi.stubGlobal('URL', {
+      ...URL,
+      createObjectURL: () => 'blob:race',
+      revokeObjectURL: () => {},
+    })
+    vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {
+      clicks++
+    })
+    return { clicks: () => clicks }
+  }
+
+  const stubShare = (
+    share: (data: ShareData) => Promise<void>,
+    canShare = true,
+  ): { shared: () => ShareData | null } => {
+    let shared: ShareData | null = null
+    Object.defineProperty(navigator, 'share', {
+      configurable: true,
+      value: (data: ShareData) => {
+        shared = data
+        return share(data)
+      },
+    })
+    Object.defineProperty(navigator, 'canShare', {
+      configurable: true,
+      value: () => canShare,
+    })
+    return { shared: () => shared }
+  }
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+    Reflect.deleteProperty(navigator, 'share')
+    Reflect.deleteProperty(navigator, 'canShare')
+  })
+
+  it('passe le fichier au partage natif de l’appareil', async () => {
+    const download = stubDownload()
+    const native = stubShare(() => Promise.resolve())
+
+    await expect(shareFile(raceFile)).resolves.toBe('shared')
+
+    const files = native.shared()?.files
+    expect(files).toHaveLength(1)
+    expect(files?.[0]?.name).toBe(EXPORT_FILENAME)
+    expect(files?.[0]?.type).toBe('application/json')
+    expect(await files?.[0]?.text()).toBe(serializeFile(raceFile))
+    // Partager suffit : rien ne tombe en plus dans les téléchargements.
+    expect(download.clicks()).toBe(0)
+  })
+
+  it('télécharge quand l’appareil ne partage pas de fichier', async () => {
+    const download = stubDownload()
+    stubShare(() => Promise.resolve(), false)
+
+    await expect(shareFile(raceFile)).resolves.toBe('downloaded')
+    expect(download.clicks()).toBe(1)
+  })
+
+  it('télécharge quand le partage natif n’existe pas', async () => {
+    const download = stubDownload()
+
+    await expect(shareFile(raceFile)).resolves.toBe('downloaded')
+    expect(download.clicks()).toBe(1)
+  })
+
+  it('ne télécharge rien quand l’utilisateur renonce', async () => {
+    const download = stubDownload()
+    stubShare(() => Promise.reject(new DOMException('annulé', 'AbortError')))
+
+    await expect(shareFile(raceFile)).resolves.toBe('cancelled')
+    expect(download.clicks()).toBe(0)
+  })
+
+  /** Une panne du partage n'est pas un refus : le fichier doit sortir
+   *  quand même, par le chemin qui marche toujours. */
+  it('retombe sur le téléchargement quand le partage échoue', async () => {
+    const download = stubDownload()
+    stubShare(() => Promise.reject(new Error('indisponible')))
+
+    await expect(shareFile(raceFile)).resolves.toBe('downloaded')
+    expect(download.clicks()).toBe(1)
   })
 })

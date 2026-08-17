@@ -207,6 +207,8 @@ export const en: Record<MessageKey, string> = {
   'app.settings.data': 'data',
   'app.settings.export': 'export',
   'app.settings.exportValue': 'race.json',
+  'app.settings.send': 'send to',
+  'app.settings.sendValue': 'share the file',
   'app.settings.import': 'import',
   'app.settings.importValue': 'choose a file',
   'app.settings.importFound.one': '{file} — {n} race',
@@ -246,6 +248,7 @@ export const en: Record<MessageKey, string> = {
   // ————— app · status messages —————
   'app.flash.exported.one': 'race.json exported — {n} race',
   'app.flash.exported.other': 'race.json exported — {n} races',
+  'app.flash.shared': 'file sent',
   'app.flash.imported.one': '{n} race added',
   'app.flash.imported.other': '{n} races added',
   'app.flash.importedNone': 'no race to add',

@@ -1,4 +1,4 @@
-/** race.json — lecture, écriture, fusion.
+/** race.json — lecture, écriture, fusion, partage.
  *  Import validé contre le schéma, jamais d'écrasement silencieux. */
 
 import { RACE_TYPES, SCHEMA_VERSION } from './types.ts'
@@ -126,12 +126,13 @@ export function mergeRaces(current: Race[], incoming: Race[]): MergeResult {
   }
 }
 
+function fileBlob(file: RaceFile): Blob {
+  return new Blob([serializeFile(file)], { type: 'application/json' })
+}
+
 /** Déclenche le téléchargement du fichier. Aucun réseau : un Blob local. */
 export function downloadFile(file: RaceFile, filename = EXPORT_FILENAME): void {
-  const blob = new Blob([serializeFile(file)], {
-    type: 'application/json',
-  })
-  const url = URL.createObjectURL(blob)
+  const url = URL.createObjectURL(fileBlob(file))
   const link = document.createElement('a')
   link.href = url
   link.download = filename
@@ -139,4 +140,35 @@ export function downloadFile(file: RaceFile, filename = EXPORT_FILENAME): void {
   link.click()
   link.remove()
   URL.revokeObjectURL(url)
+}
+
+/** Envoyer vers : le partage natif quand l'appareil sait recevoir un
+ *  fichier, le téléchargement sinon. Le contenu ne quitte l'appareil que
+ *  par le geste explicite de l'utilisateur, vers l'application qu'il
+ *  choisit — jamais vers un serveur du projet, il n'y en a pas. */
+export async function shareFile(
+  file: RaceFile,
+  filename = EXPORT_FILENAME,
+): Promise<'shared' | 'downloaded' | 'cancelled'> {
+  const nav = typeof navigator === 'undefined' ? null : navigator
+  if (nav && typeof nav.share === 'function' && typeof File === 'function') {
+    const payload = new File([fileBlob(file)], filename, {
+      type: 'application/json',
+    })
+    const canShare = nav.canShare?.({ files: [payload] }) ?? false
+    if (canShare) {
+      try {
+        await nav.share({ files: [payload], title: filename })
+        return 'shared'
+      } catch (error) {
+        // Refus de l'utilisateur : ce n'est pas une panne, on n'enchaîne
+        // pas sur un téléchargement qu'il n'a pas demandé.
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          return 'cancelled'
+        }
+      }
+    }
+  }
+  downloadFile(file, filename)
+  return 'downloaded'
 }

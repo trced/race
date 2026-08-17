@@ -213,6 +213,8 @@ export const fr = {
   'app.settings.data': 'données',
   'app.settings.export': 'exporter',
   'app.settings.exportValue': 'race.json',
+  'app.settings.send': 'envoyer vers',
+  'app.settings.sendValue': 'partager le fichier',
   'app.settings.import': 'importer',
   'app.settings.importValue': 'choisir un fichier',
   'app.settings.importFound.one': '{file} — {n} course',
@@ -252,6 +254,7 @@ export const fr = {
   // ————— application · messages d'état —————
   'app.flash.exported.one': 'race.json exporté — {n} course',
   'app.flash.exported.other': 'race.json exporté — {n} courses',
+  'app.flash.shared': 'fichier envoyé',
   'app.flash.imported.one': '{n} course ajoutée',
   'app.flash.imported.other': '{n} courses ajoutées',
   'app.flash.importedNone': 'aucune course à ajouter',

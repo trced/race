@@ -13,7 +13,7 @@ import {
 } from '../../components/ToggleRow.tsx'
 import { useI18n } from '../../i18n/index.tsx'
 import type { MessageKey } from '../../i18n/index.tsx'
-import { downloadFile, parseFile } from '../../lib/io.ts'
+import { downloadFile, parseFile, shareFile } from '../../lib/io.ts'
 import { LICENCE_URL, REPO } from '../../lib/links.ts'
 import type { Race, Settings } from '../../lib/types.ts'
 import { APP_VERSION } from '../../lib/version.ts'
@@ -101,6 +101,17 @@ export function SettingsSheet({
     onClose()
   }
 
+  const onSend = async (): Promise<void> => {
+    const result = await shareFile(store.file())
+    if (result === 'cancelled') return
+    onFlash(
+      result === 'shared'
+        ? t('app.flash.shared')
+        : tp('app.flash.exported', count),
+    )
+    onClose()
+  }
+
   const onPickFile = async (file: File): Promise<void> => {
     const text = await file.text()
     const result = parseFile(text)
@@ -162,6 +173,12 @@ export function SettingsSheet({
             name={t('app.settings.export')}
             value={t('app.settings.exportValue')}
             onClick={onExport}
+          />
+
+          <ActionRow
+            name={t('app.settings.send')}
+            value={t('app.settings.sendValue')}
+            onClick={() => void onSend()}
           />
 
           <input

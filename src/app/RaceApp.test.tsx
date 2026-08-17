@@ -334,6 +334,35 @@ describe('réglages', () => {
     ).toBe('https://github.com/trced/race/blob/main/LICENSE')
   })
 
+  it('envoie le journal à l’application choisie', async () => {
+    let sent: ShareData | null = null
+    Object.defineProperty(navigator, 'canShare', {
+      configurable: true,
+      value: () => true,
+    })
+    Object.defineProperty(navigator, 'share', {
+      configurable: true,
+      value: (data: ShareData) => {
+        sent = data
+        return Promise.resolve()
+      },
+    })
+
+    const { user } = renderApp()
+    await user.click(screen.getByRole('button', { name: 'réglages' }))
+    await user.click(screen.getByRole('button', { name: /envoyer vers/ }))
+
+    await waitFor(() =>
+      expect(screen.getByRole('status').textContent).toContain(
+        'fichier envoyé',
+      ),
+    )
+    expect((sent as ShareData | null)?.files?.[0]?.name).toBe('race.json')
+
+    Reflect.deleteProperty(navigator, 'share')
+    Reflect.deleteProperty(navigator, 'canShare')
+  })
+
   it('efface tout après confirmation explicite', async () => {
     const { user } = renderApp()
 
