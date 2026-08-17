@@ -271,7 +271,7 @@ export const en: Record<MessageKey, string> = {
   'site.nav.source': 'source code',
   'site.nav.app': 'open the app',
   'site.nav.back': '‹ overview',
-  'site.nav.lang': 'français',
+  'site.nav.lang': 'FR',
   'site.nav.langAria': 'passer en français',
 
   // ————— site · overview —————

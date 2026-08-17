@@ -277,7 +277,7 @@ export const fr = {
   'site.nav.source': 'code source',
   'site.nav.app': "ouvrir l'application",
   'site.nav.back': '‹ présentation',
-  'site.nav.lang': 'english',
+  'site.nav.lang': 'EN',
   'site.nav.langAria': 'switch to English',
 
   // ————— site · présentation —————
