@@ -244,7 +244,7 @@ export const fr = {
   'app.settings.changelog': 'journal des changements',
   'app.settings.changelogValue': 'ce qui a changé',
   'app.settings.source': 'code source',
-  'app.settings.sourceValue': 'dépôt GitHub',
+  'app.settings.sourceValue': 'github',
   'app.settings.licence': 'licence',
   'app.settings.legal': 'conditions · confidentialité',
   'app.settings.read': 'lire',
@@ -353,13 +353,13 @@ export const fr = {
 
   // ————— site · pied de page —————
   'site.footer.project': 'projet',
-  'site.footer.repo': 'dépôt GitHub',
+  'site.footer.repo': 'dépôt',
   'site.footer.releases': 'versions',
-  'site.footer.issues': 'signaler un bug',
+  'site.footer.issues': 'signaler',
   'site.footer.about': 'à propos',
   'site.footer.changelog': 'journal des changements',
   'site.footer.licence': 'licence',
-  'site.footer.licenceName': 'AGPL-3.0',
+  'site.footer.licenceName': 'AGPL-3.0-or-later',
   'site.footer.contribute': 'contribuer',
   'site.footer.licenceNote':
     'Libre et copyleft : toute version modifiée et distribuée reste libre.',
@@ -368,10 +368,10 @@ export const fr = {
   'site.footer.privacy': 'confidentialité',
   'site.footer.notice': 'mentions légales',
   'site.footer.contact': 'contact',
-  'site.footer.version': 'race. {version} — une chose. bien faite.',
+  'site.footer.version': 'version {version}',
 
   // ————— site · à propos —————
-  'site.about.metaTitle': 'race. — à propos',
+  'site.about.metaTitle': 'à propos — race.',
   'site.about.metaDescription':
     "Pourquoi race. existe, ce qu'elle refuse de faire, comment elle est faite, ce qu'il advient de vos données.",
   'site.about.title': 'Un carnet de courses, rien de plus.',
@@ -400,7 +400,7 @@ export const fr = {
   'site.about.choice.mono': 'monospace, sans couleur',
   'site.about.choice.monoNote': "les chiffres s'alignent, l'écran reste calme",
   'site.about.choice.open': 'code libre',
-  'site.about.choice.openNote': "AGPL-3.0, reprenable par n'importe qui",
+  'site.about.choice.openNote': "AGPL-3.0-or-later, reprenable par n'importe qui",
 
   'site.about.faq': 'questions fréquentes',
   'site.about.faq.data': 'Où sont mes données ?',
@@ -426,7 +426,7 @@ export const fr = {
   'site.about.legal': 'pages légales',
 
   // ————— site · journal des changements —————
-  'site.changelog.metaTitle': 'race. — journal des changements',
+  'site.changelog.metaTitle': 'journal des changements — race.',
   'site.changelog.metaDescription':
     'Ce qui a changé dans race., version par version.',
   'site.changelog.title': 'Journal des changements',
@@ -439,7 +439,9 @@ export const fr = {
 
   // ————— pages légales —————
   'legal.updated': 'mise à jour {date}',
-  'legal.terms.metaTitle': "race. — conditions d'utilisation",
+  'legal.terms.metaTitle': "conditions d'utilisation — race.",
+  'legal.terms.metaDescription':
+    "Les conditions d'utilisation de race. : un logiciel libre fourni tel quel, sans compte ni service distant.",
   'legal.terms.title': "Conditions d'utilisation",
   'legal.terms.lede':
     "Courtes par construction : l'application ne collecte rien, ne vend rien et ne promet rien d'autre que de fonctionner.",
@@ -454,7 +456,7 @@ export const fr = {
     'Usage personnel, non médical. Distances, durées et allures sont celles que vous saisissez : ni mesure officielle, ni conseil d’entraînement.',
   'legal.terms.licence': 'licence',
   'legal.terms.licenceBody':
-    'Code publié sous AGPL-3.0. Vous pouvez l’utiliser, l’étudier, le modifier et le redistribuer ; toute version distribuée ou exposée en réseau doit rester sous la même licence, code source inclus.',
+    'Code publié sous AGPL-3.0-or-later. Vous pouvez l’utiliser, l’étudier, le modifier et le redistribuer ; toute version distribuée ou exposée en réseau doit rester sous la même licence, code source inclus.',
   'legal.terms.warranty': 'garantie',
   'legal.terms.warrantyBody':
     'Logiciel fourni « tel quel », sans garantie d’aucune sorte. La responsabilité de l’auteur ne peut être engagée en cas de perte de données.',
@@ -462,7 +464,9 @@ export const fr = {
   'legal.terms.changesBody':
     'Ces conditions peuvent changer avec une version majeure. La date figure en haut de page, l’historique dans le dépôt.',
 
-  'legal.privacy.metaTitle': 'race. — confidentialité',
+  'legal.privacy.metaTitle': 'confidentialité — race.',
+  'legal.privacy.metaDescription':
+    "race. ne collecte aucune donnée : ni compte, ni serveur, ni traceur, ni mesure d'audience.",
   'legal.privacy.title': 'Confidentialité',
   'legal.privacy.lede':
     'race. ne collecte aucune donnée. Rien ne quitte votre appareil.',
@@ -490,7 +494,8 @@ export const fr = {
   'legal.privacy.rightsBody':
     "Accès, rectification, effacement et portabilité s'exercent directement dans l'application : consulter, modifier, supprimer une course, tout effacer, exporter le fichier. Aucune demande à adresser à personne — personne d'autre ne détient vos données.",
 
-  'legal.notice.metaTitle': 'race. — mentions légales',
+  'legal.notice.metaTitle': 'mentions légales — race.',
+  'legal.notice.metaDescription': 'Éditeur, hébergement et licence de race.',
   'legal.notice.title': 'Mentions légales',
   'legal.notice.lede':
     'Éditeur et hébergeur du site de présentation. Les crochets marquent les valeurs à renseigner avant publication.',
@@ -505,7 +510,7 @@ export const fr = {
   'legal.notice.hostBody': "[nom de l'hébergeur], [adresse postale], [pays]",
   'legal.notice.ip': 'propriété intellectuelle',
   'legal.notice.ipBody':
-    'code sous AGPL-3.0 ; nom et identité visuelle « race. » réservés',
+    'code sous AGPL-3.0-or-later ; nom et identité visuelle « race. » réservés',
   'legal.notice.mediation': 'médiation',
   'legal.notice.mediationBody':
     'aucune donnée traitée, aucun litige de service ; réclamations par e-mail',
@@ -517,6 +522,8 @@ export const fr = {
   'update.action': 'recharger',
 
   // ————— page introuvable —————
+  'site.notfound.metaTitle': 'page introuvable — race.',
+  'site.notfound.metaDescription': 'Cette adresse ne correspond à aucune page.',
   'site.notfound.title': 'Cette page n’existe pas.',
   'site.notfound.body':
     'Le lien est peut-être ancien, ou mal recopié. Tout le reste fonctionne.',

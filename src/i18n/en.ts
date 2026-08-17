@@ -238,7 +238,7 @@ export const en: Record<MessageKey, string> = {
   'app.settings.changelog': 'changelog',
   'app.settings.changelogValue': 'what changed',
   'app.settings.source': 'source code',
-  'app.settings.sourceValue': 'GitHub repository',
+  'app.settings.sourceValue': 'github',
   'app.settings.licence': 'licence',
   'app.settings.legal': 'terms · privacy',
   'app.settings.read': 'read',
@@ -343,13 +343,13 @@ export const en: Record<MessageKey, string> = {
 
   // ————— site · footer —————
   'site.footer.project': 'project',
-  'site.footer.repo': 'GitHub repository',
+  'site.footer.repo': 'repository',
   'site.footer.releases': 'releases',
-  'site.footer.issues': 'report a bug',
+  'site.footer.issues': 'report an issue',
   'site.footer.about': 'about',
   'site.footer.changelog': 'changelog',
   'site.footer.licence': 'licence',
-  'site.footer.licenceName': 'AGPL-3.0',
+  'site.footer.licenceName': 'AGPL-3.0-or-later',
   'site.footer.contribute': 'contribute',
   'site.footer.licenceNote':
     'Free and copyleft: any modified version that is distributed stays free.',
@@ -358,10 +358,10 @@ export const en: Record<MessageKey, string> = {
   'site.footer.privacy': 'privacy',
   'site.footer.notice': 'legal notice',
   'site.footer.contact': 'contact',
-  'site.footer.version': 'race. {version} — one thing. done well.',
+  'site.footer.version': 'version {version}',
 
   // ————— site · about —————
-  'site.about.metaTitle': 'race. — about',
+  'site.about.metaTitle': 'about — race.',
   'site.about.metaDescription':
     'Why race. exists, what it refuses to do, how it is built, and what becomes of your data.',
   'site.about.title': 'A race logbook, nothing more.',
@@ -390,7 +390,7 @@ export const en: Record<MessageKey, string> = {
   'site.about.choice.mono': 'monospace, no colour',
   'site.about.choice.monoNote': 'figures line up, the screen stays quiet',
   'site.about.choice.open': 'open source',
-  'site.about.choice.openNote': 'AGPL-3.0, anyone can pick it up',
+  'site.about.choice.openNote': 'AGPL-3.0-or-later, anyone can pick it up',
 
   'site.about.faq': 'frequently asked',
   'site.about.faq.data': 'Where is my data?',
@@ -416,7 +416,7 @@ export const en: Record<MessageKey, string> = {
   'site.about.legal': 'legal pages',
 
   // ————— site · changelog —————
-  'site.changelog.metaTitle': 'race. — changelog',
+  'site.changelog.metaTitle': 'changelog — race.',
   'site.changelog.metaDescription':
     'What changed in race., version by version.',
   'site.changelog.title': 'Changelog',
@@ -429,7 +429,9 @@ export const en: Record<MessageKey, string> = {
 
   // ————— legal pages —————
   'legal.updated': 'updated {date}',
-  'legal.terms.metaTitle': 'race. — terms of use',
+  'legal.terms.metaTitle': 'terms of use — race.',
+  'legal.terms.metaDescription':
+    'The terms of use for race.: free software provided as is, with no account and no remote service.',
   'legal.terms.title': 'Terms of use',
   'legal.terms.lede':
     'Short by construction: the app collects nothing, sells nothing and promises nothing beyond working.',
@@ -444,7 +446,7 @@ export const en: Record<MessageKey, string> = {
     'Personal, non-medical use. Distances, durations and paces are the ones you enter: neither official measurement nor training advice.',
   'legal.terms.licence': 'licence',
   'legal.terms.licenceBody':
-    'Code published under AGPL-3.0. You may use, study, modify and redistribute it; any version distributed or exposed over a network must stay under the same licence, source code included.',
+    'Code published under AGPL-3.0-or-later. You may use, study, modify and redistribute it; any version distributed or exposed over a network must stay under the same licence, source code included.',
   'legal.terms.warranty': 'warranty',
   'legal.terms.warrantyBody':
     'Software provided “as is”, without warranty of any kind. The author cannot be held liable for data loss.',
@@ -452,7 +454,9 @@ export const en: Record<MessageKey, string> = {
   'legal.terms.changesBody':
     'These terms may change with a major version. The date is at the top of the page, the history in the repository.',
 
-  'legal.privacy.metaTitle': 'race. — privacy',
+  'legal.privacy.metaTitle': 'privacy — race.',
+  'legal.privacy.metaDescription':
+    'race. collects no data: no account, no server, no tracker, no analytics.',
   'legal.privacy.title': 'Privacy',
   'legal.privacy.lede':
     'race. collects no data. Nothing leaves your device.',
@@ -481,7 +485,8 @@ export const en: Record<MessageKey, string> = {
   'legal.privacy.rightsBody':
     'Access, rectification, erasure and portability are exercised directly in the app: view, edit, delete a race, erase everything, export the file. No request to address to anyone — nobody else holds your data.',
 
-  'legal.notice.metaTitle': 'race. — legal notice',
+  'legal.notice.metaTitle': 'legal notice — race.',
+  'legal.notice.metaDescription': 'Publisher, hosting and licence of race.',
   'legal.notice.title': 'Legal notice',
   'legal.notice.lede':
     'Publisher and host of the presentation site. Brackets mark the values to fill in before publication.',
@@ -496,7 +501,7 @@ export const en: Record<MessageKey, string> = {
   'legal.notice.hostBody': '[host name], [postal address], [country]',
   'legal.notice.ip': 'intellectual property',
   'legal.notice.ipBody':
-    'code under AGPL-3.0; the “race.” name and visual identity are reserved',
+    'code under AGPL-3.0-or-later; the “race.” name and visual identity are reserved',
   'legal.notice.mediation': 'mediation',
   'legal.notice.mediationBody':
     'no data processed, no service dispute; claims by email',
@@ -506,6 +511,8 @@ export const en: Record<MessageKey, string> = {
   'update.action': 'reload',
 
   // ————— not found —————
+  'site.notfound.metaTitle': 'page not found — race.',
+  'site.notfound.metaDescription': 'This address matches no page.',
   'site.notfound.title': 'This page does not exist.',
   'site.notfound.body':
     'The link may be old, or mistyped. Everything else works.',

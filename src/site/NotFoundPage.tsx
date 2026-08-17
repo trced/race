@@ -5,7 +5,7 @@ import { useI18n } from '../i18n/index.tsx'
 import { useDocumentMeta } from './SiteLayout.tsx'
 
 export function NotFoundPage() {
-  useDocumentMeta('site.notfound.title')
+  useDocumentMeta('site.notfound.metaTitle', 'site.notfound.metaDescription')
   const { t } = useI18n()
   return (
     <section className="site__lede site__lede--split">

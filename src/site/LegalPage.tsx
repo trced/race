@@ -80,7 +80,7 @@ function LegalLinks({ current }: { current: 'terms' | 'privacy' | 'notice' }) {
 }
 
 export function TermsPage() {
-  useDocumentMeta('legal.terms.metaTitle')
+  useDocumentMeta('legal.terms.metaTitle', 'legal.terms.metaDescription')
   const { t } = useI18n()
   return (
     <>
@@ -106,7 +106,7 @@ export function TermsPage() {
 }
 
 export function PrivacyPage() {
-  useDocumentMeta('legal.privacy.metaTitle')
+  useDocumentMeta('legal.privacy.metaTitle', 'legal.privacy.metaDescription')
   const { t } = useI18n()
   return (
     <>
@@ -139,7 +139,7 @@ export function PrivacyPage() {
 }
 
 export function NoticePage() {
-  useDocumentMeta('legal.notice.metaTitle')
+  useDocumentMeta('legal.notice.metaTitle', 'legal.notice.metaDescription')
   const { t } = useI18n()
   return (
     <>
